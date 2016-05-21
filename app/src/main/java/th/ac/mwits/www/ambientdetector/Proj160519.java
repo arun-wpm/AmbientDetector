@@ -36,6 +36,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.Vector;
 
 import static be.tarsos.dsp.beatroot.Peaks.findPeaks;
 
@@ -67,12 +69,14 @@ public class Proj160519 extends AppCompatActivity {
     int i, j;
     ProgressBar[] pb = new ProgressBar[40];
     TextView[][] tv = new TextView[6][2];
-    double max = 100000.0;
+    double max = 10000000.0;
     int ii = 0;
     FFT fft = new FFT(2048, new HammingWindow());
     float[] fdata = new float[2048];
     double[] amp = new double[1024];
     double[] accu = new double[1024];
+
+    double quicksum[] = new double[2005];
 
     double[] ref = new double[1024];
     boolean[] peaks = new boolean[1024];
@@ -142,7 +146,7 @@ public class Proj160519 extends AppCompatActivity {
     double white = 0.0, wref = 0.0;
     int bnum = 0, wnum = 0;
 
-    public double median(double a, double b, double c) {
+    /*public double median(double a, double b, double c) {
         if ((a > b && a < c) || (a < b && a > c))
             return a;
         else if ((b > a && b < c) || (b < a && b > c))
@@ -151,6 +155,12 @@ public class Proj160519 extends AppCompatActivity {
             return c;
         else
             return 0.0;
+    }*/
+
+    public double S2(int k, int i) {
+        double t=k*accu[i]-(quicksum[i-1]-quicksum[i-k-1]);
+        t=t+k*accu[i]-(quicksum[i+k]-quicksum[i]);
+        return t/(double)(k*2);
     }
 
     @Override
@@ -241,8 +251,57 @@ public class Proj160519 extends AppCompatActivity {
                     file = new File(dir, filenum + ".txt");
                 }
 
-                for (i = 1; i < 1023; i++)
-                    peaks[i] = (accu[i] > median(accu[i - 1], accu[i], accu[i + 1]) + 10000000);
+                /*for (i = 1; i < 1023; i++)
+                    peaks[i] = (accu[i] > median(accu[i - 1], accu[i], accu[i + 1]) + 10000000);*/
+
+                                                                                                    //Simple Algorithms for Peak Detection in Time-Series
+                                                                                                    //C++ implementation by Poon
+                                                                                                    //Assume <= 2005 elements
+                ArrayList<Integer> peak = new ArrayList<Integer>();
+                double a[] = new double[2005];
+                int k = 5;
+                int h = 1; // 1<=h<=3
+                double mean,s,sum=0;
+                for (i = 1; i <= 1024; i++)
+                    quicksum[i] = quicksum[i-1] + accu[i - 1];
+                int c=(1024-2*k);
+                for(int i=1;i<1024;i++)
+                {
+                    if(i<=k||i+k>1024) continue;
+                    a[i-k]=S2(k,i);
+                    // printf("%f\n",S2(k,i));
+                    sum=sum+a[i-k];
+                }
+                mean=(double) sum/c;
+                sum=0;
+                for(int i=1;i<=c;i++)
+                    sum=sum+(mean-a[i])*(mean-a[i]);
+                sum=sum/c;
+                s=Math.sqrt(sum);
+                for(int i=1;i<=1024-2*k;i++)
+                {
+                    if(a[i]>0&&(a[i]-mean)>(h*s)) peak.add(i + k);
+                }
+                for(int i=0;i<peak.size()-1;)
+                {
+                    if(accu[peak.get(i) - 1] < accu[peak.get(i+1) - 1])
+                    {
+                        peak.remove(i);
+                        continue;
+                    }
+                    else if(accu[peak.get(i) - 1] > accu[peak.get(i+1) - 1])
+                    {
+                        peak.remove(i+1);
+                    }
+                    i++;
+                }
+                for (i = 0; i < 1024; i++)
+                    peaks[i] = false;
+                for(i=0;i<peak.size();i++) {
+                    peaks[peak.get(i) - 1] = true;
+                    Log.d("TAG", "peak " + (peak.get(i) - 1));
+                }
+
                 FileOutputStream stream = null;
                 try {
                     stream = new FileOutputStream(file);
@@ -266,7 +325,7 @@ public class Proj160519 extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                for (i = 0; i < 40; i++) {
+                for (i = 0; i < 1024; i++) {
                     if (accu[i] > max)
                         max = accu[i];
                 }
@@ -338,7 +397,7 @@ public class Proj160519 extends AppCompatActivity {
                         max = accu[i];
                 }
 
-                file2 = new File(dir, "dump.txt");
+                /*file2 = new File(dir, "dump.txt");
                 file3 = new File(dir, "raw.txt");
                 FileOutputStream stream2 = null;
                 FileOutputStream stream3 = null;
@@ -362,7 +421,7 @@ public class Proj160519 extends AppCompatActivity {
                     stream2.close();
                 } catch (IOException e) {
                     e.printStackTrace();
-                }
+                }*/
 
                 publishProgress(String.valueOf(-1), "", "");
 
@@ -416,7 +475,7 @@ public class Proj160519 extends AppCompatActivity {
                     bref /= bnum;
                     wref /= wnum;
 
-                    publishProgress(String.valueOf(filenum), String.valueOf(Math.round((black/white)/(bref/wref)*100) + "%"), String.valueOf(black - 20000 < white));
+                    publishProgress(String.valueOf(filenum), String.valueOf(Math.round((black/white)/(bref/wref)*100)), String.valueOf(black/white <= 1.0));
 
                     /*file2 = new File(dir, "dump" + filenum + ".txt");
                     stream2 = null;
@@ -493,11 +552,11 @@ public class Proj160519 extends AppCompatActivity {
 
             if (j > -1) {
                 tv[j][0].setText(values[0]);
-                if (values[2].equals("true"))
+                if (values[2].equals("true") || Integer.valueOf(values[1]) <= 30)
                     tv[j][0].append(" = NOISE");
                 else
                     tv[j][0].append(" = EVENT");
-                tv[j][1].setText(values[1]);
+                tv[j][1].setText(values[1] + "%");
             }
             else {
                 for (j = 0; j < 40; j++) {
