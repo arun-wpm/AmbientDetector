@@ -11,6 +11,7 @@ import android.os.AsyncTask;
 import android.os.CountDownTimer;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.Vibrator;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -53,10 +54,12 @@ public class Proj160519 extends AppCompatActivity {
 
     short[] data = new short[441000];
     TextView textView;
-    Button start, stop, record;
+    Button start, stop, record, stop_vibrate;
 
     AudioRecord recorder;
     AudioTrack audioPlayer;
+
+    Vibrator vibrator;
 
     String root;
     File dir;
@@ -146,17 +149,6 @@ public class Proj160519 extends AppCompatActivity {
     double white = 0.0, wref = 0.0;
     int bnum = 0, wnum = 0;
 
-    /*public double median(double a, double b, double c) {
-        if ((a > b && a < c) || (a < b && a > c))
-            return a;
-        else if ((b > a && b < c) || (b < a && b > c))
-            return b;
-        else if ((c > a && c < b) || (c < a && c > b))
-            return c;
-        else
-            return 0.0;
-    }*/
-
     public double S2(int k, int i) {
         double t=k*accu[i]-(quicksum[i-1]-quicksum[i-k-1]);
         t=t+k*accu[i]-(quicksum[i+k]-quicksum[i]);
@@ -169,10 +161,8 @@ public class Proj160519 extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
 
         root = Environment.getExternalStorageDirectory().toString();
-        //Log.d("TAG", root);
         dir = new File(root + "/FFT");
         dir.mkdir();
-        //file = new File(dir, "FFTdata.txt");
 
         bufferSize += 2048;
 
@@ -206,6 +196,16 @@ public class Proj160519 extends AppCompatActivity {
             }
         });
 
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+
+        stop_vibrate = (Button) findViewById(R.id.button4);
+        stop_vibrate.setOnClickListener(new View.OnClickListener()  {
+            @Override
+            public void onClick(View v){
+                    vibrator.cancel();
+            }
+        });
+
         record = (Button) findViewById(R.id.button3);
         record.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -220,7 +220,6 @@ public class Proj160519 extends AppCompatActivity {
 
                     if (AudioRecord.ERROR_INVALID_OPERATION != readBytes) {
                         writtenBytes += audioPlayer.write(data, writtenBytes, readBytes);
-                        //Log.d("TAG", "Write" + writtenBytes);
                     }
                 }
                 while (writtenBytes < bufferSize * 25);
@@ -240,7 +239,6 @@ public class Proj160519 extends AppCompatActivity {
                     for (i = 0; i < 1024; i++)
                         accu[i] += amp[i];
 
-                    //Log.d("TAG", "FFT done to " + ii);
                     ii += i;
                 }
 
@@ -250,10 +248,6 @@ public class Proj160519 extends AppCompatActivity {
                     filenum++;
                     file = new File(dir, filenum + ".txt");
                 }
-
-                /*for (i = 1; i < 1023; i++)
-                    peaks[i] = (accu[i] > median(accu[i - 1], accu[i], accu[i + 1]) + 10000000);*/
-
                                                                                                     //Simple Algorithms for Peak Detection in Time-Series
                                                                                                     //C++ implementation by Poon
                                                                                                     //Assume <= 2005 elements
@@ -347,10 +341,6 @@ public class Proj160519 extends AppCompatActivity {
                 audioPlayer.flush();
             }
         });
-
-        //result = (TextView) findViewById(R.id.textView2);
-        //refresult = (TextView) findViewById(R.id.textView3);
-        //percent = (TextView) findViewById(R.id.textView4);
     }
 
     class MyTask extends AsyncTask<String, String, String> {
@@ -396,32 +386,6 @@ public class Proj160519 extends AppCompatActivity {
                     if (accu[i] > max)
                         max = accu[i];
                 }
-
-                /*file2 = new File(dir, "dump.txt");
-                file3 = new File(dir, "raw.txt");
-                FileOutputStream stream2 = null;
-                FileOutputStream stream3 = null;
-                try {
-                    stream2 = new FileOutputStream(file2);
-                    stream3 = new FileOutputStream(file3);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    for (i = 0; i < 1024; i++) {
-                        stream2.write((String.valueOf(accu[i]) + "\n").getBytes());
-                    }
-                    for (i = 0; i < writtenBytes/2; i++)
-                        stream3.write((String.valueOf(data[i]) + "\n").getBytes());
-                    Log.d("TAG", "Dump data");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    stream2.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }*/
 
                 publishProgress(String.valueOf(-1), "", "");
 
@@ -477,48 +441,11 @@ public class Proj160519 extends AppCompatActivity {
 
                     publishProgress(String.valueOf(filenum), String.valueOf(Math.round((black/white)/(bref/wref)*100)), String.valueOf(black/white <= 1.0));
 
-                    /*file2 = new File(dir, "dump" + filenum + ".txt");
-                    stream2 = null;
-                    try {
-                        stream2 = new FileOutputStream(file2);
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        for (i = 0; i < 1024; i++) {
-                            stream2.write((String.valueOf(ref[i]) + " ").getBytes());
-                            stream2.write((String.valueOf(peaks[i]) + "\n").getBytes());
-                        }
-                        Log.d("TAG", "Dump data");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        stream2.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }*/
-
                     filenum++;
                     file = new File(dir, filenum + ".txt");
                 }
 
-                //publishProgress(String.valueOf(black), String.valueOf(white), String.valueOf(bref), String.valueOf(wref), String.valueOf((black/white)/(bref/wref)*100), String.valueOf(black < white));
-                /*runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        result.setText("Black" + black);
-                        refresult.setText("White" + white);
-                        percent.setText(String.valueOf((black/white)/(bref/wref)*100));
 
-                        int j;
-                        for (j = 0; j < 40; j++) {
-                            pb[j].setMax((int) Math.round(max));
-                            pb[j].setProgress((int) Math.round(accu[j]));
-                            accu[j] = 0.0;
-                        }
-                    }
-                });*/
 
                 audioPlayer.play();
                 do {                                                     // Montior playback to find when done
@@ -529,12 +456,6 @@ public class Proj160519 extends AppCompatActivity {
                 audioPlayer.stop();
                 audioPlayer.flush();
 
-                /*try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }*/
-
                 if (Thread.currentThread().isInterrupted()) break;
             }
             return null;
@@ -544,9 +465,6 @@ public class Proj160519 extends AppCompatActivity {
         protected void onProgressUpdate(String... values) {
             super.onProgressUpdate(values);
 
-            /*result.setText("Black : " + values[0] + " White : " + values[1]);
-            refresult.setText("Fingerprint :\nBlack : " + values[2] + " White : " + values[3]);
-            percent.setText("Certainty : " + values[4]);*/
             int j;
             j = Integer.valueOf(values[0]);
 
@@ -554,8 +472,10 @@ public class Proj160519 extends AppCompatActivity {
                 tv[j][0].setText(values[0]);
                 if (values[2].equals("true") || Integer.valueOf(values[1]) <= 30)
                     tv[j][0].append(" = NOISE");
-                else
+                else {
                     tv[j][0].append(" = EVENT");
+                    vibrator.vibrate(10000);
+                }
                 tv[j][1].setText(values[1] + "%");
             }
             else {
@@ -563,19 +483,8 @@ public class Proj160519 extends AppCompatActivity {
                     pb[j].setMax((int) Math.round(max));
                     pb[j].setProgress((int) Math.round(accu[j]));
                 }
-                /*for (j = 0; j < 1024; j++) {
-                    accu[j] = 0.0;
-                }*/
+
             }
-
-            /*if (values[5].equals("true"))
-                textView.setText("NOISE");
-            else
-                textView.setText("EVENT");*/
-
-            //result.invalidate();
-            //refresult.invalidate();
-            //percent.invalidate();
         }
 
         @Override
