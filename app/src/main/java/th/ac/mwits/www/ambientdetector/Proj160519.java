@@ -1,6 +1,8 @@
 package th.ac.mwits.www.ambientdetector;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioRecord;
@@ -15,9 +17,11 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -61,6 +65,7 @@ public class Proj160519 extends AppCompatActivity {
     String root;
     File dir;
     File file;
+    String SoundName;
     File file2;
     File file3;
     int filenum = 0;
@@ -141,6 +146,8 @@ public class Proj160519 extends AppCompatActivity {
 
     MyTask myTask;
 
+    final Context context = this;
+
     //TextView result, refresult, percent;
     double black = 0.0, bref = 0.0;
     double white = 0.0, wref = 0.0;
@@ -211,7 +218,7 @@ public class Proj160519 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 writtenBytes = 0;
-                max = 100000.0;
+                max = 10000000.0;
                 ii = 0;
                 recorder.startRecording();
                 do {
@@ -308,19 +315,13 @@ public class Proj160519 extends AppCompatActivity {
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
-                DataOutputStream dos = new DataOutputStream(stream);
+                final DataOutputStream dos = new DataOutputStream(stream);
                 try {
                     for (i = 0; i < 1024; i++) {
                         dos.writeDouble(accu[i]);
                         dos.writeBoolean(peaks[i]);
                     }
                     Log.d("TAG", "Write Results");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    dos.close();
-                    stream.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -345,6 +346,46 @@ public class Proj160519 extends AppCompatActivity {
 
                 audioPlayer.stop();
                 audioPlayer.flush();
+
+                                                                        // Save sound name
+                // get prompts.xml view
+                final String[] Name = new String[1];
+                LayoutInflater li = LayoutInflater.from(context);
+                View promptsView = li.inflate(R.layout.dialog_name, null);
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                        context);
+
+                // set prompts.xml to alertdialog builder
+                alertDialogBuilder.setView(promptsView);
+                alertDialogBuilder.setTitle("Set name of new sound:");
+
+                final EditText[] userInput = {(EditText) promptsView
+                        .findViewById(R.id.DialogName)};
+
+                // set dialog message
+                alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Name[0] = userInput[0].getText().toString();
+                        try {
+                            dos.writeUTF(Name[0]);
+                            Log.d("TAG", "write " + Name[0]);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            dos.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+                // create alert dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                // show it
+                alertDialog.show();
             }
         });
 
@@ -358,7 +399,7 @@ public class Proj160519 extends AppCompatActivity {
         protected String doInBackground(String... params) {
             while (true) {
                 writtenBytes = 0;
-                max = 100000.0;
+                max = 10000000.0;
                 ii = 0;
 
                 recorder.startRecording();
@@ -425,6 +466,7 @@ public class Proj160519 extends AppCompatActivity {
 
                 publishProgress(String.valueOf(-1), "", "");
 
+                SoundName = null;
                 filenum = 0;
                 file = new File(dir, filenum + ".txt");
                 while (file.exists()) {
@@ -440,6 +482,7 @@ public class Proj160519 extends AppCompatActivity {
                             ref[i] = dis.readDouble();
                             peaks[i] = dis.readBoolean();
                         }
+                        SoundName = dis.readUTF();
                         Log.d("TAG", "Read from file" + filenum);
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -475,7 +518,7 @@ public class Proj160519 extends AppCompatActivity {
                     bref /= bnum;
                     wref /= wnum;
 
-                    publishProgress(String.valueOf(filenum), String.valueOf(Math.round((black/white)/(bref/wref)*100)), String.valueOf(black/white <= 1.0));
+                    publishProgress(String.valueOf(filenum), String.valueOf(Math.round((black/white)/(bref/wref)*100)), String.valueOf(black/white <= 1.0), SoundName);
 
                     /*file2 = new File(dir, "dump" + filenum + ".txt");
                     stream2 = null;
@@ -551,7 +594,8 @@ public class Proj160519 extends AppCompatActivity {
             j = Integer.valueOf(values[0]);
 
             if (j > -1) {
-                tv[j][0].setText(values[0]);
+                tv[j][0].setText(values[0] + " " + values[3]);
+                Log.d("TAG", "read " + values[3]);
                 if (values[2].equals("true") || Integer.valueOf(values[1]) <= 30)
                     tv[j][0].append(" = NOISE");
                 else
