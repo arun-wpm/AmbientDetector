@@ -1,14 +1,15 @@
 package th.ac.mwits.www.ambientdetector;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.SurfaceTexture;
 import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioRecord;
 import android.media.AudioTrack;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.CountDownTimer;
 import android.os.Environment;
@@ -26,6 +27,11 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.hardware.camera2.*;
+
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import org.w3c.dom.Text;
 
@@ -54,7 +60,7 @@ public class Proj160519 extends AppCompatActivity {
     private int bufferSize = AudioRecord.getMinBufferSize(samplingRate, channelConfig, audioFormat);
     private int sampleNumBits = 16;
     private int numChannels = 1;
-
+    private Flashlight F=new Flashlight();
     short[] data = new short[441000];
     TextView textView;
     Button start, stop, record;
@@ -152,6 +158,11 @@ public class Proj160519 extends AppCompatActivity {
     double black = 0.0, bref = 0.0;
     double white = 0.0, wref = 0.0;
     int bnum = 0, wnum = 0;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
     /*public double median(double a, double b, double c) {
         if ((a > b && a < c) || (a < b && a > c))
@@ -165,9 +176,9 @@ public class Proj160519 extends AppCompatActivity {
     }*/
 
     public double S2(int k, int i) {
-        double t=k*accu[i]-(quicksum[i-1]-quicksum[i-k-1]);
-        t=t+k*accu[i]-(quicksum[i+k]-quicksum[i]);
-        return t/(double)(k*2);
+        double t = k * accu[i] - (quicksum[i - 1] - quicksum[i - k - 1]);
+        t = t + k * accu[i] - (quicksum[i + k] - quicksum[i]);
+        return t / (double) (k * 2);
     }
 
     @Override
@@ -188,7 +199,7 @@ public class Proj160519 extends AppCompatActivity {
 
         for (i = 0; i < 6; i++)
             for (j = 0; j < 2; j++)
-                tv[i][j] = (TextView) findViewById(tvid[2*i + j]);
+                tv[i][j] = (TextView) findViewById(tvid[2 * i + j]);
 
         recorder = new AudioRecord(audioSource, samplingRate, channelConfig, audioFormat, bufferSize);
         Log.d("TAG", "Start recording");
@@ -261,50 +272,44 @@ public class Proj160519 extends AppCompatActivity {
                 /*for (i = 1; i < 1023; i++)
                     peaks[i] = (accu[i] > median(accu[i - 1], accu[i], accu[i + 1]) + 10000000);*/
 
-                                                                                                    //Simple Algorithms for Peak Detection in Time-Series
-                                                                                                    //C++ implementation by Poon
-                                                                                                    //Assume <= 2005 elements
+                //Simple Algorithms for Peak Detection in Time-Series
+                //C++ implementation by Poon
+                //Assume <= 2005 elements
                 ArrayList<Integer> peak = new ArrayList<Integer>();
                 double a[] = new double[2005];
                 int k = 5;
                 int h = 1; // 1<=h<=3
-                double mean,s,sum=0;
+                double mean, s, sum = 0;
                 for (i = 1; i <= 1024; i++)
-                    quicksum[i] = quicksum[i-1] + accu[i - 1];
-                int c=(1024-2*k);
-                for(int i=1;i<1024;i++)
-                {
-                    if(i<=k||i+k>1024) continue;
-                    a[i-k]=S2(k,i);
+                    quicksum[i] = quicksum[i - 1] + accu[i - 1];
+                int c = (1024 - 2 * k);
+                for (int i = 1; i < 1024; i++) {
+                    if (i <= k || i + k > 1024) continue;
+                    a[i - k] = S2(k, i);
                     // printf("%f\n",S2(k,i));
-                    sum=sum+a[i-k];
+                    sum = sum + a[i - k];
                 }
-                mean=(double) sum/c;
-                sum=0;
-                for(int i=1;i<=c;i++)
-                    sum=sum+(mean-a[i])*(mean-a[i]);
-                sum=sum/c;
-                s=Math.sqrt(sum);
-                for(int i=1;i<=1024-2*k;i++)
-                {
-                    if(a[i]>0&&(a[i]-mean)>(h*s)) peak.add(i + k);
+                mean = (double) sum / c;
+                sum = 0;
+                for (int i = 1; i <= c; i++)
+                    sum = sum + (mean - a[i]) * (mean - a[i]);
+                sum = sum / c;
+                s = Math.sqrt(sum);
+                for (int i = 1; i <= 1024 - 2 * k; i++) {
+                    if (a[i] > 0 && (a[i] - mean) > (h * s)) peak.add(i + k);
                 }
-                for(int i=0;i<peak.size()-1;)
-                {
-                    if(accu[peak.get(i) - 1] < accu[peak.get(i+1) - 1])
-                    {
+                for (int i = 0; i < peak.size() - 1; ) {
+                    if (accu[peak.get(i) - 1] < accu[peak.get(i + 1) - 1]) {
                         peak.remove(i);
                         continue;
-                    }
-                    else if(accu[peak.get(i) - 1] > accu[peak.get(i+1) - 1])
-                    {
-                        peak.remove(i+1);
+                    } else if (accu[peak.get(i) - 1] > accu[peak.get(i + 1) - 1]) {
+                        peak.remove(i + 1);
                     }
                     i++;
                 }
                 for (i = 0; i < 1024; i++)
                     peaks[i] = false;
-                for(i=0;i<peak.size();i++) {
+                for (i = 0; i < peak.size(); i++) {
                     peaks[peak.get(i) - 1] = true;
                     Log.d("TAG", "peak " + (peak.get(i) - 1));
                 }
@@ -347,7 +352,7 @@ public class Proj160519 extends AppCompatActivity {
                 audioPlayer.stop();
                 audioPlayer.flush();
 
-                                                                        // Save sound name
+                // Save sound name
                 // get prompts.xml view
                 final String[] Name = new String[1];
                 LayoutInflater li = LayoutInflater.from(context);
@@ -392,6 +397,49 @@ public class Proj160519 extends AppCompatActivity {
         //result = (TextView) findViewById(R.id.textView2);
         //refresult = (TextView) findViewById(R.id.textView3);
         //percent = (TextView) findViewById(R.id.textView4);
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Proj160519 Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app URL is correct.
+                Uri.parse("android-app://th.ac.mwits.www.ambientdetector/http/host/path")
+        );
+        AppIndex.AppIndexApi.start(client, viewAction);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Proj160519 Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app URL is correct.
+                Uri.parse("android-app://th.ac.mwits.www.ambientdetector/http/host/path")
+        );
+        AppIndex.AppIndexApi.end(client, viewAction);
+        client.disconnect();
     }
 
     class MyTask extends AsyncTask<String, String, String> {
@@ -506,8 +554,7 @@ public class Proj160519 extends AppCompatActivity {
                             black += accu[i];
                             bref += ref[i];
                             bnum++;
-                        }
-                        else {
+                        } else {
                             white += accu[i];
                             wref += ref[i];
                             wnum++;
@@ -518,7 +565,7 @@ public class Proj160519 extends AppCompatActivity {
                     bref /= bnum;
                     wref /= wnum;
 
-                    publishProgress(String.valueOf(filenum), String.valueOf(Math.round((black/white)/(bref/wref)*100)), String.valueOf(black/white <= 1.0), SoundName);
+                    publishProgress(String.valueOf(filenum), String.valueOf(Math.round((black / white) / (bref / wref) * 100)), String.valueOf(black / white <= 1.0), SoundName);
 
                     /*file2 = new File(dir, "dump" + filenum + ".txt");
                     stream2 = null;
@@ -598,11 +645,12 @@ public class Proj160519 extends AppCompatActivity {
                 Log.d("TAG", "read " + values[3]);
                 if (values[2].equals("true") || Integer.valueOf(values[1]) <= 30)
                     tv[j][0].append(" = NOISE");
-                else
+                else {
                     tv[j][0].append(" = EVENT");
+                    F.turnOnFlashLight();
+                }
                 tv[j][1].setText(values[1] + "%");
-            }
-            else {
+            } else {
                 for (j = 0; j < 40; j++) {
                     pb[j].setMax((int) Math.round(max));
                     pb[j].setProgress((int) Math.round(accu[j]));
