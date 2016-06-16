@@ -686,4 +686,22 @@
 
     </LinearLayout>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fl On"
+        android:id="@+id/on"
+        android:layout_below="@+id/progressBar39"
+        android:layout_toRightOf="@+id/button3"
+        android:layout_toEndOf="@+id/button3" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fl Off"
+        android:id="@+id/off"
+        android:layout_below="@+id/progressBar39"
+        android:layout_toLeftOf="@+id/button3"
+        android:layout_toStartOf="@+id/button3" />
+
 </RelativeLayout>

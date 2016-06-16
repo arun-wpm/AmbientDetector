@@ -1,7 +1,10 @@
 /**
  * Created by Fated001 on 16/6/2559.
  */
+
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.SurfaceTexture;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCaptureSession;
@@ -11,6 +14,7 @@ import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.CameraMetadata;
 import android.hardware.camera2.CaptureRequest;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Size;
 import android.view.Surface;
@@ -20,64 +24,66 @@ import android.widget.Button;
 import java.util.ArrayList;
 import java.util.List;
 
+import th.ac.mwits.www.ambientdetector.R;
+
 public class FlashLight extends AppCompatActivity {
-        private CameraManager cameraManager;
-        private CameraCharacteristics cameraCharacteristics;
+    private CameraManager cameraManager;
+    private CameraCharacteristics cameraCharacteristics;
 
-        private CameraDevice mCameraDevice;
-        private CameraCaptureSession mSession;
+    private CameraDevice mCameraDevice;
+    private CameraCaptureSession mSession;
 
-        private CaptureRequest.Builder mBuilder;
+    private CaptureRequest.Builder mBuilder;
 
-        private Button on;
-        private Button off;
+    private Button on;
+    private Button off;
 
 
-        @Override
-        protected void onCreate(Bundle savedInstanceState)
-        {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_main);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-            on = (Button) findViewById(R.id.on);
-            off = (Button) findViewById(R.id.off);
+        on = (Button) findViewById(R.id.on);
+        off = (Button) findViewById(R.id.off);
 
-            initCamera();
+        initCamera();
+    }
+
+    public void click(View v) {
+        switch (v.getId()) {
+            case R.id.on:
+                try {
+                    turnOnFlashLight();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+            case R.id.off:
+                turnOffFlashLight();
+                break;
         }
+    }
 
-        public void click(View v)
-        {
-            switch (v.getId())
-            {
-                case R.id.on:
-                    try
-                    {
-                        turnOnFlashLight();
+    private void initCamera() {
+        cameraManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+        try {
+            String[] id = cameraManager.getCameraIdList();
+            if (id != null && id.length > 0) {
+                cameraCharacteristics = cameraManager.getCameraCharacteristics(id[0]);
+                boolean isFlash = cameraCharacteristics.get(CameraCharacteristics.FLASH_INFO_AVAILABLE);
+                if (isFlash) {
+                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                        // TODO: Consider calling
+                        //    ActivityCompat#requestPermissions
+                        // here to request the missing permissions, and then overriding
+                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                        //                                          int[] grantResults)
+                        // to handle the case where the user grants the permission. See the documentation
+                        // for ActivityCompat#requestPermissions for more details.
+                        return;
                     }
-                    catch (Exception e)
-                    {
-                        e.printStackTrace();
-                    }
-                    break;
-                case R.id.off:
-                    turnOffFlashLight();
-                    break;
-            }
-        }
-
-        private void initCamera()
-        {
-            cameraManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
-            try
-            {
-                String[] id = cameraManager.getCameraIdList();
-                if (id != null && id.length > 0)
-                {
-                    cameraCharacteristics = cameraManager.getCameraCharacteristics(id[0]);
-                    boolean isFlash = cameraCharacteristics.get(CameraCharacteristics.FLASH_INFO_AVAILABLE);
-                    if (isFlash)
-                    {
-                        cameraManager.openCamera(id[0], new MyCameraDeviceStateCallback(), null);
+                    cameraManager.openCamera(id[0], new MyCameraDeviceStateCallback(), null);
                     }
                 }
             }

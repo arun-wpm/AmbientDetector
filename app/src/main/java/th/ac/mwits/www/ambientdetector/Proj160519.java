@@ -61,6 +61,7 @@ public class Proj160519 extends AppCompatActivity {
     private int sampleNumBits = 16;
     private int numChannels = 1;
     private Flashlight F=new Flashlight();
+    int count = 0;
     short[] data = new short[441000];
     TextView textView;
     Button start, stop, record;
@@ -158,22 +159,6 @@ public class Proj160519 extends AppCompatActivity {
     double black = 0.0, bref = 0.0;
     double white = 0.0, wref = 0.0;
     int bnum = 0, wnum = 0;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
-
-    /*public double median(double a, double b, double c) {
-        if ((a > b && a < c) || (a < b && a > c))
-            return a;
-        else if ((b > a && b < c) || (b < a && b > c))
-            return b;
-        else if ((c > a && c < b) || (c < a && c > b))
-            return c;
-        else
-            return 0.0;
-    }*/
 
     public double S2(int k, int i) {
         double t = k * accu[i] - (quicksum[i - 1] - quicksum[i - k - 1]);
@@ -204,8 +189,8 @@ public class Proj160519 extends AppCompatActivity {
         recorder = new AudioRecord(audioSource, samplingRate, channelConfig, audioFormat, bufferSize);
         Log.d("TAG", "Start recording");
 
-        audioPlayer = new AudioTrack(AudioManager.STREAM_MUSIC, 44100, AudioFormat.CHANNEL_OUT_MONO,
-                AudioFormat.ENCODING_PCM_16BIT, bufferSize * 50, AudioTrack.MODE_STREAM);
+        /*audioPlayer = new AudioTrack(AudioManager.STREAM_MUSIC, 44100, AudioFormat.CHANNEL_OUT_MONO,
+                AudioFormat.ENCODING_PCM_16BIT, bufferSize * 50, AudioTrack.MODE_STREAM);*/
         Log.d("TAG", "Initialized playback");
 
         textView = (TextView) findViewById(R.id.textView);
@@ -393,71 +378,30 @@ public class Proj160519 extends AppCompatActivity {
                 alertDialog.show();
             }
         });
-
-        //result = (TextView) findViewById(R.id.textView2);
-        //refresult = (TextView) findViewById(R.id.textView3);
-        //percent = (TextView) findViewById(R.id.textView4);
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Proj160519 Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://th.ac.mwits.www.ambientdetector/http/host/path")
-        );
-        AppIndex.AppIndexApi.start(client, viewAction);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Proj160519 Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://th.ac.mwits.www.ambientdetector/http/host/path")
-        );
-        AppIndex.AppIndexApi.end(client, viewAction);
-        client.disconnect();
     }
 
     class MyTask extends AsyncTask<String, String, String> {
         @Override
         protected String doInBackground(String... params) {
             while (true) {
-                writtenBytes = 0;
+                audioPlayer = new AudioTrack(AudioManager.STREAM_MUSIC, 44100, AudioFormat.CHANNEL_OUT_MONO,
+                AudioFormat.ENCODING_PCM_16BIT, bufferSize * 50, AudioTrack.MODE_STREAM);
+
+                if (count == 0)
+                    writtenBytes = 0;
+                else
+                    writtenBytes = bufferSize*25/2;
                 max = 10000000.0;
                 ii = 0;
 
                 recorder.startRecording();
                 do {
                     readBytes = recorder.read(data, writtenBytes, bufferSize);
-                    Log.d("TAG", "Read" + readBytes);
+                    //Log.d("TAG", "Read" + readBytes);
 
                     if (AudioRecord.ERROR_INVALID_OPERATION != readBytes) {
                         writtenBytes += audioPlayer.write(data, writtenBytes, readBytes);
-                        Log.d("TAG", "Write" + writtenBytes);
+                        //Log.d("TAG", "Write" + writtenBytes);
                     }
                 }
                 while (writtenBytes < bufferSize * 25);
@@ -485,32 +429,6 @@ public class Proj160519 extends AppCompatActivity {
                     if (accu[i] > max)
                         max = accu[i];
                 }
-
-                /*file2 = new File(dir, "dump.txt");
-                file3 = new File(dir, "raw.txt");
-                FileOutputStream stream2 = null;
-                FileOutputStream stream3 = null;
-                try {
-                    stream2 = new FileOutputStream(file2);
-                    stream3 = new FileOutputStream(file3);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    for (i = 0; i < 1024; i++) {
-                        stream2.write((String.valueOf(accu[i]) + "\n").getBytes());
-                    }
-                    for (i = 0; i < writtenBytes/2; i++)
-                        stream3.write((String.valueOf(data[i]) + "\n").getBytes());
-                    Log.d("TAG", "Dump data");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    stream2.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }*/
 
                 publishProgress(String.valueOf(-1), "", "");
 
@@ -567,66 +485,33 @@ public class Proj160519 extends AppCompatActivity {
 
                     publishProgress(String.valueOf(filenum), String.valueOf(Math.round((black / white) / (bref / wref) * 100)), String.valueOf(black / white <= 1.0), SoundName);
 
-                    /*file2 = new File(dir, "dump" + filenum + ".txt");
-                    stream2 = null;
-                    try {
-                        stream2 = new FileOutputStream(file2);
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        for (i = 0; i < 1024; i++) {
-                            stream2.write((String.valueOf(ref[i]) + " ").getBytes());
-                            stream2.write((String.valueOf(peaks[i]) + "\n").getBytes());
-                        }
-                        Log.d("TAG", "Dump data");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        stream2.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }*/
-
                     filenum++;
                     file = new File(dir, filenum + ".txt");
                 }
 
-                //publishProgress(String.valueOf(black), String.valueOf(white), String.valueOf(bref), String.valueOf(wref), String.valueOf((black/white)/(bref/wref)*100), String.valueOf(black < white));
-                /*runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        result.setText("Black" + black);
-                        refresult.setText("White" + white);
-                        percent.setText(String.valueOf((black/white)/(bref/wref)*100));
+                if (Thread.currentThread().isInterrupted()) {
+                    count = 0;
+                    break;
+                }
+                audioPlayer.release();
 
-                        int j;
-                        for (j = 0; j < 40; j++) {
-                            pb[j].setMax((int) Math.round(max));
-                            pb[j].setProgress((int) Math.round(accu[j]));
-                            accu[j] = 0.0;
-                        }
-                    }
-                });*/
-
-                audioPlayer.play();
-                do {                                                     // Montior playback to find when done
-                    i = audioPlayer.getPlaybackHeadPosition();
-                    //Log.d("TAG", "Play" + i);
-                } while (i < writtenBytes);
-
-                audioPlayer.stop();
-                audioPlayer.flush();
-
-                /*try {
-                    Thread.sleep(1000);
+                try {
+                    Thread.sleep(100);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                }*/
+                }
 
-                if (Thread.currentThread().isInterrupted()) break;
+                for (i = 0; i < bufferSize*25/2; i++)
+                    data[i] = data[i + bufferSize*25/2];
+                count = 1;
             }
+            audioPlayer.release();
+            /*Log.d("TAG", "onPostExecute release");
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }*/
             return null;
         }
 
@@ -634,9 +519,6 @@ public class Proj160519 extends AppCompatActivity {
         protected void onProgressUpdate(String... values) {
             super.onProgressUpdate(values);
 
-            /*result.setText("Black : " + values[0] + " White : " + values[1]);
-            refresult.setText("Fingerprint :\nBlack : " + values[2] + " White : " + values[3]);
-            percent.setText("Certainty : " + values[4]);*/
             int j;
             j = Integer.valueOf(values[0]);
 
@@ -647,7 +529,7 @@ public class Proj160519 extends AppCompatActivity {
                     tv[j][0].append(" = NOISE");
                 else {
                     tv[j][0].append(" = EVENT");
-                    F.turnOnFlashLight();
+                    //F.turnOnFlashLight();
                 }
                 tv[j][1].setText(values[1] + "%");
             } else {
@@ -655,19 +537,7 @@ public class Proj160519 extends AppCompatActivity {
                     pb[j].setMax((int) Math.round(max));
                     pb[j].setProgress((int) Math.round(accu[j]));
                 }
-                /*for (j = 0; j < 1024; j++) {
-                    accu[j] = 0.0;
-                }*/
             }
-
-            /*if (values[5].equals("true"))
-                textView.setText("NOISE");
-            else
-                textView.setText("EVENT");*/
-
-            //result.invalidate();
-            //refresult.invalidate();
-            //percent.invalidate();
         }
 
         @Override
