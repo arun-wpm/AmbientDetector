@@ -15,6 +15,7 @@ import android.hardware.camera2.CameraDevice;
 import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.CameraMetadata;
 import android.hardware.camera2.CaptureRequest;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -47,7 +48,7 @@ public class Flashlight extends AppCompatActivity {
         /*on = (Button) findViewById(R.id.on);
         off = (Button) findViewById(R.id.off);*/
 
-        initCamera();
+        initCamera2();
     }
 
     /*public void click(View v)
@@ -70,7 +71,7 @@ public class Flashlight extends AppCompatActivity {
         }
     }*/
 
-    private void initCamera() {
+    private void initCamera2() {
         cameraManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
         try {
             String[] id = cameraManager.getCameraIdList();
