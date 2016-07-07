@@ -19,6 +19,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.util.Size;
 import android.view.Surface;
 import android.view.View;
@@ -48,7 +49,8 @@ public class Flashlight extends AppCompatActivity {
         /*on = (Button) findViewById(R.id.on);
         off = (Button) findViewById(R.id.off);*/
 
-        initCamera2();
+        //Log.d("TAG", "onCreate in Flashlight");
+        //initCamera2();
     }
 
     /*public void click(View v)
@@ -72,13 +74,16 @@ public class Flashlight extends AppCompatActivity {
     }*/
 
     private void initCamera2() {
+        Log.d("TAG", "inside initCamera2");
         cameraManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
         try {
-            String[] id = cameraManager.getCameraIdList();
-            if (id != null && id.length > 0) {
-                cameraCharacteristics = cameraManager.getCameraCharacteristics(id[0]);
+            //String[] id = cameraManager.getCameraIdList();
+            for (String id : cameraManager.getCameraIdList()) {
+                Log.d("TAG", "cameraManager");
+                cameraCharacteristics = cameraManager.getCameraCharacteristics(id);
                 boolean isFlash = cameraCharacteristics.get(CameraCharacteristics.FLASH_INFO_AVAILABLE);
                 if (isFlash) {
+                    Log.d("TAG", "isFlash");
                     if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                         // TODO: Consider calling
                         //    ActivityCompat#requestPermissions
@@ -89,12 +94,14 @@ public class Flashlight extends AppCompatActivity {
                         // for ActivityCompat#requestPermissions for more details.
                         return;
                     }
-                    cameraManager.openCamera(id[0], new MyCameraDeviceStateCallback(), null);
+                    cameraManager.openCamera(id, new MyCameraDeviceStateCallback(), null);
+                    Log.d("TAG", "openCamera");
                 }
             }
         }
         catch (CameraAccessException e)
         {
+            Log.d("TAG", "CameraAccessException");
             e.printStackTrace();
         }
     }
@@ -183,7 +190,10 @@ public class Flashlight extends AppCompatActivity {
     {
         try
         {
+            Log.d("TAG", "initCamera2");
+            initCamera2();
             mBuilder.set(CaptureRequest.FLASH_MODE, CameraMetadata.FLASH_MODE_TORCH);
+            Log.d("TAG", "start flash");
             mSession.setRepeatingRequest(mBuilder.build(), null, null);
         }
         catch (Exception e)
@@ -198,6 +208,7 @@ public class Flashlight extends AppCompatActivity {
         {
             mBuilder.set(CaptureRequest.FLASH_MODE, CameraMetadata.FLASH_MODE_OFF);
             mSession.setRepeatingRequest(mBuilder.build(), null, null);
+            close();
         }
         catch (Exception e)
         {

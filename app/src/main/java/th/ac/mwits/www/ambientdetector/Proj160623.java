@@ -63,7 +63,7 @@ public class Proj160623 extends AppCompatActivity {
     private int bufferSize = AudioRecord.getMinBufferSize(samplingRate, channelConfig, audioFormat);
     private int sampleNumBits = 16;
     private int numChannels = 1;
-    private Flashlight F=new Flashlight();
+    private Flashlight F = new Flashlight();
     int count = 0;
     short[] data = new short[441000];
     TextView textView;
@@ -221,7 +221,8 @@ public class Proj160623 extends AppCompatActivity {
         stop_vibrate.setOnClickListener(new View.OnClickListener()  {
             public void onClick(View v){
                 vibrator.cancel();
-                if (Build.VERSION.SDK_INT >= 21) F.turnOffFlashLight();
+                if (Build.VERSION.SDK_INT >= 21)
+                    F.turnOffFlashLight();
                 else {
                     try {
                         Camera.Parameters p = cam.getParameters();
@@ -413,13 +414,19 @@ public class Proj160623 extends AppCompatActivity {
             while (true) {
                 audioPlayer.release();
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(50);
                     Log.d("TAG", "release AudioTrack");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
                 audioPlayer = new AudioTrack(AudioManager.STREAM_MUSIC, 44100, AudioFormat.CHANNEL_OUT_MONO,
                         AudioFormat.ENCODING_PCM_16BIT, bufferSize * 50, AudioTrack.MODE_STREAM);
+                try {
+                    Thread.sleep(50);
+                    Log.d("TAG", "release AudioTrack");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 Log.d("TAG", "" + count);
                 if (count == 0)
                     writtenBytes = 0;
@@ -557,7 +564,8 @@ public class Proj160623 extends AppCompatActivity {
                 else {
                     tv[j][0].append(" = EVENT");
                     vibrator.vibrate(10000);
-                    if (Build.VERSION.SDK_INT >= 21) F.turnOnFlashLight();
+                    if (Build.VERSION.SDK_INT >= 21)
+                        F.turnOnFlashLight();
                     else
                     {
                         try {
