@@ -10,22 +10,23 @@
     tools:context="th.ac.mwits.www.ambientdetector.MainActivity"
     android:id="@+id/relativelayout">
 
-    <TextView
+    <Switch
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Status"
-        android:id="@+id/textView"
+        android:text="Lite Mode"
+        android:id="@+id/switch1"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="start"
         android:id="@+id/button"
-        android:layout_below="@+id/textView"
-        android:layout_toLeftOf="@+id/textView"
-        android:layout_toStartOf="@+id/textView" />
+        android:layout_below="@+id/switch1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <ProgressBar
     style="?android:attr/progressBarStyleHorizontal"
@@ -552,9 +553,9 @@
         android:layout_height="wrap_content"
         android:text="stop"
         android:id="@+id/button2"
-        android:layout_below="@+id/textView"
-        android:layout_toRightOf="@+id/textView"
-        android:layout_toEndOf="@+id/textView" />
+        android:layout_above="@+id/progressBar0"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -696,5 +697,14 @@
         android:layout_below="@+id/progressBar39"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Threshold"
+        android:id="@+id/textView17"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
