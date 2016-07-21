@@ -72,6 +72,7 @@ public class Proj160623 extends AppCompatActivity {
     private int bufferSize = AudioRecord.getMinBufferSize(samplingRate, channelConfig, audioFormat);
     private int sampleNumBits = 16;
     private int numChannels = 1;
+    private double lastused=0;
     //private Flashlight F = onCreate(new Flashlight());
     CameraManager camManager;
     CameraDevice mCamera;
@@ -178,8 +179,10 @@ public class Proj160623 extends AppCompatActivity {
     double white = 0.0, wref = 0.0;
     int bnum = 0, wnum = 0;
 
+    private AlertDialog.Builder alertDialogBuilder;
+    private AlertDialog alertDialog;
     int Threshold;
-    boolean lite, activate;
+    boolean lite, activate,first=true;
     Switch LiteMode;
     TextView Thresh;
 
@@ -252,9 +255,23 @@ public class Proj160623 extends AppCompatActivity {
                 // show it
                 alertDialog.show();
             }
+
         });
         LiteMode = (Switch) findViewById(R.id.switch1);
         LiteMode.setChecked(false);
+        alertDialogBuilder = new AlertDialog.Builder(context);
+
+        alertDialogBuilder.setTitle("Environment sound intensity reaches threshold!");
+        alertDialogBuilder.setMessage("Event occured at: " + getCurrentTimeStamp());
+
+        // set dialog message
+        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+            }
+        });
+
+        // create alert dialog
+        alertDialog = alertDialogBuilder.create();
 
         bufferSize += 2048;
 
@@ -783,75 +800,81 @@ public class Proj160623 extends AppCompatActivity {
                 }
                 if (activate) {
                     // get prompts.xml view
-                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                            context);
+                    if(System.currentTimeMillis()-lastused<5000) activate=false;
 
-                    alertDialogBuilder.setTitle("Environment sound intensity reaches threshold!");
-                    alertDialogBuilder.setMessage("Event occured at: " + getCurrentTimeStamp());
-
-                    // set dialog message
-                    alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                        }
-                    });
-
-                    // create alert dialog
-                    AlertDialog alertDialog = alertDialogBuilder.create();
-
-                    // show it
-                    alertDialog.show();
-
-                    //vibrator.vibrate(10000);
-                    if (Build.VERSION.SDK_INT >= 23) {
-                        //String cameraId = null; // Usually front camera is at 0 position.
-                        try {
-                            for (String cameraId : camManager.getCameraIdList()) {
-                                try {
-                                    CameraCharacteristics camCharacteristics = camManager.getCameraCharacteristics(cameraId);
-                                    if (camCharacteristics.get(CameraCharacteristics.FLASH_INFO_AVAILABLE)) {
-                                        camManager.openCamera(cameraId, new CameraDevice.StateCallback() {
-                                            @Override
-                                            public void onOpened(@NonNull CameraDevice camera) {
-                                                mCamera = camera;
-                                                //initPreview();
-                                            }
-
-                                            @Override
-                                            public void onDisconnected(@NonNull CameraDevice camera) {
-
-                                            }
-
-                                            @Override
-                                            public void onError(@NonNull CameraDevice camera, int error) {
-
-                                            }
-                                        }, null);
-                                        camManager.setTorchMode(cameraId, true);
-                                    }
-                                } catch (CameraAccessException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                            //F.initCamera2();
-                            //F.turnOnFlashLight();
-                        }
-                        catch (CameraAccessException e)
+                    if(activate) {
+                        if(!first)
                         {
-                            e.printStackTrace();
+                            if (alertDialog.isShowing()) alertDialog.dismiss();
                         }
-                    }
-                    else
-                    {
-                        try {
-                            releaseCameraAndPreview();
-                            cam = Camera.open();
-                            Camera.Parameters p=cam.getParameters();
-                            p.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
-                            cam.setParameters(p);
-                            cam.startPreview();
-                        } catch (Exception e) {
-                            Log.e(getString(R.string.app_name), "failed to open Camera");
-                            e.printStackTrace();
+                        first=false;
+                        lastused=System.currentTimeMillis();
+                        alertDialogBuilder = new AlertDialog.Builder(context);
+
+                        alertDialogBuilder.setTitle("Environment sound intensity reaches threshold!");
+                        alertDialogBuilder.setMessage("Event occured at: " + getCurrentTimeStamp());
+
+                        // set dialog message
+                        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                            }
+                        });
+
+                        // create alert dialog
+                        alertDialog = alertDialogBuilder.create();
+
+                        // show it
+
+                        alertDialog.show();
+
+                        //vibrator.vibrate(10000);
+                        if (Build.VERSION.SDK_INT >= 23) {
+                            //String cameraId = null; // Usually front camera is at 0 position.
+                            try {
+                                for (String cameraId : camManager.getCameraIdList()) {
+                                    try {
+                                        CameraCharacteristics camCharacteristics = camManager.getCameraCharacteristics(cameraId);
+                                        if (camCharacteristics.get(CameraCharacteristics.FLASH_INFO_AVAILABLE)) {
+                                            camManager.openCamera(cameraId, new CameraDevice.StateCallback() {
+                                                @Override
+                                                public void onOpened(@NonNull CameraDevice camera) {
+                                                    mCamera = camera;
+                                                    //initPreview();
+                                                }
+
+                                                @Override
+                                                public void onDisconnected(@NonNull CameraDevice camera) {
+
+                                                }
+
+                                                @Override
+                                                public void onError(@NonNull CameraDevice camera, int error) {
+
+                                                }
+                                            }, null);
+                                            camManager.setTorchMode(cameraId, true);
+                                        }
+                                    } catch (CameraAccessException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                                //F.initCamera2();
+                                //F.turnOnFlashLight();
+                            } catch (CameraAccessException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            try {
+                                releaseCameraAndPreview();
+                                cam = Camera.open();
+                                Camera.Parameters p = cam.getParameters();
+                                p.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+                                cam.setParameters(p);
+                                cam.startPreview();
+                            } catch (Exception e) {
+                                Log.e(getString(R.string.app_name), "failed to open Camera");
+                                e.printStackTrace();
+                            }
                         }
                     }
                 }
