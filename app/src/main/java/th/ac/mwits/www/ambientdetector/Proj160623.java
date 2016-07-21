@@ -2,6 +2,8 @@ package th.ac.mwits.www.ambientdetector;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
 import android.media.AudioFormat;
@@ -17,11 +19,16 @@ import android.os.CountDownTimer;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Vibrator;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -31,6 +38,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.hardware.camera2.*;
+import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -63,7 +71,7 @@ public class Proj160623 extends AppCompatActivity {
     private int bufferSize = AudioRecord.getMinBufferSize(samplingRate, channelConfig, audioFormat);
     private int sampleNumBits = 16;
     private int numChannels = 1;
-    private Flashlight F=new Flashlight();
+    private Flashlight F = new Flashlight();
     int count = 0;
     short[] data = new short[441000];
     TextView textView;
@@ -74,15 +82,19 @@ public class Proj160623 extends AppCompatActivity {
 
     Vibrator vibrator;
 
-    String root;
+    //PreferenceManager.setDefaultValues(this,R.xml.app_preferences,false);
+    //SharedPreferences settings=PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
     File dir;
     File file;
     String SoundName;
     File file2;
     File file3;
     int filenum = 0;
+    Toolbar toolbar;
 
     int readBytes, writtenBytes = 0;
+
     int i, j;
     ProgressBar[] pb = new ProgressBar[40];
     TextView[][] tv = new TextView[6][2];
@@ -92,12 +104,11 @@ public class Proj160623 extends AppCompatActivity {
     float[] fdata = new float[2048];
     double[] amp = new double[1024];
     double[] accu = new double[1024];
-
     double quicksum[] = new double[2005];
 
     double[] ref = new double[1024];
-    boolean[] peaks = new boolean[1024];
 
+    boolean[] peaks = new boolean[1024];
     private static final int[] pbid = {
             R.id.progressBar0,
             R.id.progressBar1,
@@ -159,24 +170,34 @@ public class Proj160623 extends AppCompatActivity {
     MyTask myTask;
 
     final Context context = this;
+
     Camera cam;
     Button FlOff;
-
     //TextView result, refresult, percent;
     double black = 0.0, bref = 0.0;
+
     double white = 0.0, wref = 0.0;
     int bnum = 0, wnum = 0;
-
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
     public double S2(int k, int i) {
         double t = k * accu[i] - (quicksum[i - 1] - quicksum[i - k - 1]);
         t = t + k * accu[i] - (quicksum[i + k] - quicksum[i]);
         return t / (double) (k * 2);
     }
 
+    String root;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         root = Environment.getExternalStorageDirectory().toString();
         //Log.d("TAG", root);
@@ -218,8 +239,8 @@ public class Proj160623 extends AppCompatActivity {
 
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         stop_vibrate = (Button) findViewById(R.id.off);
-        stop_vibrate.setOnClickListener(new View.OnClickListener()  {
-            public void onClick(View v){
+        stop_vibrate.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 vibrator.cancel();
                 if (Build.VERSION.SDK_INT >= 21) F.turnOffFlashLight();
                 else {
@@ -405,6 +426,67 @@ public class Proj160623 extends AppCompatActivity {
                 alertDialog.show();
             }
         });
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int res_id = item.getItemId();
+        if (res_id == R.id.action_settings) {
+            //Toast.makeText(getApplicationContext(), "Settings Selected", Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(Proj160623.this, AppPreferances.class);
+            startActivity(i);
+        }
+        return true;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Proj160623 Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app URL is correct.
+                Uri.parse("android-app://th.ac.mwits.www.ambientdetector/http/host/path")
+        );
+        AppIndex.AppIndexApi.start(client, viewAction);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Proj160623 Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app URL is correct.
+                Uri.parse("android-app://th.ac.mwits.www.ambientdetector/http/host/path")
+        );
+        AppIndex.AppIndexApi.end(client, viewAction);
+        client.disconnect();
     }
 
     class MyTask extends AsyncTask<String, String, String> {
@@ -424,7 +506,7 @@ public class Proj160623 extends AppCompatActivity {
                 if (count == 0)
                     writtenBytes = 0;
                 else
-                    writtenBytes = bufferSize*25/2;
+                    writtenBytes = bufferSize * 25 / 2;
                 max = 10000000.0;
                 ii = 0;
 
@@ -528,8 +610,8 @@ public class Proj160623 extends AppCompatActivity {
                     break;
                 }
 
-                for (i = 0; i < bufferSize*25/2; i++)
-                    data[i] = data[i + bufferSize*25/2];
+                for (i = 0; i < bufferSize * 25 / 2; i++)
+                    data[i] = data[i + bufferSize * 25 / 2];
                 count++;
             }
             //audioPlayer.release();
@@ -556,14 +638,14 @@ public class Proj160623 extends AppCompatActivity {
                     tv[j][0].append(" = NOISE");
                 else {
                     tv[j][0].append(" = EVENT");
-                    vibrator.vibrate(10000);
+                    //if(settings.getBoolean("vibrate_noti", false))
+                        vibrator.vibrate(10000);
                     if (Build.VERSION.SDK_INT >= 21) F.turnOnFlashLight();
-                    else
-                    {
+                    else {
                         try {
                             releaseCameraAndPreview();
                             cam = Camera.open();
-                            Camera.Parameters p=cam.getParameters();
+                            Camera.Parameters p = cam.getParameters();
                             p.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
                             cam.setParameters(p);
                             cam.startPreview();
