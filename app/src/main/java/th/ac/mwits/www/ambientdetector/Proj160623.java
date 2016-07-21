@@ -1,9 +1,15 @@
 package th.ac.mwits.www.ambientdetector;
+
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+<<<<<<< HEAD
 import android.content.Intent;
 import android.content.SharedPreferences;
+=======
+import android.content.pm.PackageManager;
+>>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
 import android.media.AudioFormat;
@@ -21,6 +27,8 @@ import android.os.Handler;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -36,6 +44,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.SeekBar;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.hardware.camera2.*;
 import android.widget.Toast;
@@ -57,7 +67,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Vector;
 
 import static be.tarsos.dsp.beatroot.Peaks.findPeaks;
@@ -71,7 +83,13 @@ public class Proj160623 extends AppCompatActivity {
     private int bufferSize = AudioRecord.getMinBufferSize(samplingRate, channelConfig, audioFormat);
     private int sampleNumBits = 16;
     private int numChannels = 1;
+<<<<<<< HEAD
     private Flashlight F = new Flashlight();
+=======
+    //private Flashlight F = onCreate(new Flashlight());
+    CameraManager camManager;
+    CameraDevice mCamera;
+>>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
     int count = 0;
     short[] data = new short[441000];
     TextView textView;
@@ -178,11 +196,20 @@ public class Proj160623 extends AppCompatActivity {
 
     double white = 0.0, wref = 0.0;
     int bnum = 0, wnum = 0;
+<<<<<<< HEAD
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
+=======
+
+    int Threshold;
+    boolean lite, activate;
+    Switch LiteMode;
+    TextView Thresh;
+
+>>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
     public double S2(int k, int i) {
         double t = k * accu[i] - (quicksum[i - 1] - quicksum[i - k - 1]);
         t = t + k * accu[i] - (quicksum[i + k] - quicksum[i]);
@@ -205,6 +232,62 @@ public class Proj160623 extends AppCompatActivity {
         dir.mkdir();
         //file = new File(dir, "FFTdata.txt");
 
+        Thresh = (TextView) findViewById(R.id.textView17);
+        Thresh.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Set threshold and save to settings
+                file = new File(dir, "settings.txt");
+                FileOutputStream stream = null;
+                try {
+                    stream = new FileOutputStream(file);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                final DataOutputStream dos = new DataOutputStream(stream);
+                // get prompts.xml view
+                LayoutInflater li = LayoutInflater.from(context);
+                View promptsView = li.inflate(R.layout.dialog_thresh, null);
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                        context);
+
+                // set prompts.xml to alertdialog builder
+                alertDialogBuilder.setView(promptsView);
+                alertDialogBuilder.setTitle("Set threshold of lite mode (0 to 32767):");
+
+                final SeekBar[] userInput = {(SeekBar) promptsView
+                        .findViewById(R.id.DialogThresh)};
+
+                // set dialog message
+                alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Threshold = userInput[0].getProgress()*32767/userInput[0].getMax();
+                        Log.d("TAG", "values " + userInput[0].getProgress() + " " + userInput[0].getMax());
+                        try {
+                            dos.writeShort(Threshold);
+                            Log.d("TAG", "write " + Threshold);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            dos.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        Thresh.setText("Threshold: " + Threshold);
+                    }
+                });
+
+                // create alert dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                // show it
+                alertDialog.show();
+            }
+        });
+        LiteMode = (Switch) findViewById(R.id.switch1);
+        LiteMode.setChecked(false);
+
         bufferSize += 2048;
 
         for (i = 0; i < 40; i++)
@@ -225,6 +308,7 @@ public class Proj160623 extends AppCompatActivity {
         start = (Button) findViewById(R.id.button);
         start.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                lite = LiteMode.isChecked();
                 myTask = new MyTask();
                 myTask.execute();
             }
@@ -234,16 +318,59 @@ public class Proj160623 extends AppCompatActivity {
         stop.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 myTask.cancel(true);
+                for (j = 0; j < 40; j++) {
+                    pb[j].setMax((int) Math.round(max));
+                    pb[j].setProgress(0);
+                }
             }
         });
+
+        camManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
 
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         stop_vibrate = (Button) findViewById(R.id.off);
         stop_vibrate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 vibrator.cancel();
-                if (Build.VERSION.SDK_INT >= 21) F.turnOffFlashLight();
-                else {
+                if (Build.VERSION.SDK_INT >= 23) {
+                    //String cameraId = null; // Usually front camera is at 0 position.
+                    try {
+                        for (String cameraId : camManager.getCameraIdList()) {
+                            try {
+                                CameraCharacteristics camCharacteristics = camManager.getCameraCharacteristics(cameraId);
+                                if (camCharacteristics.get(CameraCharacteristics.FLASH_INFO_AVAILABLE)) {
+                                    camManager.openCamera(cameraId, new CameraDevice.StateCallback() {
+                                        @Override
+                                        public void onOpened(@NonNull CameraDevice camera) {
+                                            mCamera = camera;
+                                            //initPreview();
+                                        }
+
+                                        @Override
+                                        public void onDisconnected(@NonNull CameraDevice camera) {
+
+                                        }
+
+                                        @Override
+                                        public void onError(@NonNull CameraDevice camera, int error) {
+
+                                        }
+                                    }, null);
+                                    camManager.setTorchMode(cameraId, false);
+                                }
+                            } catch (CameraAccessException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        //F.initCamera2();
+                        //F.turnOnFlashLight();
+                    }
+                    catch (CameraAccessException e)
+                    {
+                        e.printStackTrace();
+                    }
+                    //F.turnOffFlashLight();
+                } else {
                     try {
                         Camera.Parameters p = cam.getParameters();
                         p.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
@@ -492,16 +619,23 @@ public class Proj160623 extends AppCompatActivity {
     class MyTask extends AsyncTask<String, String, String> {
         @Override
         protected String doInBackground(String... params) {
+            recorder.startRecording();
             while (true) {
-                audioPlayer.release();
+                /*audioPlayer.release();
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(50);
                     Log.d("TAG", "release AudioTrack");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
                 audioPlayer = new AudioTrack(AudioManager.STREAM_MUSIC, 44100, AudioFormat.CHANNEL_OUT_MONO,
                         AudioFormat.ENCODING_PCM_16BIT, bufferSize * 50, AudioTrack.MODE_STREAM);
+                try {
+                    Thread.sleep(50);
+                    Log.d("TAG", "release AudioTrack");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }*/
                 Log.d("TAG", "" + count);
                 if (count == 0)
                     writtenBytes = 0;
@@ -510,48 +644,24 @@ public class Proj160623 extends AppCompatActivity {
                 max = 10000000.0;
                 ii = 0;
 
-                recorder.startRecording();
+                //recorder.startRecording();
                 do {
                     readBytes = recorder.read(data, writtenBytes, bufferSize);
+                    writtenBytes += readBytes;
                     //Log.d("TAG", "Read" + readBytes);
 
-                    if (AudioRecord.ERROR_INVALID_OPERATION != readBytes) {
+                    /*if (AudioRecord.ERROR_INVALID_OPERATION != readBytes) {
                         writtenBytes += audioPlayer.write(data, writtenBytes, readBytes);
-                        //Log.d("TAG", "Write" + writtenBytes);
-                    }
+                        Log.d("TAG", "Write" + writtenBytes);
+                    }*/
                 }
                 while (writtenBytes < bufferSize * 25);
-                recorder.stop();
+                //recorder.stop();
                 Log.d("TAG", "Read and Write" + writtenBytes);
 
-                for (i = 0; i < 1024; i++)
-                    accu[i] = 0.0;
-
-                while (ii < writtenBytes) {
-                    for (i = 0; i < 2048; i++) {
-                        fdata[i] = (float) data[ii + i];
-                    }
-                    fft.forwardTransform(fdata);
-                    for (i = 0; i < 1024; i++)
-                        amp[i] = Math.sqrt(fdata[2 * i] * fdata[2 * i] + fdata[2 * i + 1] * fdata[2 * i + 1]);
-                    for (i = 0; i < 1024; i++)
-                        accu[i] += amp[i];
-
-                    //Log.d("TAG", "FFT done to " + ii);
-                    ii += i;
-                }
-
-                for (i = 0; i < 40; i++) {
-                    if (accu[i] > max)
-                        max = accu[i];
-                }
-
-                publishProgress(String.valueOf(-1), "", "");
-
-                SoundName = null;
-                filenum = 0;
-                file = new File(dir, filenum + ".txt");
-                while (file.exists()) {
+                if (lite)
+                {
+                    file = new File(dir, "settings.txt");
                     FileInputStream stream = null;
                     try {
                         stream = new FileInputStream(file);
@@ -560,49 +670,103 @@ public class Proj160623 extends AppCompatActivity {
                     }
                     DataInputStream dis = new DataInputStream(stream);
                     try {
-                        for (i = 0; i < 1024; i++) {
-                            ref[i] = dis.readDouble();
-                            peaks[i] = dis.readBoolean();
-                        }
-                        SoundName = dis.readUTF();
-                        Log.d("TAG", "Read from file" + filenum);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        dis.close();
-                        stream.close();
+                        Threshold = dis.readShort();
+                        Log.d("TAG", "Threshold: " + Threshold);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
 
-                    black = 0.0;
-                    bref = 0.0;
-                    white = 0.0;
-                    wref = 0.0;
-
-                    bnum = 0;
-                    wnum = 0;
-                    for (i = 0; i < 1024; i++) {
-                        if (peaks[i]) {
-                            black += accu[i];
-                            bref += ref[i];
-                            bnum++;
-                        } else {
-                            white += accu[i];
-                            wref += ref[i];
-                            wnum++;
-                        }
+                    activate = false;
+                    for (i = 0; i < writtenBytes; i++) {
+                        if (Math.abs(data[i]) >= Threshold)
+                            activate = true;
                     }
-                    black /= bnum;
-                    white /= wnum;
-                    bref /= bnum;
-                    wref /= wnum;
 
-                    publishProgress(String.valueOf(filenum), String.valueOf(Math.round((black / white) / (bref / wref) * 100)), String.valueOf(black / white <= 1.0), SoundName);
+                    publishProgress(String.valueOf(-2), "", "");
+                }
+                else {
+                    for (i = 0; i < 1024; i++)
+                        accu[i] = 0.0;
 
-                    filenum++;
+                    while (ii < writtenBytes) {
+                        for (i = 0; i < 2048; i++) {
+                            fdata[i] = (float) data[ii + i];
+                        }
+                        fft.forwardTransform(fdata);
+                        for (i = 0; i < 1024; i++)
+                            amp[i] = Math.sqrt(fdata[2 * i] * fdata[2 * i] + fdata[2 * i + 1] * fdata[2 * i + 1]);
+                        for (i = 0; i < 1024; i++)
+                            accu[i] += amp[i];
+
+                        //Log.d("TAG", "FFT done to " + ii);
+                        ii += i;
+                    }
+
+                    for (i = 0; i < 40; i++) {
+                        if (accu[i] > max)
+                            max = accu[i];
+                    }
+
+                    publishProgress(String.valueOf(-1), "", "");
+
+                    SoundName = null;
+                    filenum = 0;
                     file = new File(dir, filenum + ".txt");
+                    FileInputStream stream = null;
+                    DataInputStream dis;
+                    while (file.exists()) {
+                        stream = null;
+                        try {
+                            stream = new FileInputStream(file);
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        dis = new DataInputStream(stream);
+                        try {
+                            for (i = 0; i < 1024; i++) {
+                                ref[i] = dis.readDouble();
+                                peaks[i] = dis.readBoolean();
+                            }
+                            SoundName = dis.readUTF();
+                            Log.d("TAG", "Read from file" + filenum);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            dis.close();
+                            stream.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        black = 0.0;
+                        bref = 0.0;
+                        white = 0.0;
+                        wref = 0.0;
+
+                        bnum = 0;
+                        wnum = 0;
+                        for (i = 0; i < 1024; i++) {
+                            if (peaks[i]) {
+                                black += accu[i];
+                                bref += ref[i];
+                                bnum++;
+                            } else {
+                                white += accu[i];
+                                wref += ref[i];
+                                wnum++;
+                            }
+                        }
+                        black /= bnum;
+                        white /= wnum;
+                        bref /= bnum;
+                        wref /= wnum;
+
+                        publishProgress(String.valueOf(filenum), String.valueOf(Math.round((black / white) / (bref / wref) * 100)), String.valueOf(black / white <= 1.0), SoundName);
+
+                        filenum++;
+                        file = new File(dir, filenum + ".txt");
+                    }
                 }
 
                 if (Thread.currentThread().isInterrupted()) {
@@ -621,6 +785,7 @@ public class Proj160623 extends AppCompatActivity {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }*/
+            recorder.stop();
             return null;
         }
 
@@ -631,17 +796,61 @@ public class Proj160623 extends AppCompatActivity {
             int j;
             j = Integer.valueOf(values[0]);
 
-            if (j > -1) {
+            if (j >= 0) {
                 tv[j][0].setText(values[0] + " " + values[3]);
                 Log.d("TAG", "read " + values[3]);
                 if (values[2].equals("true") || Integer.valueOf(values[1]) <= 30)
                     tv[j][0].append(" = NOISE");
                 else {
                     tv[j][0].append(" = EVENT");
+<<<<<<< HEAD
                     //if(settings.getBoolean("vibrate_noti", false))
                         vibrator.vibrate(10000);
                     if (Build.VERSION.SDK_INT >= 21) F.turnOnFlashLight();
                     else {
+=======
+                    vibrator.vibrate(10000);
+                    if (Build.VERSION.SDK_INT >= 23) {
+                        //String cameraId = null; // Usually front camera is at 0 position.
+                        try {
+                            for (String cameraId : camManager.getCameraIdList()) {
+                                try {
+                                    CameraCharacteristics camCharacteristics = camManager.getCameraCharacteristics(cameraId);
+                                    if (camCharacteristics.get(CameraCharacteristics.FLASH_INFO_AVAILABLE)) {
+                                        camManager.openCamera(cameraId, new CameraDevice.StateCallback() {
+                                            @Override
+                                            public void onOpened(@NonNull CameraDevice camera) {
+                                                mCamera = camera;
+                                                //initPreview();
+                                            }
+
+                                            @Override
+                                            public void onDisconnected(@NonNull CameraDevice camera) {
+
+                                            }
+
+                                            @Override
+                                            public void onError(@NonNull CameraDevice camera, int error) {
+
+                                            }
+                                        }, null);
+                                        camManager.setTorchMode(cameraId, true);
+                                    }
+                                } catch (CameraAccessException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            //F.initCamera2();
+                            //F.turnOnFlashLight();
+                        }
+                        catch (CameraAccessException e)
+                        {
+                            e.printStackTrace();
+                        }
+                    }
+                    else
+                    {
+>>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
                         try {
                             releaseCameraAndPreview();
                             cam = Camera.open();
@@ -656,10 +865,95 @@ public class Proj160623 extends AppCompatActivity {
                     }
                 }
                 tv[j][1].setText(values[1] + "%");
-            } else {
+            }
+            else if (j == -1) {
                 for (j = 0; j < 40; j++) {
                     pb[j].setMax((int) Math.round(max));
                     pb[j].setProgress((int) Math.round(accu[j]));
+                }
+            }
+            else {
+                //lite mode
+                for (j = 0; j < 40; j++) {
+                    pb[j].setMax((int) Math.round(max));
+                    if (j%2 == 0)
+                        pb[j].setProgress((int) Math.round(max));
+                    else
+                        pb[j].setProgress(0);
+                }
+                if (activate) {
+                    // get prompts.xml view
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                            context);
+
+                    alertDialogBuilder.setTitle("Environment sound intensity reaches threshold!");
+                    alertDialogBuilder.setMessage("Event occured at: " + getCurrentTimeStamp());
+
+                    // set dialog message
+                    alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                        }
+                    });
+
+                    // create alert dialog
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+
+                    // show it
+                    alertDialog.show();
+
+                    //vibrator.vibrate(10000);
+                    if (Build.VERSION.SDK_INT >= 23) {
+                        //String cameraId = null; // Usually front camera is at 0 position.
+                        try {
+                            for (String cameraId : camManager.getCameraIdList()) {
+                                try {
+                                    CameraCharacteristics camCharacteristics = camManager.getCameraCharacteristics(cameraId);
+                                    if (camCharacteristics.get(CameraCharacteristics.FLASH_INFO_AVAILABLE)) {
+                                        camManager.openCamera(cameraId, new CameraDevice.StateCallback() {
+                                            @Override
+                                            public void onOpened(@NonNull CameraDevice camera) {
+                                                mCamera = camera;
+                                                //initPreview();
+                                            }
+
+                                            @Override
+                                            public void onDisconnected(@NonNull CameraDevice camera) {
+
+                                            }
+
+                                            @Override
+                                            public void onError(@NonNull CameraDevice camera, int error) {
+
+                                            }
+                                        }, null);
+                                        camManager.setTorchMode(cameraId, true);
+                                    }
+                                } catch (CameraAccessException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            //F.initCamera2();
+                            //F.turnOnFlashLight();
+                        }
+                        catch (CameraAccessException e)
+                        {
+                            e.printStackTrace();
+                        }
+                    }
+                    else
+                    {
+                        try {
+                            releaseCameraAndPreview();
+                            cam = Camera.open();
+                            Camera.Parameters p=cam.getParameters();
+                            p.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+                            cam.setParameters(p);
+                            cam.startPreview();
+                        } catch (Exception e) {
+                            Log.e(getString(R.string.app_name), "failed to open Camera");
+                            e.printStackTrace();
+                        }
+                    }
                 }
             }
         }
@@ -680,6 +974,24 @@ public class Proj160623 extends AppCompatActivity {
         if (cam != null) {
             cam.release();
             cam = null;
+        }
+    }
+
+    /**
+     *
+     * @return yyyy-MM-dd HH:mm:ss formate date as string
+     */
+    public static String getCurrentTimeStamp(){
+        try {
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String currentTimeStamp = dateFormat.format(new Date()); // Find todays date
+
+            return currentTimeStamp;
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            return null;
         }
     }
 }
