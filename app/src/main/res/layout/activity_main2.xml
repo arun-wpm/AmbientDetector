@@ -12,6 +12,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <include layout="@layout/tool_bar"
         android:id="@+id/toolbar"
         android:layout_alignParentTop="true"
@@ -21,11 +22,14 @@
         android:layout_alignParentLeft="true"/>
 =======
 >>>>>>> parent of d968e23... UI setting
+=======
+>>>>>>> parent of d968e23... UI setting
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Status"
         android:id="@+id/textView"
+<<<<<<< HEAD
 <<<<<<< HEAD
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/toolbar"
@@ -44,6 +48,10 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 >>>>>>> parent of d968e23... UI setting
+=======
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+>>>>>>> parent of d968e23... UI setting
 
     <Button
         android:layout_width="wrap_content"
@@ -54,6 +62,7 @@
         android:layout_below="@+id/textView"
         android:layout_toLeftOf="@+id/textView"
 <<<<<<< HEAD
+<<<<<<< HEAD
         android:layout_toStartOf="@+id/textView"
         />
 =======
@@ -61,6 +70,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 >>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
+=======
+        android:layout_toStartOf="@+id/textView" />
+>>>>>>> parent of d968e23... UI setting
 =======
         android:layout_toStartOf="@+id/textView" />
 >>>>>>> parent of d968e23... UI setting
@@ -730,6 +742,7 @@
         android:text="Fl On"
         android:id="@+id/on"
         android:layout_below="@+id/progressBar39"
+<<<<<<< HEAD
         android:layout_toRightOf="@+id/button3"
         android:layout_toEndOf="@+id/button3" />
 
@@ -765,5 +778,10 @@
 >>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
 
 =======
+>>>>>>> parent of d968e23... UI setting
+=======
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
 >>>>>>> parent of d968e23... UI setting
 </RelativeLayout>

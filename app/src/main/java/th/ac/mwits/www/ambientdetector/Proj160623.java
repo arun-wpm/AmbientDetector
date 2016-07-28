@@ -6,11 +6,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import android.content.Intent;
 import android.content.SharedPreferences;
 =======
 import android.content.pm.PackageManager;
 >>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
+=======
+>>>>>>> parent of d968e23... UI setting
 =======
 >>>>>>> parent of d968e23... UI setting
 import android.graphics.SurfaceTexture;
@@ -82,12 +85,16 @@ public class Proj160623 extends AppCompatActivity {
     private int numChannels = 1;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     private Flashlight F = new Flashlight();
 =======
     //private Flashlight F = onCreate(new Flashlight());
     CameraManager camManager;
     CameraDevice mCamera;
 >>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
+=======
+    private Flashlight F=new Flashlight();
+>>>>>>> parent of d968e23... UI setting
 =======
     private Flashlight F=new Flashlight();
 >>>>>>> parent of d968e23... UI setting
@@ -195,6 +202,7 @@ public class Proj160623 extends AppCompatActivity {
     int bnum = 0, wnum = 0;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -208,6 +216,9 @@ public class Proj160623 extends AppCompatActivity {
     TextView Thresh;
 
 >>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
+=======
+
+>>>>>>> parent of d968e23... UI setting
 =======
 
 >>>>>>> parent of d968e23... UI setting
@@ -740,6 +751,7 @@ public class Proj160623 extends AppCompatActivity {
                     tv[j][0].append(" = EVENT");
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     //if(settings.getBoolean("vibrate_noti", false))
                         vibrator.vibrate(10000);
                     if (Build.VERSION.SDK_INT >= 21) F.turnOnFlashLight();
@@ -787,6 +799,12 @@ public class Proj160623 extends AppCompatActivity {
                     else
                     {
 >>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
+=======
+                    vibrator.vibrate(10000);
+                    if (Build.VERSION.SDK_INT >= 21) F.turnOnFlashLight();
+                    else
+                    {
+>>>>>>> parent of d968e23... UI setting
 =======
                     vibrator.vibrate(10000);
                     if (Build.VERSION.SDK_INT >= 21) F.turnOnFlashLight();

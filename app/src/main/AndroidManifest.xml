@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+<<<<<<< HEAD
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
 <<<<<<< HEAD
@@ -13,6 +14,11 @@
     <uses-feature android:name="android.hardware.camera" />
 >>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
 =======
+>>>>>>> parent of d968e23... UI setting
+=======
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
 >>>>>>> parent of d968e23... UI setting
     <application
         android:allowBackup="true"
