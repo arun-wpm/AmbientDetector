@@ -742,6 +742,7 @@
         android:layout_toLeftOf="@+id/button3"
         android:layout_toStartOf="@+id/button3" />
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -755,6 +756,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 >>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
+=======
+>>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
 =======
 >>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
 
