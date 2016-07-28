@@ -600,16 +600,14 @@
         android:text="Record"
         android:id="@+id/button3"
         android:layout_below="@+id/progressBar39"
-        android:layout_alignRight="@+id/linearLayout"
-        android:layout_alignEnd="@+id/linearLayout" />
+        android:layout_centerHorizontal="true" />
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/button3"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/linearLayout">
+        android:layout_centerHorizontal="true">
 
         <LinearLayout
             android:orientation="vertical"
@@ -729,11 +727,20 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Notifications Off"
+        android:text="Fl On"
+        android:id="@+id/on"
+        android:layout_below="@+id/progressBar39"
+        android:layout_toRightOf="@+id/button3"
+        android:layout_toEndOf="@+id/button3" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fl Off"
         android:id="@+id/off"
         android:layout_below="@+id/progressBar39"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_toLeftOf="@+id/button3"
+        android:layout_toStartOf="@+id/button3" />
 
 <<<<<<< HEAD
 <<<<<<< HEAD
