@@ -72,10 +72,15 @@
       <change type="DELETED" beforePath="C:\Users\Arun\AndroidStudioProjects\AmbientDetector\.idea\libraries\support_annotations_23_1_1.xml" afterPath="" />
       <change type="DELETED" beforePath="C:\Users\Arun\AndroidStudioProjects\AmbientDetector\.idea\libraries\support_v4_23_1_1.xml" afterPath="" />
 <<<<<<< HEAD
+<<<<<<< HEAD
       <change type="DELETED" beforePath="C:\Users\Arun\AndroidStudioProjects\AmbientDetector\app\src\main\java\FlashLight.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Flashlight.java" afterPath="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Flashlight.java" />
 >>>>>>> parent of d968e23... UI setting
+=======
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/FlashLight.java" afterPath="$PROJECT_DIR$/app/src/main/java/FlashLight.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160519.java" afterPath="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160519.java" />
+>>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
 =======
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/FlashLight.java" afterPath="$PROJECT_DIR$/app/src/main/java/FlashLight.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160519.java" afterPath="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160519.java" />
@@ -139,10 +144,13 @@
       <file leaf-file-name="activity_main.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
 <<<<<<< HEAD
+<<<<<<< HEAD
           <provider editor-type-id="android-designer">
             <state />
 >>>>>>> parent of d968e23... UI setting
           </provider>
+=======
+>>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
 =======
 >>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
           <provider selected="true" editor-type-id="text-editor">
@@ -174,6 +182,7 @@
           <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             <state vertical-scroll-proportion="-1.8545455">
               <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
               <folding />
@@ -194,6 +203,10 @@
 =======
             <state vertical-scroll-proportion="0.0">
               <caret line="429" column="38" selection-start-line="429" selection-start-column="38" selection-end-line="429" selection-end-column="38" />
+=======
+            <state vertical-scroll-proportion="0.6854599">
+              <caret line="413" column="16" selection-start-line="413" selection-start-column="16" selection-end-line="413" selection-end-column="16" />
+>>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
 =======
             <state vertical-scroll-proportion="0.6854599">
               <caret line="413" column="16" selection-start-line="413" selection-start-column="16" selection-end-line="413" selection-end-column="16" />
@@ -255,6 +268,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             <state vertical-scroll-proportion="0.0">
               <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding>
@@ -307,6 +321,11 @@
               <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
               <folding />
 >>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
+=======
+            <state vertical-scroll-proportion="0.0">
+              <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
+              <folding />
+>>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
             </state>
           </provider>
           <provider editor-type-id="android-designer">
@@ -328,9 +347,12 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
 <<<<<<< HEAD
+<<<<<<< HEAD
               <caret line="6" column="64" selection-start-line="6" selection-start-column="64" selection-end-line="6" selection-end-column="64" />
 >>>>>>> parent of d968e23... UI setting
 =======
+=======
+>>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
               <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
               <folding />
             </state>
@@ -352,6 +374,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+<<<<<<< HEAD
+>>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
+=======
 >>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
               <folding />
             </state>
@@ -1979,6 +2004,7 @@
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
 <<<<<<< HEAD
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/app/src/main/java/FlashLight.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160519.java" />
 <<<<<<< HEAD
@@ -1997,6 +2023,11 @@
         <option value="$PROJECT_DIR$/app/src/main/java/FlashLight.java" />
 >>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml" />
+=======
+        <option value="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Flashlight.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/FlashLight.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml" />
+>>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
         <option value="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160519.java" />
       </list>
     </option>
@@ -2236,6 +2267,7 @@
             </PATH_ELEMENT>
           </PATH>
 <<<<<<< HEAD
+<<<<<<< HEAD
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="AmbientDetector" />
@@ -2379,6 +2411,8 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+=======
+>>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
 =======
 >>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
         </subPane>
@@ -2670,6 +2704,7 @@
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27458397" sideWeight="0.49041095" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2065053" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -2677,6 +2712,9 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27458397" sideWeight="0.509589" order="2" side_tool="true" content_ui="tabs" />
 =======
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6603631" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+=======
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3184569" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+>>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
 =======
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3184569" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
 >>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
@@ -2720,6 +2758,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160623.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2746,6 +2785,8 @@
 >>>>>>> parent of d968e23... UI setting
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml">
 =======
+=======
+>>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2753,6 +2794,9 @@
           <folding />
         </state>
       </provider>
+<<<<<<< HEAD
+>>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
+=======
 >>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
       <provider selected="true" editor-type-id="android-designer">
         <state />
@@ -2893,6 +2937,7 @@
         </state>
       </provider>
 <<<<<<< HEAD
+<<<<<<< HEAD
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -2902,6 +2947,8 @@
 >>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
         </state>
 =======
+=======
+>>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
       <provider selected="true" editor-type-id="android-designer">
         <state />
 >>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
@@ -3054,12 +3101,15 @@
     </entry>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
 =======
+=======
+>>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider editor-type-id="text-editor">
 >>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
@@ -3074,6 +3124,12 @@
       </provider>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+>>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
 =======
       <provider selected="true" editor-type-id="android-designer">
         <state />
@@ -3133,6 +3189,7 @@
 =======
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> parent of d968e23... UI setting
       <provider selected="true" editor-type-id="android-designer">
         <state />
@@ -3140,6 +3197,8 @@
 =======
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
 >>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
+=======
+>>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
 =======
 >>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
       <provider editor-type-id="text-editor">
@@ -3150,6 +3209,12 @@
       </provider>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+>>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
 =======
       <provider selected="true" editor-type-id="android-designer">
         <state />
@@ -3205,6 +3270,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <provider selected="true" editor-type-id="android-designer">
         <state />
       </provider>
@@ -3218,6 +3284,8 @@
       </provider>
 =======
 >>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
+=======
+>>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
       <provider selected="true" editor-type-id="text-editor">
 >>>>>>> parent of d968e23... UI setting
         <state vertical-scroll-proportion="0.0">
@@ -3227,6 +3295,12 @@
       </provider>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+>>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
 =======
       <provider editor-type-id="android-designer">
         <state />
@@ -3336,6 +3410,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/build/intermediates/manifests/full/debug/AndroidManifest.xml">
+<<<<<<< HEAD
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
@@ -3365,13 +3440,16 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/build/generated/source/r/debug/th/ac/mwits/www/ambientdetector/R.java">
+=======
+>>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19883041">
-          <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/android/hardware/Camera.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3323442">
@@ -3451,6 +3529,17 @@
           <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
           <folding />
         </state>
+=======
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_name.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+>>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
       </provider>
       <provider editor-type-id="android-designer">
         <state />
@@ -3494,6 +3583,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Flashlight.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state vertical-scroll-proportion="0.0">
           <caret line="75" column="49" selection-start-line="75" selection-start-column="49" selection-end-line="75" selection-end-column="49" />
           <folding>
@@ -3544,12 +3634,21 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="547" column="47" selection-start-line="547" selection-start-column="47" selection-end-line="547" selection-end-column="47" />
           <folding />
+=======
+        <state vertical-scroll-proportion="0.0">
+          <caret line="75" column="49" selection-start-line="75" selection-start-column="49" selection-end-line="75" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3782#3791#0" expanded="true" />
+          </folding>
+>>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
         </state>
       </provider>
       <provider selected="true" editor-type-id="android-designer">
         <state />
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_thresh.xml">
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3601,11 +3700,26 @@
 =======
     <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160519.java">
 >>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
+=======
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.62069">
+          <caret line="700" column="28" selection-start-line="700" selection-start-column="28" selection-end-line="700" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160519.java">
+>>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6854599">
           <caret line="413" column="16" selection-start-line="413" selection-start-column="16" selection-end-line="413" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
+<<<<<<< HEAD
 <<<<<<< HEAD
             <element signature="e#6321#6488#0" expanded="true" />
             <element signature="e#6487#6488#0" expanded="true" />
@@ -3626,6 +3740,8 @@
             <element signature="e#21438#21439#0" expanded="true" />
 >>>>>>> parent of d968e23... UI setting
 =======
+=======
+>>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
             <element signature="e#6168#6335#0" expanded="true" />
             <element signature="e#6334#6335#0" expanded="true" />
             <element signature="e#6423#6554#0" expanded="true" />
@@ -3636,6 +3752,9 @@
             <element signature="e#19472#19473#0" expanded="true" />
             <element signature="e#19530#19531#0" expanded="true" />
             <element signature="e#19573#19574#0" expanded="true" />
+<<<<<<< HEAD
+>>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
+=======
 >>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
           </folding>
         </state>
