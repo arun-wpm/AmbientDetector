@@ -1,120 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AndroidConfiguredLogFilters">
-    <filters>
-      <filter>
-        <option name="logLevel" value="verbose" />
-        <option name="logMessagePattern" value="" />
-        <option name="logTagPattern" value="TAG" />
-        <option name="name" value="TAG" />
-        <option name="packageNamePattern" value="" />
-        <option name="pid" value="" />
-      </filter>
-    </filters>
-  </component>
   <component name="AndroidLayouts">
     <shared>
-      <config />
+      <config>
+        <target>android-23</target>
+      </config>
     </shared>
+    <layouts>
+      <layout url="file://$PROJECT_DIR$/.idea/misc.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_splash_screen.xml">
+        <config>
+          <theme>@android:style/Theme.NoTitleBar</theme>
+        </config>
+      </layout>
+    </layouts>
   </component>
   <component name="AndroidLogFilters">
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <list default="true" id="049ca6d1-8c90-4e32-bc52-73cd3b2e694c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_23_1_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_23_1_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_annotations_23_1_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_annotations_23_1_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_23_1_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_23_1_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-=======
-    <list default="true" id="ad4299aa-570a-4a3b-945a-da5d8f0d8242" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\Arun\AndroidStudioProjects\AmbientDetector\.idea\libraries\TarsosDSP_Android_latest.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Arun\AndroidStudioProjects\AmbientDetector\.idea\libraries\appcompat_v7_23_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Arun\AndroidStudioProjects\AmbientDetector\.idea\libraries\play_services_appindexing_8_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Arun\AndroidStudioProjects\AmbientDetector\.idea\libraries\play_services_basement_8_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Arun\AndroidStudioProjects\AmbientDetector\.idea\libraries\support_annotations_23_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Arun\AndroidStudioProjects\AmbientDetector\.idea\libraries\support_v4_23_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Arun\AndroidStudioProjects\AmbientDetector\app\src\main\java\th\ac\mwits\www\ambientdetector\Flashlight.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Arun\AndroidStudioProjects\AmbientDetector\app\src\main\java\th\ac\mwits\www\ambientdetector\MainActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Arun\AndroidStudioProjects\AmbientDetector\app\src\main\java\th\ac\mwits\www\ambientdetector\MainActivity2.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Arun\AndroidStudioProjects\AmbientDetector\app\src\main\java\th\ac\mwits\www\ambientdetector\MainActivity3.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Arun\AndroidStudioProjects\AmbientDetector\app\src\main\java\th\ac\mwits\www\ambientdetector\MainActivity4.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Arun\AndroidStudioProjects\AmbientDetector\app\src\main\java\th\ac\mwits\www\ambientdetector\MainActivity5.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Arun\AndroidStudioProjects\AmbientDetector\app\src\main\java\th\ac\mwits\www\ambientdetector\MainActivity6.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Arun\AndroidStudioProjects\AmbientDetector\app\src\main\java\th\ac\mwits\www\ambientdetector\MainActivity7.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Arun\AndroidStudioProjects\AmbientDetector\app\src\main\java\th\ac\mwits\www\ambientdetector\Proj160519.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" />
->>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160623.java" afterPath="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160623.java" />
-=======
-    <list default="true" id="ad4299aa-570a-4a3b-945a-da5d8f0d8242" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\Arun\AndroidStudioProjects\AmbientDetector\.idea\libraries\TarsosDSP_Android_latest.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Arun\AndroidStudioProjects\AmbientDetector\.idea\libraries\appcompat_v7_23_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Arun\AndroidStudioProjects\AmbientDetector\.idea\libraries\hamcrest_core_1_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Arun\AndroidStudioProjects\AmbientDetector\.idea\libraries\junit_4_12.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Arun\AndroidStudioProjects\AmbientDetector\.idea\libraries\play_services_appindexing_8_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Arun\AndroidStudioProjects\AmbientDetector\.idea\libraries\play_services_basement_8_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Arun\AndroidStudioProjects\AmbientDetector\.idea\libraries\support_annotations_23_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Arun\AndroidStudioProjects\AmbientDetector\.idea\libraries\support_v4_23_1_1.xml" afterPath="" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <change type="DELETED" beforePath="C:\Users\Arun\AndroidStudioProjects\AmbientDetector\app\src\main\java\FlashLight.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Flashlight.java" afterPath="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Flashlight.java" />
->>>>>>> parent of d968e23... UI setting
-=======
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/FlashLight.java" afterPath="$PROJECT_DIR$/app/src/main/java/FlashLight.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160519.java" afterPath="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160519.java" />
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/FlashLight.java" afterPath="$PROJECT_DIR$/app/src/main/java/FlashLight.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160519.java" afterPath="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160519.java" />
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/FlashLight.java" afterPath="$PROJECT_DIR$/app/src/main/java/FlashLight.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160519.java" afterPath="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160519.java" />
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/FlashLight.java" afterPath="$PROJECT_DIR$/app/src/main/java/FlashLight.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160519.java" afterPath="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160519.java" />
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-=======
-    <list default="true" id="ad4299aa-570a-4a3b-945a-da5d8f0d8242" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\Arun\AndroidStudioProjects\AmbientDetector\.idea\libraries\TarsosDSP_Android_latest.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Arun\AndroidStudioProjects\AmbientDetector\.idea\libraries\appcompat_v7_23_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Arun\AndroidStudioProjects\AmbientDetector\.idea\libraries\play_services_appindexing_8_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Arun\AndroidStudioProjects\AmbientDetector\.idea\libraries\play_services_basement_8_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Arun\AndroidStudioProjects\AmbientDetector\.idea\libraries\support_annotations_23_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Arun\AndroidStudioProjects\AmbientDetector\.idea\libraries\support_v4_23_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Arun\AndroidStudioProjects\AmbientDetector\app\src\main\java\FlashLight.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Flashlight.java" afterPath="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Flashlight.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml" />
->>>>>>> parent of d968e23... UI setting
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
-    <ignored path="AmbientDetector.iws" />
+    <list default="true" id="26a723ca-06ae-47ed-9a37-0dce2bd76ed7" name="Default" comment="" />
+    <ignored path="AmbientDetector160811.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -136,166 +51,41 @@
     </system>
   </component>
   <component name="FavoritesManager">
-    <favorites_list name="AmbientDetector" />
+    <favorites_list name="AmbientDetector160811" />
   </component>
   <component name="FileEditorManager">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file leaf-file-name="Proj160623.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160623.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="196" column="0" selection-start-line="196" selection-start-column="0" selection-end-line="196" selection-end-column="0" />
-              <folding>
-                <element signature="e#7102#7269#0" expanded="true" />
-                <element signature="e#7268#7269#0" expanded="true" />
-                <element signature="e#7357#7488#0" expanded="true" />
-                <element signature="e#7487#7488#0" expanded="true" />
-                <element signature="e#7662#8357#0" expanded="true" />
-                <element signature="e#8193#8221#0" expanded="true" />
-                <element signature="e#8356#8357#0" expanded="true" />
-                <element signature="e#8449#15259#0" expanded="true" />
-                <element signature="e#10519#10528#0" expanded="true" />
-                <element signature="e#14372#15058#0" expanded="true" />
-                <element signature="e#15057#15058#0" expanded="true" />
-                <element signature="e#15258#15259#0" expanded="true" />
-                <element signature="e#24368#24396#0" expanded="true" />
-              </folding>
-            </state>
-=======
-    <leaf>
-      <file leaf-file-name="activity_main.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-          <provider editor-type-id="android-designer">
-            <state />
->>>>>>> parent of d968e23... UI setting
-          </provider>
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
-    <leaf>
-      <file leaf-file-name="activity_main.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
->>>>>>> parent of d968e23... UI setting
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="547" column="47" selection-start-line="547" selection-start-column="47" selection-end-line="547" selection-end-column="47" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_main2.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml">
-<<<<<<< HEAD
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.62069">
-              <caret line="700" column="28" selection-start-line="700" selection-start-column="28" selection-end-line="700" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Proj160519.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160519.java">
-          <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <state vertical-scroll-proportion="-1.8545455">
-              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-              <folding />
-=======
-    <leaf>
-      <file leaf-file-name="activity_main2.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml">
-          <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="557" column="47" selection-start-line="557" selection-start-column="47" selection-end-line="557" selection-end-column="47" />
-              <folding>
-                <element signature="e#272#305#0" expanded="true" />
-                <element signature="e#330#365#0" expanded="true" />
-                <element signature="e#391#426#0" expanded="true" />
-                <element signature="e#450#483#0" expanded="true" />
-              </folding>
->>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
-=======
-            <state vertical-scroll-proportion="0.0">
-              <caret line="429" column="38" selection-start-line="429" selection-start-column="38" selection-end-line="429" selection-end-column="38" />
-=======
-            <state vertical-scroll-proportion="0.6854599">
-              <caret line="413" column="16" selection-start-line="413" selection-start-column="16" selection-end-line="413" selection-end-column="16" />
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
-            <state vertical-scroll-proportion="0.6854599">
-              <caret line="413" column="16" selection-start-line="413" selection-start-column="16" selection-end-line="413" selection-end-column="16" />
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
-            <state vertical-scroll-proportion="0.6854599">
-              <caret line="413" column="16" selection-start-line="413" selection-start-column="16" selection-end-line="413" selection-end-column="16" />
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
-            <state vertical-scroll-proportion="0.6854599">
-              <caret line="413" column="16" selection-start-line="413" selection-start-column="16" selection-end-line="413" selection-end-column="16" />
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#6168#6335#0" expanded="true" />
-                <element signature="e#6334#6335#0" expanded="true" />
-                <element signature="e#6423#6554#0" expanded="true" />
-                <element signature="e#6553#6554#0" expanded="true" />
-                <element signature="e#6646#13456#0" expanded="true" />
-                <element signature="e#13455#13456#0" expanded="true" />
-                <element signature="e#19426#19427#0" expanded="true" />
-                <element signature="e#19472#19473#0" expanded="true" />
-                <element signature="e#19530#19531#0" expanded="true" />
-                <element signature="e#19573#19574#0" expanded="true" />
-              </folding>
->>>>>>> parent of d968e23... UI setting
-=======
-          <provider selected="true" editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="693" column="23" selection-start-line="693" selection-start-column="23" selection-end-line="693" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Proj160519.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160519.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="429" column="38" selection-start-line="429" selection-start-column="38" selection-end-line="429" selection-end-column="38" />
+              <caret line="771" column="24" selection-start-line="771" selection-start-column="24" selection-end-line="771" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
->>>>>>> parent of d968e23... UI setting
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dialog_alert.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_alert.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="7" column="32" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activity_main2.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml">
+          <provider editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="588" column="68" selection-start-line="588" selection-start-column="68" selection-end-line="588" selection-end-column="68" />
+              <folding />
             </state>
           </provider>
           <provider selected="true" editor-type-id="android-designer">
@@ -303,233 +93,34 @@
           </provider>
         </entry>
       </file>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <file leaf-file-name="app_preferences.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/app_preferences.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-=======
       <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="9" column="59" selection-start-line="9" selection-start-column="59" selection-end-line="9" selection-end-column="59" />
->>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
-              <folding />
-=======
-      <file leaf-file-name="Flashlight.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Flashlight.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="75" column="49" selection-start-line="75" selection-start-column="49" selection-end-line="75" selection-end-column="49" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3782#3791#0" expanded="true" />
-              </folding>
->>>>>>> parent of d968e23... UI setting
-=======
-      <file leaf-file-name="Flashlight.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Flashlight.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="47" column="11" selection-start-line="47" selection-start-column="11" selection-end-line="47" selection-end-column="11" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
->>>>>>> parent of d968e23... UI setting
-            </state>
-          </provider>
-        </entry>
-      </file>
-<<<<<<< HEAD
-      <file leaf-file-name="dialog_name.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_name.xml">
-          <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-=======
-            <state vertical-scroll-proportion="-0.3115727">
-              <caret line="205" column="17" selection-start-line="205" selection-start-column="17" selection-end-line="205" selection-end-column="17" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#6065#8378#0" expanded="true" />
-                <element signature="e#8377#8378#0" expanded="true" />
-                <element signature="e#9259#9471#0" expanded="true" />
-                <element signature="e#9470#9471#0" expanded="true" />
-                <element signature="e#9559#9850#0" expanded="true" />
-                <element signature="e#9849#9850#0" expanded="true" />
-                <element signature="e#12502#12530#0" expanded="true" />
-                <element signature="e#29578#29606#0" expanded="true" />
-                <element signature="e#33845#33873#0" expanded="true" />
-                <element signature="e#34106#34107#0" expanded="true" />
-                <element signature="e#34152#34153#0" expanded="true" />
-                <element signature="e#34210#34211#0" expanded="true" />
-                <element signature="e#34253#34254#0" expanded="true" />
->>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
-=======
-            <state vertical-scroll-proportion="0.48367953">
-              <caret line="229" column="42" selection-start-line="229" selection-start-column="42" selection-end-line="229" selection-end-column="42" />
-              <folding>
-                <element signature="imports" expanded="true" />
-=======
-      <file leaf-file-name="Proj160623.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160623.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.48367953">
-              <caret line="229" column="42" selection-start-line="229" selection-start-column="42" selection-end-line="229" selection-end-column="42" />
-              <folding>
-                <element signature="imports" expanded="true" />
->>>>>>> parent of d968e23... UI setting
-                <element signature="e#6321#6488#0" expanded="true" />
-                <element signature="e#6487#6488#0" expanded="true" />
-                <element signature="e#6576#6707#0" expanded="true" />
-                <element signature="e#6706#6707#0" expanded="true" />
-                <element signature="e#6881#7576#0" expanded="true" />
-                <element signature="e#7412#7440#0" expanded="true" />
-                <element signature="e#7575#7576#0" expanded="true" />
-                <element signature="e#7668#14478#0" expanded="true" />
-                <element signature="e#9738#9747#0" expanded="true" />
-                <element signature="e#13591#14277#0" expanded="true" />
-                <element signature="e#14276#14277#0" expanded="true" />
-                <element signature="e#14477#14478#0" expanded="true" />
-                <element signature="e#20774#20802#0" expanded="true" />
-                <element signature="e#21291#21292#0" expanded="true" />
-                <element signature="e#21337#21338#0" expanded="true" />
-                <element signature="e#21395#21396#0" expanded="true" />
-                <element signature="e#21438#21439#0" expanded="true" />
-<<<<<<< HEAD
->>>>>>> parent of d968e23... UI setting
-=======
->>>>>>> parent of d968e23... UI setting
-              </folding>
-=======
-            <state vertical-scroll-proportion="0.0">
-              <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
-              <folding />
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
-            <state vertical-scroll-proportion="0.0">
-              <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
-              <folding />
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
-            <state vertical-scroll-proportion="0.0">
-              <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
-              <folding />
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
-            <state vertical-scroll-proportion="0.0">
-              <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
-              <folding />
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      <file leaf-file-name="colors.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="4" column="37" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
-=======
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-              <caret line="6" column="64" selection-start-line="6" selection-start-column="64" selection-end-line="6" selection-end-column="64" />
->>>>>>> parent of d968e23... UI setting
-=======
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-              <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+              <caret line="19" column="48" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/build/intermediates/manifests/full/debug/AndroidManifest.xml">
+      <file leaf-file-name="styles.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+              <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
-=======
->>>>>>> parent of d968e23... UI setting
-=======
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="6" column="64" selection-start-line="6" selection-start-column="64" selection-end-line="6" selection-end-column="64" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
->>>>>>> parent of d968e23... UI setting
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
+        <option value="layoutResourceFile_vertical" />
       </list>
     </option>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GradleLocalSettings">
     <option name="availableProjects">
@@ -537,7 +128,7 @@
         <entry>
           <key>
             <ExternalProjectPojo>
-              <option name="name" value="AmbientDetector" />
+              <option name="name" value="AmbientDetector160811" />
               <option name="path" value="$PROJECT_DIR$" />
             </ExternalProjectPojo>
           </key>
@@ -548,7 +139,7 @@
                 <option name="path" value="$PROJECT_DIR$/app" />
               </ExternalProjectPojo>
               <ExternalProjectPojo>
-                <option name="name" value="AmbientDetector" />
+                <option name="name" value="AmbientDetector160811" />
                 <option name="path" value="$PROJECT_DIR$" />
               </ExternalProjectPojo>
             </list>
@@ -562,7 +153,7 @@
           <value>
             <list>
               <ExternalTaskPojo>
-                <option name="description" value="Displays all buildscript dependencies declared in root project 'AmbientDetector'." />
+                <option name="description" value="Displays all buildscript dependencies declared in root project 'AmbientDetector160811'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="buildEnvironment" />
               </ExternalTaskPojo>
@@ -571,17 +162,17 @@
                 <option name="name" value="clean" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the components produced by root project 'AmbientDetector'. [incubating]" />
+                <option name="description" value="Displays the components produced by root project 'AmbientDetector160811'. [incubating]" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="components" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays all dependencies declared in root project 'AmbientDetector'." />
+                <option name="description" value="Displays all dependencies declared in root project 'AmbientDetector160811'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="dependencies" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the insight into a specific dependency in root project 'AmbientDetector'." />
+                <option name="description" value="Displays the insight into a specific dependency in root project 'AmbientDetector160811'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="dependencyInsight" />
               </ExternalTaskPojo>
@@ -596,22 +187,22 @@
                 <option name="name" value="init" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the configuration model of root project 'AmbientDetector'. [incubating]" />
+                <option name="description" value="Displays the configuration model of root project 'AmbientDetector160811'. [incubating]" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="model" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the sub-projects of root project 'AmbientDetector'." />
+                <option name="description" value="Displays the sub-projects of root project 'AmbientDetector160811'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="projects" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the properties of root project 'AmbientDetector'." />
+                <option name="description" value="Displays the properties of root project 'AmbientDetector160811'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="properties" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the tasks runnable from root project 'AmbientDetector' (some of the displayed tasks may belong to subprojects)." />
+                <option name="description" value="Displays the tasks runnable from root project 'AmbientDetector160811' (some of the displayed tasks may belong to subprojects)." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="tasks" />
               </ExternalTaskPojo>
@@ -1847,8 +1438,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="4397001163262" />
-        <entry key="C:\Users\Arun\AndroidStudioProjects\AmbientDetector" value="4392396540865" />
+        <entry key="C:\Users\Arun\AndroidStudioProjects\AmbientDetector160811" value="4407869036815" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -2095,6 +1685,119 @@
               <option name="name" value="app" />
               <option name="projectBuildClasspath">
                 <list>
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/announce" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/antlr" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/base-services" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/base-services-groovy" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/build-comparison" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/build-init" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/cli" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/code-quality" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/core" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/dependency-management" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/diagnostics" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/ear" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/ide" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/ide-native" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/internal-integ-testing" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/internal-testing" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/ivy" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/jacoco" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/javascript" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/jetty" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/language-groovy" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/language-java" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/language-jvm" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/language-native" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/language-scala" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/launcher" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/maven" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/messaging" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/model-core" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/model-groovy" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/native" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/open-api" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/osgi" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/platform-base" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/platform-jvm" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/platform-native" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/platform-play" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/plugin-development" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/plugin-use" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/plugins" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/publish" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/reporting" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/resources" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/resources-http" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/resources-s3" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/resources-sftp" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/scala" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/signing" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/sonar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/test-kit" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/testing-native" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/tooling-api" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/tooling-api-builders" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/ui" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/src/wrapper" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/ant-1.9.3.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/ant-launcher-1.9.3.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/gradle-base-services-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/gradle-base-services-groovy-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/gradle-cli-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/gradle-core-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/gradle-docs-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/gradle-launcher-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/gradle-messaging-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/gradle-model-core-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/gradle-model-groovy-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/gradle-native-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/gradle-open-api-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/gradle-resources-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/gradle-tooling-api-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/gradle-ui-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/gradle-wrapper-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/groovy-all-2.4.4.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-announce-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-antlr-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-build-comparison-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-build-init-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-code-quality-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-dependency-management-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-diagnostics-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-ear-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-ide-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-ide-native-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-ivy-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-jacoco-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-javascript-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-jetty-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-language-groovy-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-language-java-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-language-jvm-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-language-native-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-language-scala-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-maven-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-osgi-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-platform-base-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-platform-jvm-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-platform-native-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-platform-play-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-plugin-development-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-plugin-use-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-plugins-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-publish-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-reporting-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-resources-http-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-resources-s3-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-resources-sftp-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-scala-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-signing-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-sonar-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-test-kit-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-testing-native-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/gradle-tooling-api-builders-2.10.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.10-all/a4w5fzrkeut1ox71xslb49gst/gradle-2.10/lib/plugins/ivy-2.2.0.jar" />
                   <option value="$PROJECT_DIR$/buildSrc/src/main/java" />
                   <option value="$PROJECT_DIR$/buildSrc/src/main/groovy" />
                 </list>
@@ -2111,89 +1814,17 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/FlashLight.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/AppPreferences.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/tool_bar.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/menu/menu_main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/xml/pref_headers.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/app_preferences_layout.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_setting.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/app_preferences.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/AppPreferances.java" />
-=======
-=======
->>>>>>> parent of d968e23... UI setting
-=======
->>>>>>> parent of d968e23... UI setting
-        <option value="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity2.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity3.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity4.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity5.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity6.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity7.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_name.xml" />
-<<<<<<< HEAD
+        <option value="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/SplashScreen.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_splash_screen.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <option value="$PROJECT_DIR$/app/src/main/java/FlashLight.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160519.java" />
-<<<<<<< HEAD
-        <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Flashlight.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_thresh.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml" />
->>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_alert.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160623.java" />
-=======
-        <option value="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Flashlight.java" />
->>>>>>> parent of d968e23... UI setting
-=======
-        <option value="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Flashlight.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/FlashLight.java" />
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml" />
-=======
-        <option value="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Flashlight.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/FlashLight.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml" />
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
-        <option value="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Flashlight.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/FlashLight.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml" />
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
-        <option value="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Flashlight.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/FlashLight.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml" />
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-        <option value="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160519.java" />
-=======
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/FlashLight.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160519.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Flashlight.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160623.java" />
->>>>>>> parent of d968e23... UI setting
       </list>
-    </option>
-  </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="mavenHome" value="Bundled (Maven 3)" />
-      </MavenGeneralSettings>
     </option>
   </component>
   <component name="NamedScopeManager">
@@ -2205,14 +1836,14 @@
     <option name="width" value="1382" />
     <option name="height" value="744" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
     <OptionsSetting value="true" id="Update" />
     <OptionsSetting value="true" id="Status" />
     <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="1" id="Add" />
+    <ConfirmationsSetting value="0" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
@@ -2228,534 +1859,35 @@
       <sortByType />
     </navigator>
     <panes>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
       <pane id="ProjectPane" />
-      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="Scratches" />
-=======
->>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
-      <pane id="AndroidView">
-=======
-      <pane id="ProjectPane">
->>>>>>> parent of d968e23... UI setting
-=======
-      <pane id="ProjectPane">
->>>>>>> parent of d968e23... UI setting
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmbientDetector" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-<<<<<<< HEAD
-=======
-=======
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
->>>>>>> parent of d968e23... UI setting
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmbientDetector" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmbientDetector" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmbientDetector" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmbientDetector" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmbientDetector" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmbientDetector" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-<<<<<<< HEAD
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-=======
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
->>>>>>> parent of d968e23... UI setting
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmbientDetector" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmbientDetector" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-=======
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="libs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TarsosDSP-Android-latest.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
->>>>>>> parent of d968e23... UI setting
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmbientDetector" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-<<<<<<< HEAD
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmbientDetector" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-=======
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmbientDetector" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="libs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TarsosDSP-Android-latest.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dsp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="PackagesPane">
-        <subPane />
-      </pane>
-      <pane id="Scratches">
-        <subPane />
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="AndroidView">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="AmbientDetector" />
+              <option name="myItemId" value="AmbientDetector160811" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
->>>>>>> parent of d968e23... UI setting
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmbientDetector" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmbientDetector" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmbientDetector" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-<<<<<<< HEAD
-<<<<<<< HEAD
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
->>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-<<<<<<< HEAD
-=======
-              <option name="myItemId" value="layout" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
-=======
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
->>>>>>> parent of d968e23... UI setting
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
->>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
-              <option name="myItemId" value="AmbientDetector" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-<<<<<<< HEAD
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xml" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
-=======
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
->>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
-=======
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="libs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TarsosDSP-Android-latest.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
->>>>>>> parent of d968e23... UI setting
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ambientdetector" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmbientDetector" />
-<<<<<<< HEAD
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-<<<<<<< HEAD
-=======
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmbientDetector" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
->>>>>>> parent of d968e23... UI setting
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-<<<<<<< HEAD
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-=======
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ambientdetector" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-=======
-              <option name="myItemId" value="libs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TarsosDSP-Android-latest.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dsp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches">
-        <subPane />
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="AndroidView">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmbientDetector" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
->>>>>>> parent of d968e23... UI setting
-            </PATH_ELEMENT>
-          </PATH>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmbientDetector" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-<<<<<<< HEAD
-        </subPane>
-      </pane>
-      <pane id="Scratches">
-        <subPane />
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmbientDetector" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
->>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmbientDetector" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmbientDetector" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-<<<<<<< HEAD
-=======
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmbientDetector" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
->>>>>>> parent of d968e23... UI setting
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-<<<<<<< HEAD
-              <option name="myItemId" value="layout" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
-=======
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmbientDetector" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmbientDetector" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
->>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
-=======
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
->>>>>>> parent of d968e23... UI setting
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmbientDetector" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmbientDetector" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-            <PATH_ELEMENT>
-              <option name="myItemId" value="libs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TarsosDSP-Android-latest.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            </PATH_ELEMENT>
->>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
-=======
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ambientdetector" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
->>>>>>> parent of d968e23... UI setting
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmbientDetector" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AmbientDetector" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="libs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TarsosDSP-Android-latest.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dsp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-        </subPane>
-      </pane>
-      <pane id="PackagesPane">
-        <subPane />
-      </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="android.sdk-updates" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="F3AZB707F880" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="MyASUS_API_19" />
-    <property name="OverrideImplement.combined" value="true" />
-    <property name="OverrideImplement.overriding.sorted" value="false" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus_5_API_23_x86" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager2.SHOW" value="true" />
-    <property name="UI_DESIGNER_EDITOR_MODE.PaletteToolWindowManager.SHOW" value="true" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
-    <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="271" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="299" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="301" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="975" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="293" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="292" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="293" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="968" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../MWITs.Chemical" />
-    <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/java" />
     <property name="FullScreen" value="false" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-<<<<<<< HEAD
-      <recent name="th.ac.mwits.www.ambientdetector" />
-    </key>
     <key name="android.template.packageName">
       <recent name="th.ac.mwits.www.ambientdetector" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-=======
-      <recent name="th.ac.mwits.www.ambientdetector" />
-    </key>
-    <key name="android.template.packageName">
->>>>>>> parent of d968e23... UI setting
-      <recent name="th.ac.mwits.www.ambientdetector" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Arun\AndroidStudioProjects\AmbientDetector\app\src\main\res\layout" />
-<<<<<<< HEAD
-=======
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="th.ac.mwits.www.ambientdetector" />
->>>>>>> parent of d968e23... UI setting
     </key>
   </component>
   <component name="RunManager" selected="Android Application.app">
@@ -2841,7 +1973,6 @@
     </configuration>
     <configuration default="true" type="JarApplication" factoryName="JAR Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="JAR_PATH" value="$PROJECT_DIR$/app/libs/TarsosDSP-Android-latest.jar" />
       <envs />
       <method />
     </configuration>
@@ -2924,10 +2055,10 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ad4299aa-570a-4a3b-945a-da5d8f0d8242" name="Default" comment="" />
-      <created>1460259000624</created>
+      <changelist id="26a723ca-06ae-47ed-9a37-0dce2bd76ed7" name="Default" comment="" />
+      <created>1470898498259</created>
       <option name="number" value="Default" />
-      <updated>1460259000624</updated>
+      <updated>1470898498259</updated>
     </task>
     <servers />
   </component>
@@ -2941,101 +2072,30 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-<<<<<<< HEAD
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290735" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40894568" sideWeight="0.4697428" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32747602" sideWeight="0.5060514" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38906753" sideWeight="0.49394855" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3279743" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33118972" sideWeight="0.49394855" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290735" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24506828" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290735" sideWeight="0.49394855" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-=======
-=======
->>>>>>> parent of d968e23... UI setting
-=======
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
-    <editor active="true" />
-    <layout>
->>>>>>> parent of d968e23... UI setting
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32367972" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30664396" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3424191" sideWeight="0.5030257" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3781942" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3270869" sideWeight="0.4969743" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3270869" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27458397" sideWeight="0.49041095" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21331316" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2065053" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27458397" sideWeight="0.509589" order="2" side_tool="true" content_ui="tabs" />
-=======
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6603631" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-=======
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3184569" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3184569" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3184569" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3184569" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6603631" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
->>>>>>> parent of d968e23... UI setting
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2065053" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-<<<<<<< HEAD
->>>>>>> parent of d968e23... UI setting
-=======
->>>>>>> parent of d968e23... UI setting
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -3043,14 +2103,8 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
-=======
->>>>>>> parent of d968e23... UI setting
-=======
->>>>>>> parent of d968e23... UI setting
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -3066,1476 +2120,321 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <option name="time" value="2" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160623.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#7102#7269#0" expanded="true" />
-            <element signature="e#7268#7269#0" expanded="true" />
-            <element signature="e#7357#7488#0" expanded="true" />
-            <element signature="e#7487#7488#0" expanded="true" />
-            <element signature="e#7662#8357#0" expanded="true" />
-            <element signature="e#8193#8221#0" expanded="true" />
-            <element signature="e#8356#8357#0" expanded="true" />
-            <element signature="e#8449#15259#0" expanded="true" />
-            <element signature="e#10519#10528#0" expanded="true" />
-            <element signature="e#14372#15058#0" expanded="true" />
-            <element signature="e#15057#15058#0" expanded="true" />
-            <element signature="e#15258#15259#0" expanded="true" />
-            <element signature="e#24368#24396#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-=======
->>>>>>> parent of d968e23... UI setting
-=======
->>>>>>> parent of d968e23... UI setting
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml">
-=======
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="547" column="47" selection-start-line="547" selection-start-column="47" selection-end-line="547" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="545" column="42" selection-start-line="545" selection-start-column="42" selection-end-line="545" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-<<<<<<< HEAD
-<<<<<<< HEAD
-          <caret line="22" column="34" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
-          <folding />
-=======
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="547" column="47" selection-start-line="547" selection-start-column="47" selection-end-line="547" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="693" column="23" selection-start-line="693" selection-start-column="23" selection-end-line="693" selection-end-column="23" />
-          <folding>
-            <element signature="e#272#305#0" expanded="true" />
-            <element signature="e#330#365#0" expanded="true" />
-            <element signature="e#391#426#0" expanded="true" />
-            <element signature="e#450#483#0" expanded="true" />
-          </folding>
->>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
-=======
-          <caret line="208" column="0" selection-start-line="208" selection-start-column="0" selection-end-line="208" selection-end-column="0" />
->>>>>>> parent of d968e23... UI setting
-=======
-          <caret line="208" column="0" selection-start-line="208" selection-start-column="0" selection-end-line="208" selection-end-column="0" />
->>>>>>> parent of d968e23... UI setting
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/AppPreferances.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="58" selection-start-line="14" selection-start-column="58" selection-end-line="14" selection-end-column="58" />
+          <caret line="771" column="24" selection-start-line="771" selection-start-column="24" selection-end-line="771" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-=======
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="59" selection-start-line="9" selection-start-column="59" selection-end-line="9" selection-end-column="59" />
-          <folding />
->>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
-=======
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity6.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="219" column="34" selection-start-line="219" selection-start-column="34" selection-end-line="219" selection-end-column="34" />
->>>>>>> parent of d968e23... UI setting
-=======
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity6.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="219" column="34" selection-start-line="219" selection-start-column="34" selection-end-line="219" selection-end-column="34" />
->>>>>>> parent of d968e23... UI setting
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity7.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_alert.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-          <caret line="93" column="20" selection-start-line="93" selection-start-column="20" selection-end-line="93" selection-end-column="20" />
-          <folding>
-            <element signature="e#7102#7269#0" expanded="true" />
-            <element signature="e#7268#7269#0" expanded="true" />
-            <element signature="e#7357#7488#0" expanded="true" />
-            <element signature="e#7487#7488#0" expanded="true" />
-            <element signature="e#7662#8357#0" expanded="true" />
-            <element signature="e#8193#8221#0" expanded="true" />
-            <element signature="e#8356#8357#0" expanded="true" />
-            <element signature="e#8449#15259#0" expanded="true" />
-            <element signature="e#10519#10528#0" expanded="true" />
-            <element signature="e#14372#15058#0" expanded="true" />
-            <element signature="e#15057#15058#0" expanded="true" />
-            <element signature="e#15258#15259#0" expanded="true" />
-            <element signature="e#24368#24396#0" expanded="true" />
-          </folding>
-=======
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="7" column="32" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="587" column="68" selection-start-line="587" selection-start-column="68" selection-end-line="587" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="48" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160623.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="735" column="45" selection-start-line="735" selection-start-column="45" selection-end-line="735" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#6065#8378#0" expanded="true" />
-            <element signature="e#8377#8378#0" expanded="true" />
-            <element signature="e#9259#9471#0" expanded="true" />
-            <element signature="e#9470#9471#0" expanded="true" />
-            <element signature="e#9559#9850#0" expanded="true" />
-            <element signature="e#9849#9850#0" expanded="true" />
-            <element signature="e#12502#12530#0" expanded="true" />
-            <element signature="e#29578#29606#0" expanded="true" />
-            <element signature="e#33845#33873#0" expanded="true" />
-            <element signature="e#34106#34107#0" expanded="true" />
-            <element signature="e#34152#34153#0" expanded="true" />
-            <element signature="e#34210#34211#0" expanded="true" />
-            <element signature="e#34253#34254#0" expanded="true" />
           </folding>
-=======
-          <caret line="461" column="23" selection-start-line="461" selection-start-column="23" selection-end-line="461" selection-end-column="23" />
-=======
-          <caret line="461" column="23" selection-start-line="461" selection-start-column="23" selection-end-line="461" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_alert.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider selected="true" editor-type-id="android-designer">
+      <provider editor-type-id="android-designer">
         <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="547" column="47" selection-start-line="547" selection-start-column="47" selection-end-line="547" selection-end-column="47" />
-          <folding />
->>>>>>> parent of d968e23... UI setting
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="547" column="47" selection-start-line="547" selection-start-column="47" selection-end-line="547" selection-end-column="47" />
-          <folding />
->>>>>>> parent of d968e23... UI setting
-        </state>
-      </provider>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="37" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
-          <folding />
->>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
-        </state>
-=======
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml">
-      <provider editor-type-id="text-editor">
+      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-=======
-          <caret line="545" column="42" selection-start-line="545" selection-start-column="42" selection-end-line="545" selection-end-column="42" />
->>>>>>> parent of d968e23... UI setting
-=======
-          <caret line="545" column="42" selection-start-line="545" selection-start-column="42" selection-end-line="545" selection-end-column="42" />
->>>>>>> parent of d968e23... UI setting
+          <caret line="615" column="54" selection-start-line="615" selection-start-column="54" selection-end-line="615" selection-end-column="54" />
           <folding />
         </state>
       </provider>
-      <provider selected="true" editor-type-id="android-designer">
+      <provider editor-type-id="android-designer">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity6.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="219" column="34" selection-start-line="219" selection-start-column="34" selection-end-line="219" selection-end-column="34" />
+          <caret line="19" column="48" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity7.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="461" column="23" selection-start-line="461" selection-start-column="23" selection-end-line="461" selection-end-column="23" />
-<<<<<<< HEAD
+          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+          <folding />
         </state>
-=======
-          <caret line="545" column="42" selection-start-line="545" selection-start-column="42" selection-end-line="545" selection-end-column="42" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160623.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="231" column="39" selection-start-line="231" selection-start-column="39" selection-end-line="231" selection-end-column="39" />
           <folding>
-            <element signature="e#272#305#0" expanded="true" />
-            <element signature="e#330#365#0" expanded="true" />
-            <element signature="e#391#426#0" expanded="true" />
-            <element signature="e#450#483#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
-=======
->>>>>>> parent of d968e23... UI setting
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
->>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-          <folding>
-            <element signature="e#7102#7269#0" expanded="true" />
-            <element signature="e#7268#7269#0" expanded="true" />
-            <element signature="e#7357#7488#0" expanded="true" />
-            <element signature="e#7487#7488#0" expanded="true" />
-            <element signature="e#7662#8357#0" expanded="true" />
-            <element signature="e#8193#8221#0" expanded="true" />
-            <element signature="e#8356#8357#0" expanded="true" />
-            <element signature="e#8449#15259#0" expanded="true" />
-            <element signature="e#10519#10528#0" expanded="true" />
-            <element signature="e#14372#15058#0" expanded="true" />
-            <element signature="e#15057#15058#0" expanded="true" />
-            <element signature="e#15258#15259#0" expanded="true" />
-            <element signature="e#24368#24396#0" expanded="true" />
-          </folding>
-=======
-=======
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="547" column="47" selection-start-line="547" selection-start-column="47" selection-end-line="547" selection-end-column="47" />
->>>>>>> parent of d968e23... UI setting
-          <folding />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="547" column="47" selection-start-line="547" selection-start-column="47" selection-end-line="547" selection-end-column="47" />
-=======
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="545" column="42" selection-start-line="545" selection-start-column="42" selection-end-line="545" selection-end-column="42" />
->>>>>>> parent of d968e23... UI setting
-          <folding />
->>>>>>> parent of d968e23... UI setting
-        </state>
-      </provider>
-<<<<<<< HEAD
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml">
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="545" column="42" selection-start-line="545" selection-start-column="42" selection-end-line="545" selection-end-column="42" />
-          <folding />
-=======
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity6.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="219" column="34" selection-start-line="219" selection-start-column="34" selection-end-line="219" selection-end-column="34" />
->>>>>>> parent of d968e23... UI setting
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity6.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="219" column="34" selection-start-line="219" selection-start-column="34" selection-end-line="219" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity7.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-=======
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="547" column="47" selection-start-line="547" selection-start-column="47" selection-end-line="547" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="545" column="42" selection-start-line="545" selection-start-column="42" selection-end-line="545" selection-end-column="42" />
-          <folding>
-            <element signature="e#272#305#0" expanded="true" />
-            <element signature="e#330#365#0" expanded="true" />
-            <element signature="e#391#426#0" expanded="true" />
-            <element signature="e#450#483#0" expanded="true" />
-          </folding>
-=======
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity7.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="46" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
-          <folding />
->>>>>>> parent of d968e23... UI setting
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
->>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="46" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-=======
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="text-editor">
->>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
-=======
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="text-editor">
->>>>>>> parent of d968e23... UI setting
-=======
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
->>>>>>> parent of d968e23... UI setting
-        <state vertical-scroll-proportion="0.0">
-          <caret line="547" column="47" selection-start-line="547" selection-start-column="47" selection-end-line="547" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="205" column="9" selection-start-line="188" selection-start-column="8" selection-end-line="205" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="115" column="28" selection-start-line="115" selection-start-column="28" selection-end-line="115" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity3.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="255" column="0" selection-start-line="255" selection-start-column="0" selection-end-line="255" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity4.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="377" column="19" selection-start-line="0" selection-start-column="0" selection-end-line="415" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity5.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-=======
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
->>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="46" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml">
-=======
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of d968e23... UI setting
-=======
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
->>>>>>> parent of d968e23... UI setting
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-=======
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
->>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="547" column="47" selection-start-line="547" selection-start-column="47" selection-end-line="547" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="156" column="32" selection-start-line="156" selection-start-column="32" selection-end-line="156" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml">
-      <provider editor-type-id="android-designer">
-=======
-      <provider selected="true" editor-type-id="android-designer">
->>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
-        <state />
-=======
-=======
->>>>>>> parent of d968e23... UI setting
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="115" column="28" selection-start-line="115" selection-start-column="28" selection-end-line="115" selection-end-column="28" />
-        </state>
-<<<<<<< HEAD
->>>>>>> parent of d968e23... UI setting
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity3.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-=======
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity3.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
->>>>>>> parent of d968e23... UI setting
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity4.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="63" column="17" selection-start-line="63" selection-start-column="17" selection-end-line="63" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="46" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-=======
-      <provider selected="true" editor-type-id="text-editor">
->>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
-=======
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-      <provider selected="true" editor-type-id="text-editor">
->>>>>>> parent of d968e23... UI setting
-=======
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
->>>>>>> parent of d968e23... UI setting
-        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-    </entry>
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-=======
-      <provider editor-type-id="android-designer">
+      <provider selected="true" editor-type-id="android-designer">
         <state />
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/app/libs/TarsosDSP-Android-latest.jar!/be/tarsos/dsp/SpectralPeakProcessor.java">
->>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
-=======
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity.java">
->>>>>>> parent of d968e23... UI setting
-=======
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity.java">
->>>>>>> parent of d968e23... UI setting
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/app/libs/TarsosDSP-Android-latest.jar!/be/tarsos/dsp/SpectralPeakProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="75" column="13" selection-start-line="75" selection-start-column="13" selection-end-line="75" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_main.xml">
-=======
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
->>>>>>> parent of d968e23... UI setting
-=======
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
->>>>>>> parent of d968e23... UI setting
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="45" selection-start-line="13" selection-start-column="45" selection-end-line="13" selection-end-column="45" />
+          <caret line="8" column="31" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/app/libs/TarsosDSP-Android-latest.jar!/be/tarsos/dsp/SpectralPeakProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="75" column="13" selection-start-line="75" selection-start-column="13" selection-end-line="75" selection-end-column="13" />
-<<<<<<< HEAD
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="115" column="28" selection-start-line="115" selection-start-column="28" selection-end-line="115" selection-end-column="28" />
-        </state>
-=======
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="115" column="28" selection-start-line="115" selection-start-column="28" selection-end-line="115" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity3.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="255" column="0" selection-start-line="255" selection-start-column="0" selection-end-line="255" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity4.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="377" column="19" selection-start-line="0" selection-start-column="0" selection-end-line="415" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity5.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.58146065">
-          <caret line="414" column="18" selection-start-line="414" selection-start-column="18" selection-end-line="414" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity7.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.27868852">
-          <caret line="461" column="23" selection-start-line="461" selection-start-column="23" selection-end-line="461" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity6.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.23887588">
-          <caret line="219" column="34" selection-start-line="0" selection-start-column="0" selection-end-line="526" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.0304449">
-          <caret line="208" column="0" selection-start-line="208" selection-start-column="0" selection-end-line="208" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build/generated/source/r/debug/th/ac/mwits/www/ambientdetector/R.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19883041">
-          <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="android-designer">
-        <state />
->>>>>>> parent of d968e23... UI setting
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity3.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-<<<<<<< HEAD
-          <caret line="255" column="0" selection-start-line="255" selection-start-column="0" selection-end-line="255" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity4.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="377" column="19" selection-start-line="0" selection-start-column="0" selection-end-line="415" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity5.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.58146065">
-          <caret line="414" column="18" selection-start-line="414" selection-start-column="18" selection-end-line="414" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity7.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.27868852">
-          <caret line="461" column="23" selection-start-line="461" selection-start-column="23" selection-end-line="461" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity6.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.23887588">
-          <caret line="219" column="34" selection-start-line="0" selection-start-column="0" selection-end-line="526" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.0304449">
-          <caret line="208" column="0" selection-start-line="208" selection-start-column="0" selection-end-line="208" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build/intermediates/manifests/full/debug/AndroidManifest.xml">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_name.xml">
-      <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-        <state vertical-scroll-proportion="-1.8545455">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-=======
-    <entry file="jar://$PROJECT_DIR$/app/libs/TarsosDSP-Android-latest.jar!/be/tarsos/dsp/SpectralPeakProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="75" column="13" selection-start-line="75" selection-start-column="13" selection-end-line="75" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build/generated/source/r/debug/th/ac/mwits/www/ambientdetector/R.java">
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/android/hardware/Camera.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3323442">
-          <caret line="344" column="0" selection-start-line="344" selection-start-column="0" selection-end-line="344" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build/intermediates/manifests/full/debug/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_name.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39285713">
-          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/android/hardware/camera2/CameraDevice.java">
-=======
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_name.xml">
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3323442">
-          <caret line="699" column="43" selection-start-line="699" selection-start-column="43" selection-end-line="699" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/android/hardware/camera2/CaptureRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3323442">
-          <caret line="74" column="19" selection-start-line="74" selection-start-column="19" selection-end-line="74" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="37" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
-=======
-        <state vertical-scroll-proportion="0.0">
-<<<<<<< HEAD
-<<<<<<< HEAD
-          <caret line="547" column="47" selection-start-line="547" selection-start-column="47" selection-end-line="547" selection-end-column="47" />
->>>>>>> parent of d968e23... UI setting
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160519.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-<<<<<<< HEAD
-          <caret line="9" column="59" selection-start-line="9" selection-start-column="59" selection-end-line="9" selection-end-column="59" />
->>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
-=======
-          <caret line="547" column="47" selection-start-line="547" selection-start-column="47" selection-end-line="547" selection-end-column="47" />
->>>>>>> parent of d968e23... UI setting
-          <folding />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.192307">
-          <caret line="31" column="9" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
-          <folding />
-=======
-=======
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160519.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
->>>>>>> parent of d968e23... UI setting
-          <caret line="429" column="38" selection-start-line="429" selection-start-column="38" selection-end-line="429" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-<<<<<<< HEAD
->>>>>>> parent of d968e23... UI setting
-        </state>
-=======
-          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
-          <folding />
-        </state>
-=======
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_name.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
-          <folding />
-        </state>
-=======
-          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
-          <folding />
-=======
->>>>>>> parent of d968e23... UI setting
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_name.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-      </provider>
-    </entry>
-<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+          <caret line="15" column="33" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/build/generated/source/r/debug/th/ac/mwits/www/ambientdetector/R.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19883041">
-          <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="547" column="47" selection-start-line="547" selection-start-column="47" selection-end-line="547" selection-end-column="47" />
+          <caret line="3" column="56" selection-start-line="3" selection-start-column="56" selection-end-line="3" selection-end-column="56" />
           <folding />
         </state>
       </provider>
-      <provider editor-type-id="android-designer">
-        <state />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15315315">
+          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/FlashLight.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/app_preferences.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.3204749">
-          <caret line="85" column="25" selection-start-line="85" selection-start-column="25" selection-end-line="85" selection-end-column="25" />
-          <folding />
+        <state vertical-scroll-proportion="0.7602862">
+          <caret line="25" column="19" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/AppPreferences.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.12164579">
+          <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Flashlight.java">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <state vertical-scroll-proportion="0.0">
-          <caret line="75" column="49" selection-start-line="75" selection-start-column="49" selection-end-line="75" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3782#3791#0" expanded="true" />
-=======
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Flashlight.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="47" column="11" selection-start-line="47" selection-start-column="11" selection-end-line="47" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
->>>>>>> parent of d968e23... UI setting
-          </folding>
+        <state vertical-scroll-proportion="0.24329159">
+          <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.62069">
-          <caret line="700" column="28" selection-start-line="700" selection-start-column="28" selection-end-line="700" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-=======
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/android/hardware/Camera.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3323442">
-          <caret line="344" column="0" selection-start-line="344" selection-start-column="0" selection-end-line="344" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build/intermediates/manifests/full/debug/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_name.xml">
->>>>>>> parent of d968e23... UI setting
-      <provider editor-type-id="android-designer">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.png">
+      <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/android/media/AudioRecord.java">
-      <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-        <state vertical-scroll-proportion="0.3323442">
-          <caret line="893" column="0" selection-start-line="893" selection-start-column="0" selection-end-line="893" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/android/app/Activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3323442">
-          <caret line="5265" column="0" selection-start-line="5265" selection-start-column="0" selection-end-line="5265" selection-end-column="0" />
-=======
-        <state vertical-scroll-proportion="0.39285713">
-          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
->>>>>>> parent of d968e23... UI setting
-          <folding />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/android/os/Build.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3323442">
-          <caret line="182" column="35" selection-start-line="182" selection-start-column="35" selection-end-line="182" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="547" column="47" selection-start-line="547" selection-start-column="47" selection-end-line="547" selection-end-column="47" />
-          <folding />
-=======
-        <state vertical-scroll-proportion="0.0">
-=======
-        <state vertical-scroll-proportion="0.0">
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-          <caret line="75" column="49" selection-start-line="75" selection-start-column="49" selection-end-line="75" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3782#3791#0" expanded="true" />
-          </folding>
-<<<<<<< HEAD
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="693" column="23" selection-start-line="693" selection-start-column="23" selection-end-line="693" selection-end-column="23" />
-          <folding />
->>>>>>> parent of d968e23... UI setting
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/ic_action_settings.png">
+      <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_thresh.xml">
-      <provider editor-type-id="text-editor">
+      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="37" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-=======
-        <state vertical-scroll-proportion="0.0">
-          <caret line="75" column="49" selection-start-line="75" selection-start-column="49" selection-end-line="75" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3782#3791#0" expanded="true" />
-          </folding>
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
         </state>
       </provider>
-      <provider selected="true" editor-type-id="android-designer">
+      <provider editor-type-id="android-designer">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml">
-<<<<<<< HEAD
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="557" column="47" selection-start-line="557" selection-start-column="47" selection-end-line="557" selection-end-column="47" />
-          <folding>
-            <element signature="e#272#305#0" expanded="true" />
-            <element signature="e#330#365#0" expanded="true" />
-            <element signature="e#391#426#0" expanded="true" />
-            <element signature="e#450#483#0" expanded="true" />
-          </folding>
+    <entry file="jar://$USER_HOME$/AppData/Local/Android/sdk/platforms/android-23/android.jar!/dalvik/system/BaseDexClassLoader.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7794118">
+          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
         </state>
       </provider>
-      <provider selected="true" editor-type-id="android-designer">
-=======
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml">
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/tool_bar.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.62069">
-          <caret line="700" column="28" selection-start-line="700" selection-start-column="28" selection-end-line="700" selection-end-column="28" />
-=======
+        <state vertical-scroll-proportion="0.09467456">
+          <caret line="2" column="53" selection-start-line="2" selection-start-column="53" selection-end-line="2" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="31" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="android-dummy://C:\Users\Arun\AndroidStudioProjects\AmbientDetector160811//Theme Editor">
+      <provider selected="true" editor-type-id="themeEditor">
+        <state theme-name="AppTheme" module-name="app" proportion="0.5" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/fullsizelogo.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/SplashScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8147139">
+          <caret line="27" column="71" selection-start-line="27" selection-start-column="71" selection-end-line="27" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/android/app/Dialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="261" column="0" selection-start-line="261" selection-start-column="0" selection-end-line="261" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="64" selection-start-line="6" selection-start-column="64" selection-end-line="6" selection-end-column="64" />
->>>>>>> parent of d968e23... UI setting
+          <caret line="19" column="48" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160623.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="771" column="24" selection-start-line="771" selection-start-column="24" selection-end-line="771" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_splash_screen.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2514793">
+          <caret line="14" column="41" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
           <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer">
-<<<<<<< HEAD
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160519.java">
-<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_alert.xml">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-        <state vertical-scroll-proportion="-0.3115727">
-          <caret line="205" column="17" selection-start-line="205" selection-start-column="17" selection-end-line="205" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6065#8378#0" expanded="true" />
-            <element signature="e#8377#8378#0" expanded="true" />
-            <element signature="e#9259#9471#0" expanded="true" />
-            <element signature="e#9470#9471#0" expanded="true" />
-            <element signature="e#9559#9850#0" expanded="true" />
-            <element signature="e#9849#9850#0" expanded="true" />
-            <element signature="e#12502#12530#0" expanded="true" />
-            <element signature="e#29578#29606#0" expanded="true" />
-            <element signature="e#33845#33873#0" expanded="true" />
-            <element signature="e#34106#34107#0" expanded="true" />
-            <element signature="e#34152#34153#0" expanded="true" />
-            <element signature="e#34210#34211#0" expanded="true" />
-            <element signature="e#34253#34254#0" expanded="true" />
-=======
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160623.java">
-=======
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160519.java">
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="32" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.62069">
-          <caret line="700" column="28" selection-start-line="700" selection-start-column="28" selection-end-line="700" selection-end-column="28" />
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="588" column="68" selection-start-line="588" selection-start-column="68" selection-end-line="588" selection-end-column="68" />
           <folding />
         </state>
       </provider>
-      <provider editor-type-id="android-designer">
+      <provider selected="true" editor-type-id="android-designer">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160519.java">
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-      <provider selected="true" editor-type-id="text-editor">
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
-      <provider selected="true" editor-type-id="text-editor">
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-        <state vertical-scroll-proportion="0.6854599">
-          <caret line="413" column="16" selection-start-line="413" selection-start-column="16" selection-end-line="413" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <element signature="e#6321#6488#0" expanded="true" />
-            <element signature="e#6487#6488#0" expanded="true" />
-            <element signature="e#6576#6707#0" expanded="true" />
-            <element signature="e#6706#6707#0" expanded="true" />
-            <element signature="e#6881#7576#0" expanded="true" />
-            <element signature="e#7412#7440#0" expanded="true" />
-            <element signature="e#7575#7576#0" expanded="true" />
-            <element signature="e#7668#14478#0" expanded="true" />
-            <element signature="e#9738#9747#0" expanded="true" />
-            <element signature="e#13591#14277#0" expanded="true" />
-            <element signature="e#14276#14277#0" expanded="true" />
-            <element signature="e#14477#14478#0" expanded="true" />
-            <element signature="e#20774#20802#0" expanded="true" />
-            <element signature="e#21291#21292#0" expanded="true" />
-            <element signature="e#21337#21338#0" expanded="true" />
-            <element signature="e#21395#21396#0" expanded="true" />
-            <element signature="e#21438#21439#0" expanded="true" />
->>>>>>> parent of d968e23... UI setting
-=======
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-            <element signature="e#6168#6335#0" expanded="true" />
-            <element signature="e#6334#6335#0" expanded="true" />
-            <element signature="e#6423#6554#0" expanded="true" />
-            <element signature="e#6553#6554#0" expanded="true" />
-            <element signature="e#6646#13456#0" expanded="true" />
-            <element signature="e#13455#13456#0" expanded="true" />
-            <element signature="e#19426#19427#0" expanded="true" />
-            <element signature="e#19472#19473#0" expanded="true" />
-            <element signature="e#19530#19531#0" expanded="true" />
-            <element signature="e#19573#19574#0" expanded="true" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-=======
->>>>>>> parent of 0884971... Fixed Timeframe (fully) + Merge with Phet
-          </folding>
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 2c1807a42b0d215e9bbd4fc9723068c855b0fadd
-=======
->>>>>>> parent of d968e23... UI setting
-=======
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/th/ac/mwits/www/ambientdetector/Proj160623.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.48367953">
-          <caret line="229" column="42" selection-start-line="229" selection-start-column="42" selection-end-line="229" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6321#6488#0" expanded="true" />
-            <element signature="e#6487#6488#0" expanded="true" />
-            <element signature="e#6576#6707#0" expanded="true" />
-            <element signature="e#6706#6707#0" expanded="true" />
-            <element signature="e#6881#7576#0" expanded="true" />
-            <element signature="e#7412#7440#0" expanded="true" />
-            <element signature="e#7575#7576#0" expanded="true" />
-            <element signature="e#7668#14478#0" expanded="true" />
-            <element signature="e#9738#9747#0" expanded="true" />
-            <element signature="e#13591#14277#0" expanded="true" />
-            <element signature="e#14276#14277#0" expanded="true" />
-            <element signature="e#14477#14478#0" expanded="true" />
-            <element signature="e#20774#20802#0" expanded="true" />
-            <element signature="e#21291#21292#0" expanded="true" />
-            <element signature="e#21337#21338#0" expanded="true" />
-            <element signature="e#21395#21396#0" expanded="true" />
-            <element signature="e#21438#21439#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
->>>>>>> parent of d968e23... UI setting
   </component>
 </project>

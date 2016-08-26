@@ -3,9 +3,11 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <SeekBar
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/DialogThresh" />
-
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:layout_gravity="right" />
 </LinearLayout>
