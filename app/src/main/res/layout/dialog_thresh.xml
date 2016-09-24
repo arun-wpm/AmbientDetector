@@ -10,4 +10,62 @@
         android:ems="10"
         android:id="@+id/editText"
         android:layout_gravity="right" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="90 dB: Diesel truck, 10m away"
+        android:id="@+id/textView19"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="80 dB: Footpath of busy road, 5m"
+        android:id="@+id/textView20"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="70 dB: Vacuum cleaner, 1m away"
+        android:id="@+id/textView21"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="60 dB: Conversation, 1m away"
+        android:id="@+id/textView22"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="50 dB: Average home"
+        android:id="@+id/textView23"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="40 dB: Quiet library"
+        android:id="@+id/textView24"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="30 dB: Quiet bedroom at night"
+        android:id="@+id/textView25"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/textView18"
+        android:layout_gravity="center_horizontal"
+        android:textSize="50dp" />
 </LinearLayout>

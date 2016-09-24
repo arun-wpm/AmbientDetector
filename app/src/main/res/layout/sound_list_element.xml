@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="1dp"
+        android:layout_weight="1"
+        android:layout_height="50dp"
+        android:id="@+id/ID"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:textColor="#000000" />
+
+    <TextView
+        android:layout_width="1dp"
+        android:layout_weight="5"
+        android:layout_height="50dp"
+        android:id="@+id/Name"
+        android:textSize="20dp"
+        android:textColor="#000000"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:layout_width="1dp"
+        android:layout_weight="1"
+        android:layout_height="50dp"
+        android:id="@+id/View"
+        android:src="@drawable/del2"
+        android:scaleType="fitCenter" />
+</LinearLayout>

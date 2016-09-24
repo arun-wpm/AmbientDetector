@@ -14,6 +14,7 @@ import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioRecord;
 import android.media.AudioTrack;
+import android.media.Image;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.net.Uri;
@@ -39,7 +40,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.widget.ProgressBar;
@@ -73,7 +76,7 @@ import java.util.Vector;
 
 import static be.tarsos.dsp.beatroot.Peaks.findPeaks;
 
-public class Proj160623 extends AppCompatActivity {
+public class Project extends AppCompatActivity {
 
     private int audioSource = MediaRecorder.AudioSource.MIC;
     private int samplingRate = 44100; /* in Hz*/
@@ -91,8 +94,8 @@ public class Proj160623 extends AppCompatActivity {
 
     int count = 0;
     short[] data = new short[441000];
-    TextView textView;
     Button start, stop, record, stop_vibrate;
+    ImageView isRecording;
 
     AudioRecord recorder;
     AudioTrack audioPlayer;
@@ -221,7 +224,7 @@ public class Proj160623 extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int res_id = item.getItemId();
         if (res_id == R.id.action_settings) {
-            Intent i = new Intent(Proj160623.this, AppPreferences.class);
+            Intent i = new Intent(Project.this, AppPreferences.class);
             startActivity(i);
         }
         return true;
@@ -287,11 +290,11 @@ public class Proj160623 extends AppCompatActivity {
                 // set dialog message
                 alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        String input=userInput[0].getText().toString();
-                        if(input.equals("")) dB=0;
-                        else dB=Double.valueOf(userInput[0].getText().toString());
-                        if(dB>90) dB=90;
-                        Threshold=Math.pow(10,dB/20);
+                        String input = userInput[0].getText().toString();
+                        if (input.equals("")) dB = 0;
+                        else dB = Double.valueOf(userInput[0].getText().toString());
+                        if (dB > 90) dB = 90;
+                        Threshold = Math.pow(10, dB / 20);
                         Log.d("TAG", "values " + Threshold);
                         try {
                             dos.writeDouble(Threshold);
@@ -308,6 +311,11 @@ public class Proj160623 extends AppCompatActivity {
                     }
                 });
 
+                alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                    }
+                });
+
                 // create alert dialog
                 AlertDialog alertDialog = alertDialogBuilder.create();
 
@@ -317,6 +325,7 @@ public class Proj160623 extends AppCompatActivity {
         });
         LiteMode = (Switch) findViewById(R.id.switch1);
         LiteMode.setChecked(false);
+
         alertDialogBuilder = new AlertDialog.Builder(context);
 
         alertDialogBuilder.setTitle("Environment sound intensity reaches threshold!");
@@ -349,25 +358,49 @@ public class Proj160623 extends AppCompatActivity {
                 AudioFormat.ENCODING_PCM_16BIT, bufferSize * 50, AudioTrack.MODE_STREAM);
         Log.d("TAG", "Initialized playback");
 
-        textView = (TextView) findViewById(R.id.textView);
+        record = (Button) findViewById(R.id.button3);
+
         start = (Button) findViewById(R.id.button);
         start.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                if (record.isPressed()) {
+                    Toast.makeText(Project.this, "Cannot start now! Recording must finish first",
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
+                start.setVisibility(View.INVISIBLE);
+                stop.setVisibility(View.VISIBLE);
                 lite = LiteMode.isChecked();
                 activate = false;
                 first = true;
                 myTask = new MyTask();
+
                 myTask.execute();
             }
         });
 
         stop = (Button) findViewById(R.id.button2);
+        stop.setVisibility(View.INVISIBLE);
         stop.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                start.setVisibility(View.VISIBLE);
+                stop.setVisibility(View.INVISIBLE);
                 myTask.cancel(true);
                 for (j = 0; j < 40; j++) {
                     pb[j].setMax((int) Math.round(max));
                     pb[j].setProgress(0);
+                }
+            }
+        });
+
+        LiteMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                // do something, the isChecked will be
+                // true if the switch is in the On position
+                if (start.getVisibility() == View.INVISIBLE) {
+                    LiteMode.toggle();
+                    Toast.makeText(Project.this, "Cannot change now! Stop detecting first",
+                            Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -426,10 +459,18 @@ public class Proj160623 extends AppCompatActivity {
             }
         });
 
-        record = (Button) findViewById(R.id.button3);
+        //isRecording = (ImageView) findViewById(R.id.imageView2);
+        //isRecording.setVisibility(View.GONE);
         record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //isRecording.setVisibility(View.VISIBLE);
+                //isRecording.requestLayout();
+                if (start.getVisibility() == View.INVISIBLE) {
+                    Toast.makeText(Project.this, "Cannot record now! Stop detecting first",
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
                 writtenBytes = 0;
                 max = 10000000.0;
                 ii = 0;
@@ -514,15 +555,6 @@ public class Proj160623 extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 final DataOutputStream dos = new DataOutputStream(stream);
-                try {
-                    for (i = 0; i < 1024; i++) {
-                        dos.writeDouble(accu[i]);
-                        dos.writeBoolean(peaks[i]);
-                    }
-                    Log.d("TAG", "Write Results");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
 
                 for (i = 0; i < 1024; i++) {
                     if (accu[i] > max)
@@ -571,7 +603,28 @@ public class Proj160623 extends AppCompatActivity {
                             e.printStackTrace();
                         }
                         try {
+                            for (i = 0; i < 1024; i++) {
+                                dos.writeDouble(accu[i]);
+                                dos.writeBoolean(peaks[i]);
+                            }
+                            Log.d("TAG", "Write Results");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        try {
                             dos.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+                alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        try {
+                            dos.close();
+                            file.delete();
+                            filenum = 0;
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -583,6 +636,8 @@ public class Proj160623 extends AppCompatActivity {
 
                 // show it
                 alertDialog.show();
+
+                //isRecording.setVisibility(View.GONE);
             }
         });
     }
@@ -668,11 +723,11 @@ public class Proj160623 extends AppCompatActivity {
                         }
                         dis = new DataInputStream(stream);
                         try {
+                            SoundName = dis.readUTF();
                             for (i = 0; i < 1024; i++) {
                                 ref[i] = dis.readDouble();
                                 peaks[i] = dis.readBoolean();
                             }
-                            SoundName = dis.readUTF();
                             Log.d("TAG", "Read from file" + filenum);
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -768,8 +823,12 @@ public class Proj160623 extends AppCompatActivity {
                         }
                         first = false;
                         lastused = System.currentTimeMillis();
-                        vibrator.vibrate(10000);
-                        turnOnFlash();
+                        PreferenceManager.setDefaultValues(getApplicationContext(), R.xml.app_preferences, false);
+                        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                        if(settings.getBoolean("vibrate_noti",false)==true)
+                            vibrator.vibrate(10000);
+                        if(settings.getBoolean("LED_noti",false)==true)
+                            turnOnFlash();
 
                         alertDialogBuilder = new AlertDialog.Builder(
                                 context);
@@ -836,8 +895,12 @@ public class Proj160623 extends AppCompatActivity {
                         // show it
                         alertDialog.show();
 
-                        //vibrator.vibrate(10000);
-                        turnOnFlash();
+                        PreferenceManager.setDefaultValues(getApplicationContext(),R.xml.app_preferences,false);
+                        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                        if(settings.getBoolean("vibrate_noti",false)==true)
+                            vibrator.vibrate(10000);
+                        if(settings.getBoolean("LED_noti",false)==true)
+                            turnOnFlash();
                     }
                 }
             }
