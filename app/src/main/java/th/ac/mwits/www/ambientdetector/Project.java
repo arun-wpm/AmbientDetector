@@ -28,6 +28,7 @@ import android.os.Vibrator;
 import android.provider.MediaStore;
 import android.support.v7.widget.Toolbar;
 import android.support.annotation.NonNull;
+import android.util.TypedValue;
 import android.view.InflateException;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -71,7 +72,11 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.Vector;
 
 import static be.tarsos.dsp.beatroot.Peaks.findPeaks;
@@ -106,15 +111,12 @@ public class Project extends AppCompatActivity {
     File dir;
     File file;
     String SoundName;
-    File file2;
-    File file3;
     int filenum = 0;
-    Toolbar toolbar;
 
     int readBytes, writtenBytes = 0;
     int i, j;
     ProgressBar[] pb = new ProgressBar[40];
-    TextView[][] tv = new TextView[6][2];
+    TextView[][] tv = new TextView[3][3];
     double max = 10000000.0;
     int ii = 0;
     FFT fft = new FFT(2048, new HammingWindow());
@@ -173,30 +175,27 @@ public class Project extends AppCompatActivity {
     LayoutInflater inflater;
     View vi;
     private static final int[] tvid = {
+            R.id.textView,
+            R.id.textView2,
+            R.id.textView3,
+            R.id.textView4,
             R.id.textView5,
             R.id.textView6,
             R.id.textView7,
             R.id.textView8,
-            R.id.textView9,
-            R.id.textView10,
-            R.id.textView11,
-            R.id.textView12,
-            R.id.textView13,
-            R.id.textView14,
-            R.id.textView15,
-            R.id.textView16,
+            R.id.textView9
     };
 
     MyTask myTask;
 
     final Context context = this;
     Camera cam;
-    Button FlOff;
 
-    //TextView result, refresult, percent;
     double black = 0.0, bref = 0.0;
     double white = 0.0, wref = 0.0;
     int bnum = 0, wnum = 0;
+    //TreeMap in Java == std::map in C++
+    TreeMap<Integer, String> Detected = new TreeMap<Integer, String>(Collections.reverseOrder());
 
     private GoogleApiClient client;
 
@@ -204,6 +203,7 @@ public class Project extends AppCompatActivity {
     private AlertDialog alertDialog;
     double Threshold;
     boolean lite, activate = false, first=true;
+    int notidelay = 2000;
     Switch LiteMode;
     TextView Thresh;
 
@@ -286,6 +286,15 @@ public class Project extends AppCompatActivity {
 
                 final EditText[] userInput = {(EditText) promptsView
                         .findViewById(R.id.editText)};
+                final Button[] liveLoudness = {(Button) promptsView.findViewById(R.id.button4)};
+
+                liveLoudness[0].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent LiveLoudness = new Intent(Project.this, LiveLoudness.class);
+                        Project.this.startActivity(LiveLoudness);
+                    }
+                });
 
                 // set dialog message
                 alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -346,10 +355,10 @@ public class Project extends AppCompatActivity {
             pb[i] = (ProgressBar) findViewById(pbid[i]);
 
         inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        vi = inflater.inflate(R.layout.dialog_alert, null, false); //dialog_alert.xml is your file.
-        for (i = 0; i < 6; i++)
-            for (j = 0; j < 2; j++)
-                tv[i][j] = (TextView) vi.findViewById(tvid[2 * i + j]); //get a reference to the textview on the dialog_alert.xml file.
+        vi = inflater.inflate(R.layout.dialog_alert2, null, false); //dialog_alert2.xml is your file.
+        for (i = 0; i < 3; i++)
+            for (j = 0; j < 3; j++)
+                tv[i][j] = (TextView) vi.findViewById(tvid[3 * i + j]); //get a reference to the textview on the dialog_alert2.xml file.
 
         recorder = new AudioRecord(audioSource, samplingRate, channelConfig, audioFormat, bufferSize);
         Log.d("TAG", "Start recording");
@@ -466,6 +475,7 @@ public class Project extends AppCompatActivity {
             public void onClick(View v) {
                 //isRecording.setVisibility(View.VISIBLE);
                 //isRecording.requestLayout();
+                //record.setVisibility(View.INVISIBLE);
                 if (start.getVisibility() == View.INVISIBLE) {
                     Toast.makeText(Project.this, "Cannot record now! Stop detecting first",
                             Toast.LENGTH_LONG).show();
@@ -638,6 +648,7 @@ public class Project extends AppCompatActivity {
                 alertDialog.show();
 
                 //isRecording.setVisibility(View.GONE);
+                //record.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -684,7 +695,7 @@ public class Project extends AppCompatActivity {
                             activate = true;
                     }
 
-                    publishProgress(String.valueOf(-2), "", "");
+                    publishProgress(String.valueOf(-3), String.valueOf(count));
                 } else {
                     for (i = 0; i < 1024; i++)
                         accu[i] = 0.0;
@@ -707,7 +718,7 @@ public class Project extends AppCompatActivity {
                             max = accu[i];
                     }
 
-                    publishProgress(String.valueOf(-1), "", "");
+                    publishProgress(String.valueOf(-2));
 
                     SoundName = null;
                     filenum = 0;
@@ -767,6 +778,7 @@ public class Project extends AppCompatActivity {
                         filenum++;
                         file = new File(dir, filenum + ".txt");
                     }
+                    publishProgress(String.valueOf(-1));
                 }
 
                 if (Thread.currentThread().isInterrupted()) {
@@ -790,7 +802,13 @@ public class Project extends AppCompatActivity {
             j = Integer.valueOf(values[0]);
 
             if (j >= 0) {
-                tv[j][0].setText(values[0] + " " + values[3]);
+                if (j == 0)
+                    Detected.clear();
+                if (values[2].equals("false") && Integer.valueOf(values[1]) >= 30) {
+                    Detected.put(Integer.valueOf(values[1]), values[3]);
+                    activate = true;
+                }
+                /*tv[j][0].setText(values[0] + " " + values[3]);
                 tv[j][1].setText(values[1] + "%");
                 Log.d("TAG", "read " + values[3]);
                 if (values[2].equals("true") || Integer.valueOf(values[1]) <= 30) {
@@ -798,11 +816,19 @@ public class Project extends AppCompatActivity {
                 }
                 else {
                     tv[j][0].append(" = EVENT");
-                    activate = true;
-                }
 
+                    activate = true;
+                }*/
+            }
+            else if (j == -2) {
+                for (j = 0; j < 40; j++) {
+                    pb[j].setMax((int) Math.round(max));
+                    pb[j].setProgress((int) Math.round(accu[j]));
+                }
+            }
+            else if (j == -1) {
                 if (activate) {
-                    if(System.currentTimeMillis()-lastused<5000) activate=false;
+                    if(System.currentTimeMillis()-lastused<notidelay) activate=false;
                     if(activate) {
                         if (!first) {
                             if (alertDialog.isShowing()) alertDialog.dismiss();
@@ -813,12 +839,27 @@ public class Project extends AppCompatActivity {
                                 }
                             }
                             try {
-                                vi = inflater.inflate(R.layout.dialog_alert, null, false);
-                                for (i = 0; i < 6; i++)
-                                    for (j = 0; j < 2; j++)
-                                        tv[i][j] = (TextView) vi.findViewById(tvid[2 * i + j]); //get a reference to the textview on the dialog_alert.xml file.
+                                vi = inflater.inflate(R.layout.dialog_alert2, null, false);
                             } catch (InflateException e) {
-
+                                e.printStackTrace();
+                            }
+                        }
+                        Iterator entries = Detected.entrySet().iterator();
+                        for (int i = 0; i < 3; i++) {
+                            for (j = 0; j < 3; j++) {
+                                tv[i][j] = (TextView) vi.findViewById(tvid[3 * i + j]); //get a reference to the textview on the dialog_alert2.xml file.
+                            }
+                            if (entries.hasNext()) {
+                                Map.Entry thisEntry = (Map.Entry) entries.next();
+                                tv[i][0].setText(thisEntry.getValue().toString());
+                                tv[i][0].setTextSize(TypedValue.COMPLEX_UNIT_DIP, 30 - thisEntry.getValue().toString().length());
+                                tv[i][1].setText(" = ");
+                                tv[i][2].setText(thisEntry.getKey().toString() + "%");
+                            }
+                            else {
+                                tv[i][0].setText("");
+                                tv[i][1].setText("");
+                                tv[i][2].setText("");
                             }
                         }
                         first = false;
@@ -826,7 +867,7 @@ public class Project extends AppCompatActivity {
                         PreferenceManager.setDefaultValues(getApplicationContext(), R.xml.app_preferences, false);
                         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                         if(settings.getBoolean("vibrate_noti",false)==true)
-                            vibrator.vibrate(10000);
+                            vibrator.vibrate(notidelay);
                         if(settings.getBoolean("LED_noti",false)==true)
                             turnOnFlash();
 
@@ -835,9 +876,22 @@ public class Project extends AppCompatActivity {
 
                         // set prompts.xml to alertdialog builder
                         alertDialogBuilder.setView(vi);
+                        alertDialogBuilder.setTitle("Sound Detected!");
 
                         // set dialog message
-                        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setPositiveButton("Correct", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+
+                            }
+                        });
+
+                        alertDialogBuilder.setNegativeButton("Incorrect", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+
+                            }
+                        });
+
+                        alertDialogBuilder.setNeutralButton("Unsure", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
 
                             }
@@ -853,23 +907,17 @@ public class Project extends AppCompatActivity {
                     }
                 }
             }
-            else if (j == -1) {
-                for (j = 0; j < 40; j++) {
-                    pb[j].setMax((int) Math.round(max));
-                    pb[j].setProgress((int) Math.round(accu[j]));
-                }
-            }
             else {
                 //lite mode
                 for (j = 0; j < 40; j++) {
                     pb[j].setMax((int) Math.round(max));
-                    if (j % 2 == 0)
+                    if (j % 2 == Integer.valueOf(values[1])%2)
                         pb[j].setProgress((int) Math.round(max));
                     else
                         pb[j].setProgress(0);
                 }
                 if (activate) {
-                    if(System.currentTimeMillis()-lastused<5000) activate=false;
+                    if(System.currentTimeMillis()-lastused<notidelay) activate=false;
                     if(activate) {
                         if (!first) {
                             if (alertDialog.isShowing()) alertDialog.dismiss();
@@ -898,7 +946,7 @@ public class Project extends AppCompatActivity {
                         PreferenceManager.setDefaultValues(getApplicationContext(),R.xml.app_preferences,false);
                         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                         if(settings.getBoolean("vibrate_noti",false)==true)
-                            vibrator.vibrate(10000);
+                            vibrator.vibrate(notidelay);
                         if(settings.getBoolean("LED_noti",false)==true)
                             turnOnFlash();
                     }

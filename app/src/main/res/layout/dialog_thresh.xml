@@ -60,12 +60,12 @@
         android:id="@+id/textView25"
         android:layout_gravity="center_horizontal" />
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/textView18"
+        android:text="How loud is it now?"
+        android:id="@+id/button4"
         android:layout_gravity="center_horizontal"
-        android:textSize="50dp" />
+        android:textSize="20dp" />
+
 </LinearLayout>
