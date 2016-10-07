@@ -36,6 +36,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".show_recordedsounds">
+            <intent-filter>
+                <action android:name="th.ac.mwits.www.ambientdetector.show_recordedsounds" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

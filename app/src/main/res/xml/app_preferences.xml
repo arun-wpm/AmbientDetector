@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory
-        android:title="Mode">
-
-        <CheckBoxPreference
-            android:title="Lite Mode"
-            android:summary="Detect loud noise"
-            android:key="title"
-            android:defaultValue="false"/>
+        android:title="Lite Mode">
+        <EditTextPreference
+            android:title="Set Threshold"
+            android:summary="Set threshold for lite mode in decibels"
+            android:key="lite_threshold"/>
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -22,5 +20,14 @@
             android:summary="Use LED light to warn the user"
             android:key="LED_noti"
             android:defaultValue="false"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Recorded Sounds" >
+        <PreferenceScreen
+            android:title="View Recorded Sounds"
+            android:summary="view and delete user-defined sounds">
+            <intent android:action="th.ac.mwits.www.ambientdetector.show_recordedsounds"/>
+        </PreferenceScreen>
     </PreferenceCategory>
 </PreferenceScreen>

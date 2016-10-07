@@ -22,17 +22,18 @@
         android:id="@+id/switch1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/textView17"
-        android:text="Lite Mode" />
+        android:text="Lite Mode"
+        android:textSize="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="start"
-        android:layout_below="@+id/switch1"
+        android:textSize="30dp"
+        android:layout_above="@+id/off"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -42,7 +43,7 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/off"
         android:orientation="vertical"
-        android:background="#eeeeee">
+        android:background="#dddddd">
 
         <ProgressBar
             android:id="@+id/progressBar0"
@@ -604,17 +605,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="stop"
-        android:layout_below="@+id/switch1"
-        android:layout_centerHorizontal="true" />
+        android:textSize="30dp"
+        android:layout_below="@+id/textView17"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Record"
-        android:layout_below="@+id/switch1"
-        android:layout_alignRight="@+id/linearlayout"
-        android:layout_alignEnd="@+id/linearlayout" />
+        android:textSize="30dp"
+        android:layout_above="@+id/off"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:id="@+id/off"
@@ -622,14 +626,24 @@
         android:layout_height="wrap_content"
         android:text="Notifications Off"
         android:layout_below="@+id/button2"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp" />
 
     <TextView
         android:id="@+id/textView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:text="Threshold" />
+        android:text="Set Threshold"
+        android:textSize="20dp"
+        android:layout_below="@+id/switch1"
+        android:layout_centerHorizontal="true" />
+
+    <!-- <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:src="@drawable/record"
+        android:layout_alignTop="@+id/button3"
+        android:layout_toLeftOf="@+id/button3"
+        android:layout_toStartOf="@+id/button3" /> -->
 </RelativeLayout>

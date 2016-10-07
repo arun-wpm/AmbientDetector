@@ -1,6 +1,7 @@
 package th.ac.mwits.www.ambientdetector;
 
 import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -14,6 +15,7 @@ import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioRecord;
 import android.media.AudioTrack;
+import android.media.Image;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.net.Uri;
@@ -39,7 +41,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.widget.ProgressBar;
@@ -64,7 +68,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.nio.ByteBuffer;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -93,6 +100,7 @@ public class Proj160623 extends AppCompatActivity {
     short[] data = new short[441000];
     TextView textView;
     Button start, stop, record, stop_vibrate;
+    ImageView isRecording;
 
     AudioRecord recorder;
     AudioTrack audioPlayer;
@@ -200,7 +208,7 @@ public class Proj160623 extends AppCompatActivity {
     private AlertDialog.Builder alertDialogBuilder;
     private AlertDialog alertDialog;
     double Threshold;
-    boolean lite, activate = false, first=true;
+    boolean lite, activate = false, first = true;
     Switch LiteMode;
     TextView Thresh;
 
@@ -226,7 +234,15 @@ public class Proj160623 extends AppCompatActivity {
         }
         return true;
     }
-
+    private int toInt(String in)
+    {
+        int val=0;
+        for(int i=0;i<in.length();i++)
+        {
+            if(in.charAt(i)>='0'&&in.charAt(i)<='9') val=val*10+in.charAt(i)-'0';
+        }
+        return val;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -257,7 +273,7 @@ public class Proj160623 extends AppCompatActivity {
         }
         if (Threshold == 0)
             Threshold = 1;
-        dB = 20*Math.log10(Threshold);
+        dB = 20 * Math.log10(Threshold);
         Thresh.setText("Threshold: " + dB);
         Thresh.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -287,11 +303,11 @@ public class Proj160623 extends AppCompatActivity {
                 // set dialog message
                 alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        String input=userInput[0].getText().toString();
-                        if(input.equals("")) dB=0;
-                        else dB=Double.valueOf(userInput[0].getText().toString());
-                        if(dB>90) dB=90;
-                        Threshold=Math.pow(10,dB/20);
+                        String input = userInput[0].getText().toString();
+                        if (input.equals("")) dB = 0;
+                        else dB = Double.valueOf(userInput[0].getText().toString());
+                        if (dB > 90) dB = 90;
+                        Threshold = Math.pow(10, dB / 20);
                         Log.d("TAG", "values " + Threshold);
                         try {
                             dos.writeDouble(Threshold);
@@ -317,6 +333,7 @@ public class Proj160623 extends AppCompatActivity {
         });
         LiteMode = (Switch) findViewById(R.id.switch1);
         LiteMode.setChecked(false);
+
         alertDialogBuilder = new AlertDialog.Builder(context);
 
         alertDialogBuilder.setTitle("Environment sound intensity reaches threshold!");
@@ -349,25 +366,50 @@ public class Proj160623 extends AppCompatActivity {
                 AudioFormat.ENCODING_PCM_16BIT, bufferSize * 50, AudioTrack.MODE_STREAM);
         Log.d("TAG", "Initialized playback");
 
+        record = (Button) findViewById(R.id.button3);
+
         textView = (TextView) findViewById(R.id.textView);
         start = (Button) findViewById(R.id.button);
         start.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                if (record.isPressed()) {
+                    Toast.makeText(Proj160623.this, "Cannot start now! Recording must finish first",
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
+                start.setVisibility(View.INVISIBLE);
+                stop.setVisibility(View.VISIBLE);
                 lite = LiteMode.isChecked();
                 activate = false;
                 first = true;
                 myTask = new MyTask();
+
                 myTask.execute();
             }
         });
 
         stop = (Button) findViewById(R.id.button2);
+        stop.setVisibility(View.INVISIBLE);
         stop.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                start.setVisibility(View.VISIBLE);
+                stop.setVisibility(View.INVISIBLE);
                 myTask.cancel(true);
                 for (j = 0; j < 40; j++) {
                     pb[j].setMax((int) Math.round(max));
                     pb[j].setProgress(0);
+                }
+            }
+        });
+
+        LiteMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                // do something, the isChecked will be
+                // true if the switch is in the On position
+                if (start.getVisibility() == View.INVISIBLE) {
+                    LiteMode.toggle();
+                    Toast.makeText(Proj160623.this, "Cannot change now! Stop detecting first",
+                            Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -377,6 +419,7 @@ public class Proj160623 extends AppCompatActivity {
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         stop_vibrate = (Button) findViewById(R.id.off);
         stop_vibrate.setOnClickListener(new View.OnClickListener() {
+            @TargetApi(Build.VERSION_CODES.LOLLIPOP)
             public void onClick(View v) {
                 vibrator.cancel();
                 if (Build.VERSION.SDK_INT >= 23) {
@@ -386,6 +429,7 @@ public class Proj160623 extends AppCompatActivity {
                             try {
                                 CameraCharacteristics camCharacteristics = camManager.getCameraCharacteristics(cameraId);
                                 if (camCharacteristics.get(CameraCharacteristics.FLASH_INFO_AVAILABLE)) {
+
                                     camManager.openCamera(cameraId, new CameraDevice.StateCallback() {
                                         @Override
                                         public void onOpened(@NonNull CameraDevice camera) {
@@ -426,10 +470,18 @@ public class Proj160623 extends AppCompatActivity {
             }
         });
 
-        record = (Button) findViewById(R.id.button3);
+        //isRecording = (ImageView) findViewById(R.id.imageView2);
+        //isRecording.setVisibility(View.GONE);
         record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //isRecording.setVisibility(View.VISIBLE);
+                //isRecording.requestLayout();
+                if (start.getVisibility() == View.INVISIBLE) {
+                    Toast.makeText(Proj160623.this, "Cannot record now! Stop detecting first",
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
                 writtenBytes = 0;
                 max = 10000000.0;
                 ii = 0;
@@ -514,15 +566,6 @@ public class Proj160623 extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 final DataOutputStream dos = new DataOutputStream(stream);
-                try {
-                    for (i = 0; i < 1024; i++) {
-                        dos.writeDouble(accu[i]);
-                        dos.writeBoolean(peaks[i]);
-                    }
-                    Log.d("TAG", "Write Results");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
 
                 for (i = 0; i < 1024; i++) {
                     if (accu[i] > max)
@@ -563,6 +606,24 @@ public class Proj160623 extends AppCompatActivity {
                 // set dialog message
                 alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        int ma=-1;
+                        FileInputStream stream;
+                        DataInputStream dis;
+                        String temp = Environment.getExternalStorageDirectory().toString();
+                        temp = temp + "/FFT";
+                        File file =new File(temp,"max.txt");
+
+                        try {
+                            stream = new FileInputStream(file);
+                        dis = new DataInputStream(stream);
+                            String line = dis.readUTF();
+                            if(line!=null) ma=toInt(line);
+                        }
+                        catch(IOException e)
+                        {
+                            e.printStackTrace();
+                        }
+
                         Name[0] = userInput[0].getText().toString();
                         try {
                             dos.writeUTF(Name[0]);
@@ -571,7 +632,42 @@ public class Proj160623 extends AppCompatActivity {
                             e.printStackTrace();
                         }
                         try {
+                            for (i = 0; i < 1024; i++) {
+                                dos.writeDouble(accu[i]);
+                                dos.writeBoolean(peaks[i]);
+                            }
+                            Log.d("TAG", "Write Results");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        try {
                             dos.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        if(filenum>ma)
+                        {
+                            ma=filenum;
+                            file.delete();
+                            File file2=new File(temp,"max.txt");
+                            PrintWriter pw = null;
+                            try {
+                                pw = new PrintWriter(new FileWriter(file2));
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            pw.print(ma+"");
+                            pw.flush();
+                        }
+                    }
+                });
+
+                alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        try {
+                            dos.close();
+                            file.delete();
+                            filenum = 0;
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -583,6 +679,8 @@ public class Proj160623 extends AppCompatActivity {
 
                 // show it
                 alertDialog.show();
+
+                //isRecording.setVisibility(View.GONE);
             }
         });
     }
@@ -668,11 +766,11 @@ public class Proj160623 extends AppCompatActivity {
                         }
                         dis = new DataInputStream(stream);
                         try {
+                            SoundName = dis.readUTF();
                             for (i = 0; i < 1024; i++) {
                                 ref[i] = dis.readDouble();
                                 peaks[i] = dis.readBoolean();
                             }
-                            SoundName = dis.readUTF();
                             Log.d("TAG", "Read from file" + filenum);
                         } catch (IOException e) {
                             e.printStackTrace();

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AmbientDetector160811.iml" filepath="$PROJECT_DIR$/AmbientDetector160811.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AmbientDetector.iml" filepath="$PROJECT_DIR$/AmbientDetector.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
