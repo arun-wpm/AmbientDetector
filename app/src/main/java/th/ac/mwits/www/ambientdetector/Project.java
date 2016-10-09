@@ -68,7 +68,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.ByteBuffer;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -123,6 +125,7 @@ public class Project extends AppCompatActivity {
     float[] fdata = new float[2048];
     double[] amp = new double[1024];
     double[] accu = new double[1024];
+    double[] disp = new double[40];
 
     double quicksum[] = new double[2005];
 
@@ -196,9 +199,13 @@ public class Project extends AppCompatActivity {
     int bnum = 0, wnum = 0;
     //TreeMap in Java == std::map in C++
     TreeMap<Integer, String> Detected = new TreeMap<Integer, String>(Collections.reverseOrder());
+    ArrayList<Integer> DetectedIndex = new ArrayList<>();
+    ArrayList<Integer> DetectedIndexCopy = new ArrayList<>();
 
     private GoogleApiClient client;
 
+    private AlertDialog.Builder alertDialogLiteBuilder;
+    private AlertDialog alertDialogLite;
     private AlertDialog.Builder alertDialogBuilder;
     private AlertDialog alertDialog;
     double Threshold;
@@ -222,6 +229,11 @@ public class Project extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (start.getVisibility() == View.INVISIBLE) {
+            Toast.makeText(Project.this, "Cannot access settings now! Stop detecting first",
+                    Toast.LENGTH_LONG).show();
+            return true;
+        }
         int res_id = item.getItemId();
         if (res_id == R.id.action_settings) {
             Intent i = new Intent(Project.this, AppPreferences.class);
@@ -229,7 +241,15 @@ public class Project extends AppCompatActivity {
         }
         return true;
     }
-
+    private int toInt(String in)
+    {
+        int val=0;
+        for(int i=0;i<in.length();i++)
+        {
+            if(in.charAt(i)>='0'&&in.charAt(i)<='9') val=val*10+in.charAt(i)-'0';
+        }
+        return val;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -255,15 +275,18 @@ public class Project extends AppCompatActivity {
                 e.printStackTrace();
             }
         } catch (FileNotFoundException e) {
-            Threshold = 0;
+            Threshold = 1;
             e.printStackTrace();
         }
-        if (Threshold == 0)
-            Threshold = 1;
         dB = 20*Math.log10(Threshold);
         Thresh.setText("Threshold: " + dB);
         Thresh.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                if (start.getVisibility() == View.INVISIBLE) {
+                    Toast.makeText(Project.this, "Cannot change now! Stop detecting first",
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
                 // Set threshold and save to settings
                 file = new File(dir, "settings.txt");
                 FileOutputStream stream = null;
@@ -322,6 +345,18 @@ public class Project extends AppCompatActivity {
 
                 alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        try {
+                            dos.writeDouble(Threshold);
+                            Log.d("TAG", "write " + Threshold);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            dos.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        Thresh.setText("Threshold: " + dB);
                     }
                 });
 
@@ -335,19 +370,19 @@ public class Project extends AppCompatActivity {
         LiteMode = (Switch) findViewById(R.id.switch1);
         LiteMode.setChecked(false);
 
-        alertDialogBuilder = new AlertDialog.Builder(context);
+        alertDialogLiteBuilder = new AlertDialog.Builder(context);
 
-        alertDialogBuilder.setTitle("Environment sound intensity reaches threshold!");
-        alertDialogBuilder.setMessage("Event occured at: " + getCurrentTimeStamp());
+        alertDialogLiteBuilder.setTitle("Environment sound intensity reaches threshold!");
+        alertDialogLiteBuilder.setMessage("Event occured at: " + getCurrentTimeStamp());
 
         // set dialog message
-        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        alertDialogLiteBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
             }
         });
 
         // create alert dialog
-        alertDialog = alertDialogBuilder.create();
+        alertDialogLite = alertDialogLiteBuilder.create();
 
         bufferSize += 2048;
 
@@ -381,7 +416,7 @@ public class Project extends AppCompatActivity {
                 stop.setVisibility(View.VISIBLE);
                 lite = LiteMode.isChecked();
                 activate = false;
-                first = true;
+                //first = true;
                 myTask = new MyTask();
 
                 myTask.execute();
@@ -566,16 +601,18 @@ public class Project extends AppCompatActivity {
                 }
                 final DataOutputStream dos = new DataOutputStream(stream);
 
-                for (i = 0; i < 1024; i++) {
-                    if (accu[i] > max)
-                        max = accu[i];
-                }
+                for (j = 0; j < 40; j++) {
+                    sum = 0;
+                    for (k = 0; k < 6; k++)
+                        sum += accu[6*j + k];
+                    disp[j] = sum/6;
 
-                int j;
+                    if (sum/6 > max)
+                        max = sum/6;
+                }
                 for (j = 0; j < 40; j++) {
                     pb[j].setMax((int) Math.round(max));
-                    pb[j].setProgress((int) Math.round(accu[j]));
-                    accu[j] = 0.0;
+                    pb[j].setProgress((int) Math.round(disp[j]));
                 }
 
                 audioPlayer.play();
@@ -605,6 +642,27 @@ public class Project extends AppCompatActivity {
                 // set dialog message
                 alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        int ma=-1;
+                        FileInputStream stream;
+                        DataInputStream dis;
+                        String temp = Environment.getExternalStorageDirectory().toString();
+                        temp = temp + "/FFT";
+                        File file =new File(temp,"max.txt");
+
+                        try {
+                            stream = new FileInputStream(file);
+                            dis = new DataInputStream(stream);
+                            String line = dis.readUTF();
+                            if(line!=null) ma=toInt(line);
+                            Log.d("TAG", "ma=" + ma);
+                            dis.close();
+                            stream.close();
+                        }
+                        catch(IOException e)
+                        {
+                            e.printStackTrace();
+                        }
+
                         Name[0] = userInput[0].getText().toString();
                         try {
                             dos.writeUTF(Name[0]);
@@ -625,6 +683,22 @@ public class Project extends AppCompatActivity {
                             dos.close();
                         } catch (IOException e) {
                             e.printStackTrace();
+                        }
+                        if(filenum>ma)
+                        {
+                            ma=filenum;
+                            Log.d("TAG", "ma=" + ma);
+                            file.delete();
+                            File file2=new File(temp,"max.txt");
+                            PrintWriter pw = null;
+                            try {
+                                pw = new PrintWriter(new FileWriter(file2));
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            pw.print(ma+"");
+                            pw.flush();
+                            pw.close();
                         }
                     }
                 });
@@ -713,9 +787,16 @@ public class Project extends AppCompatActivity {
                         ii += i;
                     }
 
-                    for (i = 0; i < 40; i++) {
-                        if (accu[i] > max)
-                            max = accu[i];
+                    double sum;
+                    int k;
+                    for (j = 0; j < 40; j++) {
+                        sum = 0;
+                        for (k = 0; k < 6; k++)
+                            sum += accu[6*j + k];
+                        disp[j] = sum/6;
+
+                        if (sum/6 > max)
+                            max = sum/6;
                     }
 
                     publishProgress(String.valueOf(-2));
@@ -802,10 +883,14 @@ public class Project extends AppCompatActivity {
             j = Integer.valueOf(values[0]);
 
             if (j >= 0) {
-                if (j == 0)
+                if (j == 0) {
                     Detected.clear();
+                    DetectedIndex.clear();
+                }
                 if (values[2].equals("false") && Integer.valueOf(values[1]) >= 30) {
                     Detected.put(Integer.valueOf(values[1]), values[3]);
+                    DetectedIndex.add(j);
+                    DetectedIndexCopy.add(j);
                     activate = true;
                 }
                 /*tv[j][0].setText(values[0] + " " + values[3]);
@@ -822,8 +907,9 @@ public class Project extends AppCompatActivity {
             }
             else if (j == -2) {
                 for (j = 0; j < 40; j++) {
+                    pb[j].setProgress(0);
                     pb[j].setMax((int) Math.round(max));
-                    pb[j].setProgress((int) Math.round(accu[j]));
+                    pb[j].setProgress((int) Math.round(disp[j]));
                 }
             }
             else if (j == -1) {
@@ -831,7 +917,11 @@ public class Project extends AppCompatActivity {
                     if(System.currentTimeMillis()-lastused<notidelay) activate=false;
                     if(activate) {
                         if (!first) {
-                            if (alertDialog.isShowing()) alertDialog.dismiss();
+                            if (alertDialog.isShowing()) {
+                                alertDialog.dismiss();
+                                writeToStats(0, 0, 1);
+                                DetectedIndexCopy.clear();
+                            }
                             if (vi != null) {
                                 ViewGroup parent = (ViewGroup) vi.getParent();
                                 if (parent != null) {
@@ -852,6 +942,19 @@ public class Project extends AppCompatActivity {
                             if (entries.hasNext()) {
                                 Map.Entry thisEntry = (Map.Entry) entries.next();
                                 tv[i][0].setText(thisEntry.getValue().toString());
+                                if (i == 0) {
+                                    String S = thisEntry.getValue().toString().toLowerCase();
+                                    ImageView I = (ImageView) vi.findViewById(R.id.imageView);
+                                    if (S.contains("car")) {
+                                        I.setImageResource(R.drawable.car);
+                                    }
+                                    else if (S.contains("phone")) {
+                                        I.setImageResource(R.drawable.phone);
+                                    }
+                                    else if (S.contains("fire")) {
+                                        I.setImageResource(R.drawable.fire);
+                                    }
+                                }
                                 tv[i][0].setTextSize(TypedValue.COMPLEX_UNIT_DIP, 30 - thisEntry.getValue().toString().length());
                                 tv[i][1].setText(" = ");
                                 tv[i][2].setText(thisEntry.getKey().toString() + "%");
@@ -877,28 +980,30 @@ public class Project extends AppCompatActivity {
                         // set prompts.xml to alertdialog builder
                         alertDialogBuilder.setView(vi);
                         alertDialogBuilder.setTitle("Sound Detected!");
+                        //alertDialogBuilder.setCancelable(false);
 
                         // set dialog message
                         alertDialogBuilder.setPositiveButton("Correct", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-
+                                writeToStats(1, 0, 0);
                             }
                         });
 
                         alertDialogBuilder.setNegativeButton("Incorrect", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-
+                                writeToStats(0, 1, 0);
                             }
                         });
 
                         alertDialogBuilder.setNeutralButton("Unsure", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-
+                                writeToStats(0, 0, 1);
                             }
                         });
 
                         // create alert dialog
                         alertDialog = alertDialogBuilder.create();
+                        //alertDialog.setCanceledOnTouchOutside(false);
 
                         // show it
                         alertDialog.show();
@@ -920,28 +1025,28 @@ public class Project extends AppCompatActivity {
                     if(System.currentTimeMillis()-lastused<notidelay) activate=false;
                     if(activate) {
                         if (!first) {
-                            if (alertDialog.isShowing()) alertDialog.dismiss();
+                            if (alertDialogLite.isShowing()) alertDialogLite.dismiss();
                         }
                         first = false;
                         lastused = System.currentTimeMillis();
                         // get prompts.xml view
-                        alertDialogBuilder = new AlertDialog.Builder(
+                        alertDialogLiteBuilder = new AlertDialog.Builder(
                                 context);
 
-                        alertDialogBuilder.setTitle("Environment sound intensity reaches threshold!");
-                        alertDialogBuilder.setMessage("Event occured at: " + getCurrentTimeStamp());
+                        alertDialogLiteBuilder.setTitle("Environment sound intensity reaches threshold!");
+                        alertDialogLiteBuilder.setMessage("Event occured at: " + getCurrentTimeStamp());
 
                         // set dialog message
-                        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        alertDialogLiteBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                             }
                         });
 
                         // create alert dialog
-                        alertDialog = alertDialogBuilder.create();
+                        alertDialogLite = alertDialogLiteBuilder.create();
 
                         // show it
-                        alertDialog.show();
+                        alertDialogLite.show();
 
                         PreferenceManager.setDefaultValues(getApplicationContext(),R.xml.app_preferences,false);
                         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -1021,6 +1126,68 @@ public class Project extends AppCompatActivity {
             e.printStackTrace();
 
             return null;
+        }
+    }
+
+    private void writeToStats(int dcor, int dincor, int duns) {
+        int cor, incor, uns;
+        for (Integer i : DetectedIndexCopy) {
+            cor = 0;
+            incor = 0;
+            uns = 0;
+            file = new File(dir, i + "stats.txt");
+            FileInputStream fis;
+            DataInputStream dis;
+            if (file.exists()) {
+                fis = null;
+                try {
+                    fis = new FileInputStream(file);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                dis = new DataInputStream(fis);
+                try {
+                    cor = dis.readInt();
+                    incor = dis.readInt();
+                    uns = dis.readInt();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    dis.close();
+                    fis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            Log.d("TAG", "was" + cor + " " + incor + " " + uns);
+            cor += dcor;
+            incor += dincor;
+            uns += duns;
+            Log.d("TAG", "now" + cor + " " + incor + " " + uns);
+            file = new File(dir, i + "stats.txt");
+            FileOutputStream fos;
+            DataOutputStream dos;
+            fos = null;
+            try {
+                fos = new FileOutputStream(file);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            dos = new DataOutputStream(fos);
+            try {
+                dos.writeInt(cor);
+                dos.writeInt(incor);
+                dos.writeInt(uns);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                dos.close();
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
