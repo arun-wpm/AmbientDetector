@@ -28,6 +28,50 @@
         android:layout_centerHorizontal="true" />
 
     <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="stop"
+        android:textSize="30dp"
+        android:layout_below="@+id/textView17"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textColor="@color/colorPrimaryDark" />
+        <!-- android:background="@drawable/button" /> -->
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Record"
+        android:textSize="30dp"
+        android:layout_above="@+id/off"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textColor="@color/colorPrimaryDark" />
+        <!-- android:background="@drawable/button" /> -->
+
+    <Button
+        android:id="@+id/off"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Notifications Off"
+        android:layout_below="@+id/button2"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"
+        android:textColor="@color/colorPrimaryDark" />
+        <!-- android:background="@drawable/button" /> -->
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set Threshold"
+        android:textSize="20dp"
+        android:layout_below="@+id/switch1"
+        android:layout_centerHorizontal="true" />
+
+    <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,7 +79,9 @@
         android:textSize="30dp"
         android:layout_above="@+id/off"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textColor="@color/colorPrimaryDark" />
+        <!-- android:background="@drawable/button" /> -->
 
     <LinearLayout
         android:id="@+id/linearlayout"
@@ -43,7 +89,7 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/off"
         android:orientation="vertical"
-        android:background="#dddddd">
+        android:background="@drawable/stroke">
 
         <ProgressBar
             android:id="@+id/progressBar0"
@@ -599,44 +645,6 @@
 
             android:layout_weight="1" />
     </LinearLayout>
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="stop"
-        android:textSize="30dp"
-        android:layout_below="@+id/textView17"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Record"
-        android:textSize="30dp"
-        android:layout_above="@+id/off"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:id="@+id/off"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Notifications Off"
-        android:layout_below="@+id/button2"
-        android:layout_centerHorizontal="true"
-        android:textSize="20dp" />
-
-    <TextView
-        android:id="@+id/textView17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Set Threshold"
-        android:textSize="20dp"
-        android:layout_below="@+id/switch1"
-        android:layout_centerHorizontal="true" />
 
     <!-- <ImageView
         android:layout_width="wrap_content"

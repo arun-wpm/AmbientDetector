@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
 import android.media.AudioFormat;
@@ -386,8 +387,11 @@ public class Project extends AppCompatActivity {
 
         bufferSize += 2048;
 
-        for (i = 0; i < 40; i++)
+        for (i = 0; i < 40; i++) {
             pb[i] = (ProgressBar) findViewById(pbid[i]);
+            pb[i].getProgressDrawable().setColorFilter(
+                    Color.parseColor("#ff5c00"), android.graphics.PorterDuff.Mode.SRC_IN);
+        }
 
         inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         vi = inflater.inflate(R.layout.dialog_alert2, null, false); //dialog_alert2.xml is your file.
