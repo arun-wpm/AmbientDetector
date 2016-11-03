@@ -95,7 +95,7 @@ public class Project extends AppCompatActivity {
     private int numChannels = 1;
 
     private double lastused = 0;
-    double dB, temp;
+    private double dB, temp;
 
     CameraManager camManager;
     CameraDevice mCamera;
@@ -279,7 +279,7 @@ public class Project extends AppCompatActivity {
             Threshold = 1;
             e.printStackTrace();
         }
-        dB = 20*Math.log10(Threshold);
+        dB = Math.round(20*Math.log10(Threshold));
         Thresh.setText("Threshold: " + dB);
         Thresh.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -327,7 +327,7 @@ public class Project extends AppCompatActivity {
                         if (input.equals("")) dB = 0;
                         else dB = Double.valueOf(userInput[0].getText().toString());
                         if (dB > 90) dB = 90;
-                        Threshold = Math.pow(10, dB / 20);
+                        Threshold = Math.pow(10,dB/20);
                         Log.d("TAG", "values " + Threshold);
                         try {
                             dos.writeDouble(Threshold);
@@ -737,21 +737,17 @@ public class Project extends AppCompatActivity {
             recorder.startRecording();
             while (true) {
                 Log.d("TAG", "" + count);
-                if (count == 0)
-                    writtenBytes = 0;
-                else
-                    writtenBytes = bufferSize * 25 / 2;
-                max = 10000000.0;
-                ii = 0;
 
-                do {
-                    readBytes = recorder.read(data, writtenBytes, bufferSize);
-                    writtenBytes += readBytes;
-                }
-                while (writtenBytes < bufferSize * 25);
-                Log.d("TAG", "Read and Write" + writtenBytes);
 
                 if (lite) {
+                    //lite mode
+                    writtenBytes = 0;
+                    do {
+                        readBytes = recorder.read(data, writtenBytes, bufferSize);
+                        writtenBytes += readBytes;
+                    }
+                    while (writtenBytes < bufferSize * 2);
+                    Log.d("TAG", "Read and Write" + writtenBytes);
                     file = new File(dir, "settings.txt");
                     FileInputStream stream = null;
                     try {
@@ -761,20 +757,34 @@ public class Project extends AppCompatActivity {
                     }
                     DataInputStream dis = new DataInputStream(stream);
                     try {
-                        Threshold = dis.readDouble();
+                        Threshold=dis.readDouble();
                         Log.d("TAG", "Threshold: " + Threshold);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-
+                    //Log.d("TAG", "after try");
                     activate = false;
+                    double temp=0.0;
                     for (i = 0; i < writtenBytes; i++) {
-                        if (Math.abs(data[i]) >= Threshold)
-                            activate = true;
+                        temp+=Math.abs(data[i]);
                     }
-
+                    temp/=(double)writtenBytes;
+                    //Log.d("TAG", "Temp"+temp);
+                    if(temp>=Threshold) activate=true;
                     publishProgress(String.valueOf(-3), String.valueOf(count));
-                } else {
+                }
+                else {
+                    if (count == 0)
+                        writtenBytes = 0;
+                    else
+                        writtenBytes = bufferSize * 25 / 2;
+                    max = 10000000.0;
+                    ii = 0;
+                    do {
+                        readBytes = recorder.read(data, writtenBytes, bufferSize);
+                        writtenBytes += readBytes;
+                    }
+                    while (writtenBytes < bufferSize * 25);
                     for (i = 0; i < 1024; i++)
                         accu[i] = 0.0;
 
@@ -1017,7 +1027,6 @@ public class Project extends AppCompatActivity {
                 }
             }
             else {
-                //lite mode
                 for (j = 0; j < 40; j++) {
                     pb[j].setMax((int) Math.round(max));
                     if (j % 2 == Integer.valueOf(values[1])%2)
