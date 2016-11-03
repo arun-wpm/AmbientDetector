@@ -618,6 +618,8 @@ public class Proj160623 extends AppCompatActivity {
                         dis = new DataInputStream(stream);
                             String line = dis.readUTF();
                             if(line!=null) ma=toInt(line);
+                            dis.close();
+                            stream.close();
                         }
                         catch(IOException e)
                         {
@@ -658,6 +660,7 @@ public class Proj160623 extends AppCompatActivity {
                             }
                             pw.print(ma+"");
                             pw.flush();
+                            pw.close();
                         }
                     }
                 });

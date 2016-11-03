@@ -140,6 +140,9 @@ public class show_recordedsounds extends AppCompatActivity {
             BufferedReader br = new BufferedReader(isr);
             String line=br.readLine();
             if(line!=null) ma=toInt(line);
+            fis.close();
+            isr.close();
+            br.close();
         }
         catch(IOException e)
         {
