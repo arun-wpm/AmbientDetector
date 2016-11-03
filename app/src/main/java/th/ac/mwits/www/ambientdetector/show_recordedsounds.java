@@ -236,6 +236,9 @@ public class show_recordedsounds extends AppCompatActivity {
                             File file = new File(temp + String.valueOf(filenum) + ".txt");
                             File file2;
                             file.delete();
+                            file = new File(temp + String.valueOf(filenum) + "stats.txt");
+                            if (file.exists())
+                                file.delete();
                             while (true) {
                                 filenum++;
                                 file = new File(temp + String.valueOf(filenum) + ".txt");
