@@ -44,6 +44,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -73,6 +74,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.ByteBuffer;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -102,7 +104,8 @@ public class Project extends AppCompatActivity {
 
     int count = 0;
     short[] data = new short[441000];
-    Button start, stop, record, stop_vibrate;
+    ImageButton start, stop,record;
+    Button stop_vibrate;
     ImageView isRecording;
 
     AudioRecord recorder;
@@ -279,8 +282,8 @@ public class Project extends AppCompatActivity {
             Threshold = 1;
             e.printStackTrace();
         }
-        dB = 20*Math.log10(Threshold);
-        Thresh.setText("Threshold: " + dB);
+        dB = Math.round(20.0*Math.log10(Threshold));
+        Thresh.setText("Threshold: " +  new DecimalFormat("#0.##").format(dB));
         Thresh.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (start.getVisibility() == View.INVISIBLE) {
@@ -340,7 +343,7 @@ public class Project extends AppCompatActivity {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        Thresh.setText("Threshold: " + dB);
+                        Thresh.setText("Threshold: " + new DecimalFormat("#0.##").format(dB));
                     }
                 });
 
@@ -406,9 +409,9 @@ public class Project extends AppCompatActivity {
                 AudioFormat.ENCODING_PCM_16BIT, bufferSize * 50, AudioTrack.MODE_STREAM);
         Log.d("TAG", "Initialized playback");
 
-        record = (Button) findViewById(R.id.button3);
+        record = (ImageButton) findViewById(R.id.button3);
 
-        start = (Button) findViewById(R.id.button);
+        start = (ImageButton) findViewById(R.id.button);
         start.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (record.isPressed()) {
@@ -427,7 +430,7 @@ public class Project extends AppCompatActivity {
             }
         });
 
-        stop = (Button) findViewById(R.id.button2);
+        stop = (ImageButton) findViewById(R.id.button2);
         stop.setVisibility(View.INVISIBLE);
         stop.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -737,21 +740,17 @@ public class Project extends AppCompatActivity {
             recorder.startRecording();
             while (true) {
                 Log.d("TAG", "" + count);
-                if (count == 0)
-                    writtenBytes = 0;
-                else
-                    writtenBytes = bufferSize * 25 / 2;
-                max = 10000000.0;
-                ii = 0;
 
-                do {
-                    readBytes = recorder.read(data, writtenBytes, bufferSize);
-                    writtenBytes += readBytes;
-                }
-                while (writtenBytes < bufferSize * 25);
-                Log.d("TAG", "Read and Write" + writtenBytes);
 
                 if (lite) {
+                    //lite mode
+                    writtenBytes = 0;
+                    do {
+                        readBytes = recorder.read(data, writtenBytes, bufferSize);
+                        writtenBytes += readBytes;
+                    }
+                    while (writtenBytes < bufferSize * 2);
+                    Log.d("TAG", "Read and Write" + writtenBytes);
                     file = new File(dir, "settings.txt");
                     FileInputStream stream = null;
                     try {
@@ -766,15 +765,28 @@ public class Project extends AppCompatActivity {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-
+                    //Log.d("TAG", "after try");
                     activate = false;
+                    double temp=0.0;
                     for (i = 0; i < writtenBytes; i++) {
-                        if (Math.abs(data[i]) >= Threshold)
-                            activate = true;
+                        temp+=Math.abs(data[i]);
                     }
-
+                    temp/=(double)writtenBytes;
+                    //Log.d("TAG", "Temp"+temp);
+                    if(temp>=Threshold) activate=true;
                     publishProgress(String.valueOf(-3), String.valueOf(count));
                 } else {
+                    if (count == 0)
+                        writtenBytes = 0;
+                    else
+                        writtenBytes = bufferSize * 25 / 2;
+                    max = 10000000.0;
+                    ii = 0;
+                    do {
+                        readBytes = recorder.read(data, writtenBytes, bufferSize);
+                        writtenBytes += readBytes;
+                    }
+                    while (writtenBytes < bufferSize * 25);
                     for (i = 0; i < 1024; i++)
                         accu[i] = 0.0;
 
@@ -890,6 +902,7 @@ public class Project extends AppCompatActivity {
                 if (j == 0) {
                     Detected.clear();
                     DetectedIndex.clear();
+                    DetectedIndexCopy.clear();
                 }
                 if (values[2].equals("false") && Integer.valueOf(values[1]) >= 30) {
                     Detected.put(Integer.valueOf(values[1]), values[3]);

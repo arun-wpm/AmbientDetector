@@ -22,4 +22,15 @@
             <intent android:action="th.ac.mwits.www.ambientdetector.show_recordedsounds"/>
         </PreferenceScreen>
     </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Others" >
+        <PreferenceScreen
+            android:title="Help">
+        </PreferenceScreen>
+        <PreferenceScreen
+            android:title="About">
+            <intent android:action="th.ac.mwits.www.ambientdetector.about_screen"/>
+        </PreferenceScreen>
+    </PreferenceCategory>
 </PreferenceScreen>

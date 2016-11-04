@@ -2,10 +2,51 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView4"
+                android:src="@mipmap/qmark"
+                android:scaleType="fitEnd"
+                android:layout_marginRight="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/pid"
+                android:scaleType="fitEnd"
+                android:id="@+id/imageView3"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/imageView4"
+                android:layout_toStartOf="@+id/imageView4" />
+
+            <ImageView
+                android:scaleType="fitEnd"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView2"
+                android:src="@mipmap/toog"
+                android:layout_width="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/imageView3"
+                android:layout_toStartOf="@+id/imageView3" />
+        </RelativeLayout>
+    </LinearLayout>
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/listView" />
 </LinearLayout>
