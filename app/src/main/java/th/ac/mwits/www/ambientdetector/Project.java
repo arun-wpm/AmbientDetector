@@ -106,7 +106,7 @@ public class Project extends AppCompatActivity {
     short[] data = new short[441000];
     ImageButton start, stop,record;
     Button stop_vibrate;
-    ImageView isRecording;
+    //ImageView isRecording;
 
     AudioRecord recorder;
     AudioTrack audioPlayer;
@@ -269,6 +269,7 @@ public class Project extends AppCompatActivity {
         Thresh = (TextView) findViewById(R.id.textView17);
         file = new File(dir, "settings.txt");
         FileInputStream stream = null;
+        Threshold = 1;
         try {
             stream = new FileInputStream(file);
             DataInputStream dis = new DataInputStream(stream);
@@ -276,10 +277,22 @@ public class Project extends AppCompatActivity {
                 Threshold = dis.readDouble();
                 Log.d("TAG", "Threshold: " + Threshold);
             } catch (IOException e) {
+                FileOutputStream fos = null;
+                fos = new FileOutputStream(file);
+                DataOutputStream dos = new DataOutputStream(fos);
+                try {
+                    dos.writeDouble(1.0);
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+                try {
+                    dos.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
                 e.printStackTrace();
             }
         } catch (FileNotFoundException e) {
-            Threshold = 1;
             e.printStackTrace();
         }
         dB = Math.round(20.0*Math.log10(Threshold));
@@ -457,56 +470,12 @@ public class Project extends AppCompatActivity {
         });
 
         camManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
-
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         stop_vibrate = (Button) findViewById(R.id.off);
         stop_vibrate.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
-                vibrator.cancel();
-                if (Build.VERSION.SDK_INT >= 23) {
-                    //String cameraId = null; // Usually front camera is at 0 position.
-                    try {
-                        for (String cameraId : camManager.getCameraIdList()) {
-                            try {
-                                CameraCharacteristics camCharacteristics = camManager.getCameraCharacteristics(cameraId);
-                                if (camCharacteristics.get(CameraCharacteristics.FLASH_INFO_AVAILABLE)) {
-                                    camManager.openCamera(cameraId, new CameraDevice.StateCallback() {
-                                        @Override
-                                        public void onOpened(@NonNull CameraDevice camera) {
-                                            mCamera = camera;
-                                            //initPreview();
-                                        }
-
-                                        @Override
-                                        public void onDisconnected(@NonNull CameraDevice camera) {
-
-                                        }
-
-                                        @Override
-                                        public void onError(@NonNull CameraDevice camera, int error) {
-
-                                        }
-                                    }, null);
-                                    camManager.setTorchMode(cameraId, false);
-                                }
-                            } catch (CameraAccessException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    } catch (CameraAccessException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    try {
-                        Camera.Parameters p = cam.getParameters();
-                        p.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
-                        cam.setParameters(p);
-                        cam.stopPreview();
-                    } catch (Exception e) {
-                        Log.e(getString(R.string.app_name), "failed to open Camera");
-                        e.printStackTrace();
-                    }
-                }
+                notiOff();
             }
         });
 
@@ -751,19 +720,21 @@ public class Project extends AppCompatActivity {
                     }
                     while (writtenBytes < bufferSize * 2);
                     Log.d("TAG", "Read and Write" + writtenBytes);
-                    file = new File(dir, "settings.txt");
-                    FileInputStream stream = null;
-                    try {
-                        stream = new FileInputStream(file);
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                    DataInputStream dis = new DataInputStream(stream);
-                    try {
-                        Threshold = dis.readDouble();
-                        Log.d("TAG", "Threshold: " + Threshold);
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    if (count == 0) {
+                        file = new File(dir, "settings.txt");
+                        FileInputStream stream = null;
+                        try {
+                            stream = new FileInputStream(file);
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        DataInputStream dis = new DataInputStream(stream);
+                        try {
+                            Threshold = dis.readDouble();
+                            Log.d("TAG", "Threshold: " + Threshold);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                     //Log.d("TAG", "after try");
                     activate = false;
@@ -902,12 +873,11 @@ public class Project extends AppCompatActivity {
                 if (j == 0) {
                     Detected.clear();
                     DetectedIndex.clear();
-                    DetectedIndexCopy.clear();
                 }
                 if (values[2].equals("false") && Integer.valueOf(values[1]) >= 30) {
                     Detected.put(Integer.valueOf(values[1]), values[3]);
                     DetectedIndex.add(j);
-                    DetectedIndexCopy.add(j);
+                    //DetectedIndexCopy.add(j);
                     activate = true;
                 }
                 /*tv[j][0].setText(values[0] + " " + values[3]);
@@ -937,7 +907,10 @@ public class Project extends AppCompatActivity {
                             if (alertDialog.isShowing()) {
                                 alertDialog.dismiss();
                                 writeToStats(0, 0, 1);
+                                notiOff();
                                 DetectedIndexCopy.clear();
+                                for (Integer i : DetectedIndex)
+                                    DetectedIndexCopy.add(i);
                             }
                             if (vi != null) {
                                 ViewGroup parent = (ViewGroup) vi.getParent();
@@ -1003,18 +976,21 @@ public class Project extends AppCompatActivity {
                         alertDialogBuilder.setPositiveButton("Correct", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 writeToStats(1, 0, 0);
+                                notiOff();
                             }
                         });
 
                         alertDialogBuilder.setNegativeButton("Incorrect", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 writeToStats(0, 1, 0);
+                                notiOff();
                             }
                         });
 
                         alertDialogBuilder.setNeutralButton("Unsure", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 writeToStats(0, 0, 1);
+                                notiOff();
                             }
                         });
 
@@ -1056,6 +1032,7 @@ public class Project extends AppCompatActivity {
                         // set dialog message
                         alertDialogLiteBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
+                                notiOff();
                             }
                         });
 
@@ -1203,6 +1180,54 @@ public class Project extends AppCompatActivity {
                 dos.close();
                 fos.close();
             } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void notiOff() {
+        vibrator.cancel();
+        if (Build.VERSION.SDK_INT >= 23) {
+            //String cameraId = null; // Usually front camera is at 0 position.
+            try {
+                for (String cameraId : camManager.getCameraIdList()) {
+                    try {
+                        CameraCharacteristics camCharacteristics = camManager.getCameraCharacteristics(cameraId);
+                        if (camCharacteristics.get(CameraCharacteristics.FLASH_INFO_AVAILABLE)) {
+                            camManager.openCamera(cameraId, new CameraDevice.StateCallback() {
+                                @Override
+                                public void onOpened(@NonNull CameraDevice camera) {
+                                    mCamera = camera;
+                                    //initPreview();
+                                }
+
+                                @Override
+                                public void onDisconnected(@NonNull CameraDevice camera) {
+
+                                }
+
+                                @Override
+                                public void onError(@NonNull CameraDevice camera, int error) {
+
+                                }
+                            }, null);
+                            camManager.setTorchMode(cameraId, false);
+                        }
+                    } catch (CameraAccessException e) {
+                        e.printStackTrace();
+                    }
+                }
+            } catch (CameraAccessException e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                Camera.Parameters p = cam.getParameters();
+                p.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+                cam.setParameters(p);
+                cam.stopPreview();
+            } catch (Exception e) {
+                Log.e(getString(R.string.app_name), "failed to open Camera");
                 e.printStackTrace();
             }
         }
