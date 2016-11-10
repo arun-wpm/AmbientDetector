@@ -361,6 +361,23 @@ public class Project extends AppCompatActivity {
                 e.printStackTrace();
             }
         } catch (FileNotFoundException e) {
+            FileOutputStream fos = null;
+            try {
+                fos = new FileOutputStream(file);
+            } catch (FileNotFoundException e1) {
+                e1.printStackTrace();
+            }
+            DataOutputStream dos = new DataOutputStream(fos);
+            try {
+                dos.writeDouble(1.0);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            try {
+                dos.close();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
             e.printStackTrace();
         }
         dB = Math.round(20.0*Math.log10(Threshold));
