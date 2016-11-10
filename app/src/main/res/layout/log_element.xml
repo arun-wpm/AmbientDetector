@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="1000dp"
+        android:layout_weight="2"
+        android:id="@+id/Time"
+        android:textSize="20dp"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:layout_height="25dp"
+        />
+
+    <TextView
+        android:layout_width="1000dp"
+        android:layout_weight="2"
+        android:id="@+id/Data"
+        android:textSize="20dp"
+        android:textColor="#000000"
+        android:layout_height="50dp"
+        />
+
+</LinearLayout>

@@ -54,6 +54,13 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name=".show_log">
+            <intent-filter>
+                <action android:name="th.ac.mwits.www.ambientdetector.show_log" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

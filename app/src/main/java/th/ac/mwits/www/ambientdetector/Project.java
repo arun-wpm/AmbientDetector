@@ -3,11 +3,13 @@ package th.ac.mwits.www.ambientdetector;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
@@ -27,6 +29,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Vibrator;
 import android.provider.MediaStore;
+import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.Toolbar;
 import android.support.annotation.NonNull;
 import android.util.TypedValue;
@@ -72,8 +75,11 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -218,6 +224,8 @@ public class Project extends AppCompatActivity {
     Switch LiteMode;
     TextView Thresh;
 
+    int notificationID = 0;
+
     public double S2(int k, int i) {
         double t = k * accu[i] - (quicksum[i - 1] - quicksum[i - k - 1]);
         t = t + k * accu[i] - (quicksum[i + k] - quicksum[i]);
@@ -254,6 +262,51 @@ public class Project extends AppCompatActivity {
         }
         return val;
     }
+    private void copyAssets() {
+        AssetManager assetManager = getAssets();
+        String[] files = null;
+        try {
+            files = assetManager.list("");
+        } catch (IOException e) {
+            Log.e("tag", "Failed to get asset file list.", e);
+        }
+        if (files != null) for (String filename : files) {
+            InputStream in = null;
+            OutputStream out = null;
+            try {
+                Log.d("TAG", filename);
+                in = assetManager.open(filename);
+                File outFile = new File(dir, filename);
+                out = new FileOutputStream(outFile);
+                copyFile(in, out);
+            } catch(IOException e) {
+                Log.e("tag", "Failed to copy asset file: " + filename, e);
+            }
+            finally {
+                if (in != null) {
+                    try {
+                        in.close();
+                    } catch (IOException e) {
+                        // NOOP
+                    }
+                }
+                if (out != null) {
+                    try {
+                        out.close();
+                    } catch (IOException e) {
+                        // NOOP
+                    }
+                }
+            }
+        }
+    }
+    private void copyFile(InputStream in, OutputStream out) throws IOException {
+        byte[] buffer = new byte[1024];
+        int read;
+        while((read = in.read(buffer)) != -1){
+            out.write(buffer, 0, read);
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -264,7 +317,22 @@ public class Project extends AppCompatActivity {
 
         root = Environment.getExternalStorageDirectory().toString();
         dir = new File(root + "/FFT");
-        dir.mkdir();
+        if (!dir.exists()) {
+            dir.mkdir();
+            copyAssets();
+
+            File file2=new File(dir,"max.txt");
+            PrintWriter pw = null;
+            try {
+                pw = new PrintWriter(new FileWriter(file2));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            pw.print(3+"");
+            pw.flush();
+            pw.close();
+        }
+
 
         Thresh = (TextView) findViewById(R.id.textView17);
         file = new File(dir, "settings.txt");
@@ -701,6 +769,16 @@ public class Project extends AppCompatActivity {
                 //record.setVisibility(View.VISIBLE);
             }
         });
+
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext());
+        mBuilder.setSmallIcon(R.drawable.ic_launcher);
+        mBuilder.setContentTitle("AmbientDetector");
+        mBuilder.setContentText("Application has started");
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        // notificationID allows you to update the notification later on.
+        mNotificationManager.notify(notificationID, mBuilder.build());
+        notificationID++;
     }
 
     class MyTask extends AsyncTask<String, String, String> {
@@ -841,7 +919,7 @@ public class Project extends AppCompatActivity {
                         bref /= bnum;
                         wref /= wnum;
 
-                        publishProgress(String.valueOf(filenum), String.valueOf(Math.round((black / white) / (bref / wref) * 100)), String.valueOf(black / white <= 1.0), SoundName);
+                        publishProgress(String.valueOf(filenum), String.valueOf(Math.min(100, Math.round((black / white) / (bref / wref) * 100))), String.valueOf(black / white <= 1.0), SoundName);
 
                         filenum++;
                         file = new File(dir, filenum + ".txt");
@@ -909,8 +987,6 @@ public class Project extends AppCompatActivity {
                                 writeToStats(0, 0, 1);
                                 notiOff();
                                 DetectedIndexCopy.clear();
-                                for (Integer i : DetectedIndex)
-                                    DetectedIndexCopy.add(i);
                             }
                             if (vi != null) {
                                 ViewGroup parent = (ViewGroup) vi.getParent();
@@ -924,6 +1000,8 @@ public class Project extends AppCompatActivity {
                                 e.printStackTrace();
                             }
                         }
+                        for (Integer i : DetectedIndex)
+                            DetectedIndexCopy.add(i);
                         Iterator entries = Detected.entrySet().iterator();
                         for (int i = 0; i < 3; i++) {
                             for (j = 0; j < 3; j++) {
@@ -948,6 +1026,17 @@ public class Project extends AppCompatActivity {
                                 tv[i][0].setTextSize(TypedValue.COMPLEX_UNIT_DIP, 30 - thisEntry.getValue().toString().length());
                                 tv[i][1].setText(" = ");
                                 tv[i][2].setText(thisEntry.getKey().toString() + "%");
+                                try {
+                                    file = new File(dir, "log.txt");
+                                    FileOutputStream out = new FileOutputStream(file, true);
+                                    DataOutputStream osw = new DataOutputStream(out);
+                                    osw.writeUTF("["+getCurrentTimeStamp()+"]\n");
+                                    osw.writeUTF("Detected "+thisEntry.getValue().toString()+" with "+thisEntry.getKey().toString() + "%\n");
+                                    osw.flush();
+                                    osw.close();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
                             }
                             else {
                                 tv[i][0].setText("");
@@ -1001,6 +1090,16 @@ public class Project extends AppCompatActivity {
                         // show it
                         alertDialog.show();
 
+                        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext());
+                        mBuilder.setSmallIcon(R.drawable.ic_launcher);
+                        mBuilder.setContentTitle("AmbientDetector");
+                        mBuilder.setContentText("Sound Detected! Details in app.");
+                        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+                        // notificationID allows you to update the notification later on.
+                        mNotificationManager.notify(notificationID, mBuilder.build());
+                        notificationID++;
+
                         activate = false;
                     }
                 }
@@ -1028,7 +1127,18 @@ public class Project extends AppCompatActivity {
 
                         alertDialogLiteBuilder.setTitle("Environment sound intensity reaches threshold!");
                         alertDialogLiteBuilder.setMessage("Event occured at: " + getCurrentTimeStamp());
-
+                        try {
+                            file = new File(dir, "log.txt");
+                            FileOutputStream out = new FileOutputStream(file, true);
+                            String tmp=dB+"";
+                            DataOutputStream osw = new DataOutputStream(out);
+                            osw.writeUTF("["+getCurrentTimeStamp()+"]\n");
+                            osw.writeUTF("Sound exceeds "+tmp+" dB\n");
+                            osw.flush();
+                            osw.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                         // set dialog message
                         alertDialogLiteBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
@@ -1041,6 +1151,16 @@ public class Project extends AppCompatActivity {
 
                         // show it
                         alertDialogLite.show();
+
+                        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext());
+                        mBuilder.setSmallIcon(R.drawable.ic_launcher);
+                        mBuilder.setContentTitle("AmbientDetector");
+                        mBuilder.setContentText("Loud sound detected! Details in app.");
+                        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+                        // notificationID allows you to update the notification later on.
+                        mNotificationManager.notify(notificationID, mBuilder.build());
+                        notificationID++;
 
                         PreferenceManager.setDefaultValues(getApplicationContext(),R.xml.app_preferences,false);
                         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
