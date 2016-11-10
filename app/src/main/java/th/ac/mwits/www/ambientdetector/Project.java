@@ -63,6 +63,7 @@ import org.w3c.dom.Text;
 import be.tarsos.dsp.util.fft.FFT;
 import be.tarsos.dsp.util.fft.HammingWindow;
 
+import java.io.BufferedWriter;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
@@ -71,7 +72,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.io.Writer;
 import java.nio.ByteBuffer;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -972,6 +975,17 @@ public class Project extends AppCompatActivity {
                                 tv[i][0].setTextSize(TypedValue.COMPLEX_UNIT_DIP, 30 - thisEntry.getValue().toString().length());
                                 tv[i][1].setText(" = ");
                                 tv[i][2].setText(thisEntry.getKey().toString() + "%");
+                                try {
+                                    file = new File(dir, "log.txt");
+                                    FileOutputStream out = new FileOutputStream(file, true);
+                                    DataOutputStream osw = new DataOutputStream(out);
+                                    osw.writeUTF("["+getCurrentTimeStamp()+"]\n");
+                                    osw.writeUTF("Detected "+thisEntry.getValue().toString()+" with "+thisEntry.getKey().toString() + "%\n");
+                                    osw.flush();
+                                    osw.close();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
                             }
                             else {
                                 tv[i][0].setText("");
@@ -1048,6 +1062,18 @@ public class Project extends AppCompatActivity {
 
                         alertDialogLiteBuilder.setTitle("Environment sound intensity reaches threshold!");
                         alertDialogLiteBuilder.setMessage("Event occured at: " + getCurrentTimeStamp());
+                        try {
+                            file = new File(dir, "log.txt");
+                            FileOutputStream out = new FileOutputStream(file, true);
+                            String tmp=dB+"";
+                            DataOutputStream osw = new DataOutputStream(out);
+                            osw.writeUTF("["+getCurrentTimeStamp()+"]\n");
+                            osw.writeUTF("Sound exceeds "+tmp+" dB\n");
+                            osw.flush();
+                            osw.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
 
                         // set dialog message
                         alertDialogLiteBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
