@@ -61,6 +61,13 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name=".clrLog">
+            <intent-filter>
+                <action android:name="th.ac.mwits.www.ambientdetector.clrLog" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

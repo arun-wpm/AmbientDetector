@@ -26,6 +26,11 @@
             android:summary="View log of detected sounds">
             <intent android:action="th.ac.mwits.www.ambientdetector.show_log"/>
         </PreferenceScreen>
+        <PreferenceScreen
+            android:title="Delete Log"
+            android:summary="Delete all logs">
+            <intent android:action="th.ac.mwits.www.ambientdetector.clrLog"/>
+        </PreferenceScreen>
     </PreferenceCategory>
 
     <PreferenceCategory
