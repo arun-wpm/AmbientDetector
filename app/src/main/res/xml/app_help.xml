@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="Help on Screens" >
+        <PreferenceScreen
+            android:title="Main Screen">
+            <intent
+                android:action="th.ac.mwits.www.ambientdetector.about_screen">
+                <extra android:name="src" android:value="main_screen" />
+            </intent>
+        </PreferenceScreen>
+        <PreferenceScreen
+            android:title="Settings Screen">
+            <intent
+                android:action="th.ac.mwits.www.ambientdetector.about_screen">
+                <extra android:name="src" android:value="settings" />
+            </intent>
+        </PreferenceScreen>
+        <PreferenceScreen
+            android:title="Recorded Sounds Screen">
+            <intent
+                android:action="th.ac.mwits.www.ambientdetector.about_screen">
+                <extra android:name="src" android:value="recorded_sounds" />
+            </intent>
+        </PreferenceScreen>
+        <PreferenceScreen
+            android:title="Log Screen">
+            <intent
+                android:action="th.ac.mwits.www.ambientdetector.about_screen">
+                <extra android:name="src" android:value="log_screen" />
+            </intent>
+        </PreferenceScreen>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Help on Interface" >
+        <PreferenceScreen
+            android:title="Switching Modes">
+            <intent
+                android:action="th.ac.mwits.www.ambientdetector.about_screen">
+                <extra android:name="src" android:value="mode" />
+            </intent>
+        </PreferenceScreen>
+        <PreferenceScreen
+            android:title="Setting Threshold">
+            <intent
+                android:action="th.ac.mwits.www.ambientdetector.about_screen">
+                <extra android:name="src" android:value="threshold" />
+            </intent>
+        </PreferenceScreen>
+        <PreferenceScreen
+            android:title="Start/Stop Detection">
+            <intent
+                android:action="th.ac.mwits.www.ambientdetector.about_screen">
+                <extra android:name="src" android:value="detect" />
+            </intent>
+        </PreferenceScreen>
+        <PreferenceScreen
+            android:title="Recorded New Sound">
+            <intent
+                android:action="th.ac.mwits.www.ambientdetector.about_screen">
+                <extra android:name="src" android:value="record" />
+            </intent>
+        </PreferenceScreen>
+        <PreferenceScreen
+            android:title="Turning off Notifications">
+            <intent
+                android:action="th.ac.mwits.www.ambientdetector.about_screen">
+                <extra android:name="src" android:value="noti_off" />
+            </intent>
+        </PreferenceScreen>
+    </PreferenceCategory>
+
+</PreferenceScreen>

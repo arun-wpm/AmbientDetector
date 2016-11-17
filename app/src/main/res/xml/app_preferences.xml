@@ -21,10 +21,19 @@
             android:summary="View and delete user-defined sounds">
             <intent android:action="th.ac.mwits.www.ambientdetector.show_recordedsounds"/>
         </PreferenceScreen>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Log Settings" >
         <PreferenceScreen
             android:title="View Log"
             android:summary="View log of detected sounds">
             <intent android:action="th.ac.mwits.www.ambientdetector.show_log"/>
+        </PreferenceScreen>
+        <PreferenceScreen
+            android:title="Delete Log"
+            android:summary="Delete all logs">
+            <intent android:action="th.ac.mwits.www.ambientdetector.clrLog"/>
         </PreferenceScreen>
     </PreferenceCategory>
 
@@ -32,10 +41,14 @@
         android:title="Others" >
         <PreferenceScreen
             android:title="Help">
+            <intent android:action="th.ac.mwits.www.ambientdetector.app_help"/>
         </PreferenceScreen>
         <PreferenceScreen
             android:title="About">
-            <intent android:action="th.ac.mwits.www.ambientdetector.about_screen"/>
+            <intent
+                android:action="th.ac.mwits.www.ambientdetector.about_screen">
+                <extra android:name="src" android:value="about" />
+            </intent>
         </PreferenceScreen>
     </PreferenceCategory>
 </PreferenceScreen>

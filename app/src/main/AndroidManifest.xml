@@ -29,6 +29,13 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:name=".AppPreferences" />
+        <activity android:name=".AppHelp">
+            <intent-filter>
+                <action android:name="th.ac.mwits.www.ambientdetector.app_help" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".SplashScreen"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
@@ -57,6 +64,13 @@
         <activity android:name=".show_log">
             <intent-filter>
                 <action android:name="th.ac.mwits.www.ambientdetector.show_log" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".clrLog">
+            <intent-filter>
+                <action android:name="th.ac.mwits.www.ambientdetector.clrLog" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
