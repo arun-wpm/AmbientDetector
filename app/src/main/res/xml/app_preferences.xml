@@ -17,7 +17,7 @@
     <PreferenceCategory
         android:title="Recorded Sounds" >
         <PreferenceScreen
-            android:title="View Recorded Sounds"
+            android:title="Manage Recorded Sounds"
             android:summary="View and delete user-defined sounds">
             <intent android:action="th.ac.mwits.www.ambientdetector.show_recordedsounds"/>
         </PreferenceScreen>
