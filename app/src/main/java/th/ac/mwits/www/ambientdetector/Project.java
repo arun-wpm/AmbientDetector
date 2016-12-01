@@ -889,6 +889,7 @@ public class Project extends AppCompatActivity {
                     FileInputStream stream;
                     DataInputStream dis;
                     while (file.exists()) {
+                        Log.d("TAG", "Start read from file" + filenum);
                         stream = null;
                         try {
                             stream = new FileInputStream(file);
@@ -902,7 +903,6 @@ public class Project extends AppCompatActivity {
                                 ref[i] = dis.readDouble();
                                 peaks[i] = dis.readBoolean();
                             }
-                            Log.d("TAG", "Read from file" + filenum);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
