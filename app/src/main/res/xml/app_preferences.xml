@@ -50,5 +50,19 @@
                 <extra android:name="src" android:value="about" />
             </intent>
         </PreferenceScreen>
+        <PreferenceScreen
+            android:title="Disclaimer">
+            <intent
+                android:action="th.ac.mwits.www.ambientdetector.about_screen">
+                <extra android:name="src" android:value="disclaimer" />
+            </intent>
+        </PreferenceScreen>
+        <PreferenceScreen
+            android:title="Disclaimer (Thai)">
+            <intent
+                android:action="th.ac.mwits.www.ambientdetector.about_screen">
+                <extra android:name="src" android:value="disclaimer_thai" />
+            </intent>
+        </PreferenceScreen>
     </PreferenceCategory>
 </PreferenceScreen>

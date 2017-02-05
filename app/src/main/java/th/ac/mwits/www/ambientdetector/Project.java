@@ -66,6 +66,8 @@ import org.w3c.dom.Text;
 
 import be.tarsos.dsp.util.fft.FFT;
 import be.tarsos.dsp.util.fft.HammingWindow;
+import permissions.dispatcher.NeedsPermission;
+import permissions.dispatcher.RuntimePermissions;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -307,6 +309,7 @@ public class Project extends AppCompatActivity {
             out.write(buffer, 0, read);
         }
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
