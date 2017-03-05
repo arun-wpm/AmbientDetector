@@ -12,15 +12,25 @@
             android:summary="Use LED light to warn the user"
             android:key="LED_noti"
             android:defaultValue="false"/>
+        <CheckBoxPreference
+            android:title="Push-up Notifications"
+            android:summary="Display push-up notifications in status bar"
+            android:key="Push_noti"
+            android:defaultValue="true"/>
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="Recorded Sounds" >
+        android:title="Recognizing Mode" >
         <PreferenceScreen
             android:title="Manage Recorded Sounds"
             android:summary="View and delete user-defined sounds">
             <intent android:action="th.ac.mwits.www.ambientdetector.show_recordedsounds"/>
         </PreferenceScreen>
+        <EditTextPreference
+            android:title="Set Tolerance (0 - 100)"
+            android:summary="Lower = more sensitive to sounds"
+            android:key="Tolerance"
+            android:defaultValue="15"/>
     </PreferenceCategory>
 
     <PreferenceCategory

@@ -24,6 +24,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.CountDownTimer;
+import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.os.Environment;
 import android.os.Handler;
@@ -114,7 +115,6 @@ public class Project extends AppCompatActivity {
     short[] data = new short[441000];
     ImageButton start, stop,record;
     Button stop_vibrate;
-    //ImageView isRecording;
 
     AudioRecord recorder;
     AudioTrack audioPlayer;
@@ -202,6 +202,7 @@ public class Project extends AppCompatActivity {
     };
 
     MyTask myTask;
+    RecordTask recordTask;
 
     final Context context = this;
     Camera cam;
@@ -227,6 +228,9 @@ public class Project extends AppCompatActivity {
     TextView Thresh;
 
     int notificationID = 0;
+    int Interval = 10, RecordInterval = 20;
+    long mLastClickTime;
+    int tolerance;
 
     public double S2(int k, int i) {
         double t = k * accu[i] - (quicksum[i - 1] - quicksum[i - k - 1]);
@@ -251,6 +255,10 @@ public class Project extends AppCompatActivity {
         int res_id = item.getItemId();
         if (res_id == R.id.action_settings) {
             Intent i = new Intent(Project.this, AppPreferences.class);
+            startActivity(i);
+        }
+        else if (res_id == R.id.action_speech) {
+            Intent i = new Intent(Project.this, Speech.class);
             startActivity(i);
         }
         return true;
@@ -474,6 +482,7 @@ public class Project extends AppCompatActivity {
         });
         LiteMode = (Switch) findViewById(R.id.switch1);
         LiteMode.setChecked(false);
+        Thresh.setVisibility(View.INVISIBLE);
 
         alertDialogLiteBuilder = new AlertDialog.Builder(context);
 
@@ -507,7 +516,8 @@ public class Project extends AppCompatActivity {
         Log.d("TAG", "Start recording");
 
         audioPlayer = new AudioTrack(AudioManager.STREAM_MUSIC, 44100, AudioFormat.CHANNEL_OUT_MONO,
-                AudioFormat.ENCODING_PCM_16BIT, bufferSize * 50, AudioTrack.MODE_STREAM);
+                AudioFormat.ENCODING_PCM_16BIT, bufferSize * RecordInterval * 2, AudioTrack.MODE_STATIC);
+
         Log.d("TAG", "Initialized playback");
 
         record = (ImageButton) findViewById(R.id.button3);
@@ -525,8 +535,10 @@ public class Project extends AppCompatActivity {
                 lite = LiteMode.isChecked();
                 activate = false;
                 //first = true;
+                PreferenceManager.setDefaultValues(getApplicationContext(), R.xml.app_preferences, false);
+                SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                tolerance = Integer.valueOf(settings.getString("Tolerance", "15"));
                 myTask = new MyTask();
-
                 myTask.execute();
             }
         });
@@ -554,6 +566,10 @@ public class Project extends AppCompatActivity {
                     Toast.makeText(Project.this, "Cannot change now! Stop detecting first",
                             Toast.LENGTH_LONG).show();
                 }
+                if (LiteMode.isChecked())
+                    Thresh.setVisibility(View.VISIBLE);
+                else
+                    Thresh.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -567,14 +583,16 @@ public class Project extends AppCompatActivity {
             }
         });
 
-        //isRecording = (ImageView) findViewById(R.id.imageView2);
-        //isRecording.setVisibility(View.GONE);
         record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //isRecording.setVisibility(View.VISIBLE);
-                //isRecording.requestLayout();
-                //record.setVisibility(View.INVISIBLE);
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 10000){
+                    Toast.makeText(Project.this, "Already recording!",
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
                 if (start.getVisibility() == View.INVISIBLE) {
                     Toast.makeText(Project.this, "Cannot record now! Stop detecting first",
                             Toast.LENGTH_LONG).show();
@@ -583,222 +601,262 @@ public class Project extends AppCompatActivity {
                 writtenBytes = 0;
                 max = 10000000.0;
                 ii = 0;
-                recorder.startRecording();
-                do {
-                    readBytes = recorder.read(data, writtenBytes, bufferSize);
-                    if (AudioRecord.ERROR_INVALID_OPERATION != readBytes) {
-                        writtenBytes += audioPlayer.write(data, writtenBytes, readBytes);
+                i = 0;
+                recordTask = new RecordTask();
+                recordTask.execute();
+                new CountDownTimer(5000, 1000) {
+                    public void onTick(long millisUntilFinished) {
                     }
-                }
-                while (writtenBytes < bufferSize * 25);
-                recorder.stop();
-                Log.d("TAG", "Read and Write" + writtenBytes);
-
-                for (i = 0; i < 1024; i++)
-                    accu[i] = 0.0;
-
-                while (ii < writtenBytes) {
-                    for (i = 0; i < 2048; i++) {
-                        fdata[i] = (float) data[ii + i];
+                    public void onFinish() {
+                        Toast.makeText(Project.this, "Playing recorded sound...", Toast.LENGTH_LONG).show();
+                        audioPlayer.write(data, 0, writtenBytes);
+                        audioPlayer.setPlaybackHeadPosition(0);
+                        audioPlayer.play();
+                        do {                                                     // Montior playback to find when done
+                            i = audioPlayer.getPlaybackHeadPosition();
+                            Log.d("TAG", "playing" + i);
+                        } while (i < writtenBytes);
+                        audioPlayer.stop();
+                        audioPlayer.flush();
+                        Log.d("TAG", "finish playing");
                     }
-                    fft.forwardTransform(fdata);
-                    for (i = 0; i < 1024; i++)
-                        amp[i] = Math.sqrt(fdata[2 * i] * fdata[2 * i] + fdata[2 * i + 1] * fdata[2 * i + 1]);
-                    for (i = 0; i < 1024; i++)
-                        accu[i] += amp[i];
-
-                    ii += i;
-                }
-
-                file = new File(dir, filenum + ".txt");
-                while (file.exists()) {
-                    filenum++;
-                    file = new File(dir, filenum + ".txt");
-                }
-
-                //Simple Algorithms for Peak Detection in Time-Series
-                //C++ implementation by Poon
-                //Assume <= 2005 elements
-                ArrayList<Integer> peak = new ArrayList<Integer>();
-                double a[] = new double[2005];
-                int k = 5;
-                int h = 1; // 1<=h<=3
-                double mean, s, sum = 0;
-                for (i = 1; i <= 1024; i++)
-                    quicksum[i] = quicksum[i - 1] + accu[i - 1];
-                int c = (1024 - 2 * k);
-                for (int i = 1; i < 1024; i++) {
-                    if (i <= k || i + k > 1024) continue;
-                    a[i - k] = S2(k, i);
-                    sum = sum + a[i - k];
-                }
-                mean = sum / c;
-                sum = 0;
-                for (int i = 1; i <= c; i++)
-                    sum = sum + (mean - a[i]) * (mean - a[i]);
-                sum = sum / c;
-                s = Math.sqrt(sum);
-                for (int i = 1; i <= 1024 - 2 * k; i++) {
-                    if (a[i] > 0 && (a[i] - mean) > (h * s)) peak.add(i + k);
-                }
-                for (int i = 0; i < peak.size() - 1; ) {
-                    if (accu[peak.get(i) - 1] < accu[peak.get(i + 1) - 1]) {
-                        peak.remove(i);
-                        continue;
-                    } else if (accu[peak.get(i) - 1] > accu[peak.get(i + 1) - 1]) {
-                        peak.remove(i + 1);
-                    }
-                    i++;
-                }
-                for (i = 0; i < 1024; i++)
-                    peaks[i] = false;
-                for (i = 0; i < peak.size(); i++) {
-                    peaks[peak.get(i) - 1] = true;
-                    Log.d("TAG", "peak " + (peak.get(i) - 1));
-                }
-
-                FileOutputStream stream = null;
-                try {
-                    stream = new FileOutputStream(file);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-                final DataOutputStream dos = new DataOutputStream(stream);
-
-                for (j = 0; j < 40; j++) {
-                    sum = 0;
-                    for (k = 0; k < 6; k++)
-                        sum += accu[6*j + k];
-                    disp[j] = sum/6;
-
-                    if (sum/6 > max)
-                        max = sum/6;
-                }
-                for (j = 0; j < 40; j++) {
-                    pb[j].setMax((int) Math.round(max));
-                    pb[j].setProgress((int) Math.round(disp[j]));
-                }
-
-                audioPlayer.play();
-                do {                                                     // Montior playback to find when done
-                    i = audioPlayer.getPlaybackHeadPosition();
-                } while (i < writtenBytes);
-
-                audioPlayer.stop();
-                audioPlayer.flush();
-
-                // Save sound name
-                // get prompts.xml view
-                final String[] Name = new String[1];
-                LayoutInflater li = LayoutInflater.from(context);
-                View promptsView = li.inflate(R.layout.dialog_name, null);
-
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                        context);
-
-                // set prompts.xml to alertdialog builder
-                alertDialogBuilder.setView(promptsView);
-                alertDialogBuilder.setTitle("Set name of new sound:");
-
-                final EditText[] userInput = {(EditText) promptsView
-                        .findViewById(R.id.DialogName)};
-
-                // set dialog message
-                alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        int ma=-1;
-                        FileInputStream stream;
-                        DataInputStream dis;
-                        String temp = Environment.getExternalStorageDirectory().toString();
-                        temp = temp + "/FFT";
-                        File file =new File(temp,"max.txt");
-
-                        try {
-                            stream = new FileInputStream(file);
-                            dis = new DataInputStream(stream);
-                            String line = dis.readUTF();
-                            if(line!=null) ma=toInt(line);
-                            Log.d("TAG", "ma=" + ma);
-                            dis.close();
-                            stream.close();
-                        }
-                        catch(IOException e)
-                        {
-                            e.printStackTrace();
-                        }
-
-                        Name[0] = userInput[0].getText().toString();
-                        try {
-                            dos.writeUTF(Name[0]);
-                            Log.d("TAG", "write " + Name[0]);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        try {
-                            for (i = 0; i < 1024; i++) {
-                                dos.writeDouble(accu[i]);
-                                dos.writeBoolean(peaks[i]);
-                            }
-                            Log.d("TAG", "Write Results");
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        try {
-                            dos.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        if(filenum>ma)
-                        {
-                            ma=filenum;
-                            Log.d("TAG", "ma=" + ma);
-                            file.delete();
-                            File file2=new File(temp,"max.txt");
-                            PrintWriter pw = null;
-                            try {
-                                pw = new PrintWriter(new FileWriter(file2));
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            pw.print(ma+"");
-                            pw.flush();
-                            pw.close();
-                        }
-                    }
-                });
-
-                alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        try {
-                            dos.close();
-                            file.delete();
-                            filenum = 0;
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-
-                // create alert dialog
-                AlertDialog alertDialog = alertDialogBuilder.create();
-
-                // show it
-                alertDialog.show();
-
-                //isRecording.setVisibility(View.GONE);
-                //record.setVisibility(View.VISIBLE);
+                }.start();
             }
         });
 
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext());
-        mBuilder.setSmallIcon(R.drawable.ic_launcher);
-        mBuilder.setContentTitle("AmbientDetector");
-        mBuilder.setContentText("Application has started");
-        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        PreferenceManager.setDefaultValues(getApplicationContext(), R.xml.app_preferences, false);
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        if(settings.getBoolean("Push_noti",false)==true) {
+            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext());
+            mBuilder.setSmallIcon(R.drawable.ic_launcher);
+            mBuilder.setContentTitle("AmbientDetector");
+            mBuilder.setContentText("Application has started");
+            NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        // notificationID allows you to update the notification later on.
-        mNotificationManager.notify(notificationID, mBuilder.build());
-        notificationID++;
+            // notificationID allows you to update the notification later on.
+            mNotificationManager.notify(notificationID, mBuilder.build());
+            notificationID++;
+        }
+    }
+
+    class RecordTask extends AsyncTask<String, String, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            recorder.startRecording();
+            do {
+                readBytes = recorder.read(data, writtenBytes, bufferSize);
+                writtenBytes += readBytes;
+                /*if (AudioRecord.ERROR_INVALID_OPERATION != readBytes) {
+                    writtenBytes += audioPlayer.write(data, writtenBytes, readBytes);
+                    Log.d("TAG", "WrittenBytes" + writtenBytes);
+                }*/
+                publishProgress(String.valueOf(i), String.valueOf(1), String.valueOf(1));
+                if (i < 39)
+                    i++;
+            } while (writtenBytes < bufferSize * RecordInterval);
+            recorder.stop();
+            Log.d("TAG", "Read and Write" + writtenBytes);
+
+            for (i = 0; i < 1024; i++)
+                accu[i] = 0.0;
+
+            while (ii < writtenBytes) {
+                for (int ia = 0; ia < 2048; ia++) {
+                    fdata[ia] = (float) data[ii + ia];
+                }
+                fft.forwardTransform(fdata);
+                for (int ib = 0; ib < 1024; ib++) {
+                    amp[ib] = Math.sqrt(fdata[2 * ib] * fdata[2 * ib] + fdata[2 * ib + 1] * fdata[2 * ib + 1]);
+                    //Log.d("TAG", "amp" + i);
+                }
+                for (int ic = 0; ic < 1024; ic++) {
+                    accu[ic] += amp[ic];
+                    //Log.d("TAG", "accu" + i);
+                }
+                ii += 2048;
+            }
+
+            //Simple Algorithms for Peak Detection in Time-Series
+            //C++ implementation by Poon
+            //Assume <= 2005 elements
+            ArrayList<Integer> peak = new ArrayList<Integer>();
+            double a[] = new double[2005];
+            int k = 5;
+            int h = 1; // 1<=h<=3
+            double mean, s, sum = 0;
+            for (i = 1; i <= 1024; i++)
+                quicksum[i] = quicksum[i - 1] + accu[i - 1];
+            int c = (1024 - 2 * k);
+            for (int i = 1; i < 1024; i++) {
+                if (i <= k || i + k > 1024) continue;
+                a[i - k] = S2(k, i);
+                sum = sum + a[i - k];
+            }
+            mean = sum / c;
+            sum = 0;
+            for (int i = 1; i <= c; i++)
+                sum = sum + (mean - a[i]) * (mean - a[i]);
+            sum = sum / c;
+            s = Math.sqrt(sum);
+            for (int i = 1; i <= 1024 - 2 * k; i++) {
+                if (a[i] > 0 && (a[i] - mean) > (h * s)) peak.add(i + k);
+            }
+            for (int i = 0; i < peak.size() - 1; ) {
+                if (accu[peak.get(i) - 1] < accu[peak.get(i + 1) - 1]) {
+                    peak.remove(i);
+                    continue;
+                } else if (accu[peak.get(i) - 1] > accu[peak.get(i + 1) - 1]) {
+                    peak.remove(i + 1);
+                }
+                i++;
+            }
+            for (i = 0; i < 1024; i++)
+                peaks[i] = false;
+            for (i = 0; i < peak.size(); i++) {
+                peaks[peak.get(i) - 1] = true;
+                Log.d("TAG", "peak " + (peak.get(i) - 1));
+            }
+
+            for (j = 0; j < 40; j++) {
+                sum = 0;
+                for (k = 0; k < 6; k++)
+                    sum = Math.max(sum, accu[6*j + k]);
+                disp[j] = sum;
+
+                if (sum > max)
+                    max = sum;
+            }
+            for (j = 0; j < 40; j++) {
+                publishProgress(String.valueOf(j), String.valueOf((int) Math.round(max)), String.valueOf((int) Math.round(disp[j])));
+                //pb[j].setMax((int) Math.round(max));
+                //pb[j].setProgress((int) Math.round(disp[j]));
+            }
+            return String.valueOf(1);
+        }
+
+        @Override
+        protected void onPostExecute(String params) {
+            super.onPostExecute(params);
+            Log.d("TAG", "onPostExecute");
+            file = new File(dir, filenum + ".txt");
+            while (file.exists()) {
+                filenum++;
+                file = new File(dir, filenum + ".txt");
+            }
+            FileOutputStream stream = null;
+            try {
+                stream = new FileOutputStream(file);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            final DataOutputStream dos = new DataOutputStream(stream);
+
+            // Save sound name
+            // get prompts.xml view
+            final String[] Name = new String[1];
+            LayoutInflater li = LayoutInflater.from(context);
+            View promptsView = li.inflate(R.layout.dialog_name, null);
+
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                    context);
+
+            // set prompts.xml to alertdialog builder
+            alertDialogBuilder.setView(promptsView);
+            alertDialogBuilder.setTitle("Set name of new sound:");
+
+            final EditText[] userInput = {(EditText) promptsView
+                    .findViewById(R.id.DialogName)};
+
+            // set dialog message
+            alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    int ma=-1;
+                    FileInputStream stream;
+                    DataInputStream dis;
+                    String temp = Environment.getExternalStorageDirectory().toString();
+                    temp = temp + "/FFT";
+                    File file =new File(temp,"max.txt");
+
+                    try {
+                        stream = new FileInputStream(file);
+                        dis = new DataInputStream(stream);
+                        String line = dis.readUTF();
+                        if(line!=null) ma=toInt(line);
+                        Log.d("TAG", "ma=" + ma);
+                        dis.close();
+                        stream.close();
+                    }
+                    catch(IOException e)
+                    {
+                        e.printStackTrace();
+                    }
+
+                    Name[0] = userInput[0].getText().toString();
+                    try {
+                        dos.writeUTF(Name[0]);
+                        Log.d("TAG", "write " + Name[0]);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        for (i = 0; i < 1024; i++) {
+                            dos.writeDouble(accu[i]);
+                            dos.writeBoolean(peaks[i]);
+                        }
+                        Log.d("TAG", "Write Results");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        dos.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    if(filenum>ma)
+                    {
+                        ma=filenum;
+                        Log.d("TAG", "ma=" + ma);
+                        file.delete();
+                        File file2=new File(temp,"max.txt");
+                        PrintWriter pw = null;
+                        try {
+                            pw = new PrintWriter(new FileWriter(file2));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        pw.print(ma+"");
+                        pw.flush();
+                        pw.close();
+                    }
+                }
+            });
+
+            alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    try {
+                        dos.close();
+                        file.delete();
+                        filenum = 0;
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+            // create alert dialog
+            AlertDialog alertDialog = alertDialogBuilder.create();
+
+            // show it
+            alertDialog.show();
+        }
+
+        @Override
+        protected void onProgressUpdate(String... values) {
+            super.onProgressUpdate(values);
+            Log.d("TAG", values[0] + " " + values[1] + " " + values[2]);
+            pb[Integer.valueOf(values[0])].setMax(Integer.valueOf(values[1]));
+            pb[Integer.valueOf(values[0])].setProgress(Integer.valueOf(values[2]));
+        }
     }
 
     class MyTask extends AsyncTask<String, String, String> {
@@ -848,14 +906,15 @@ public class Project extends AppCompatActivity {
                     if (count == 0)
                         writtenBytes = 0;
                     else
-                        writtenBytes = bufferSize * 25 / 2;
+                        writtenBytes = bufferSize * Interval / 2;
                     max = 10000000.0;
                     ii = 0;
                     do {
                         readBytes = recorder.read(data, writtenBytes, bufferSize);
                         writtenBytes += readBytes;
                     }
-                    while (writtenBytes < bufferSize * 25);
+                    while (writtenBytes < bufferSize * Interval);
+                    Log.d("TAG", "Read and Write" + writtenBytes);
                     for (i = 0; i < 1024; i++)
                         accu[i] = 0.0;
 
@@ -869,7 +928,7 @@ public class Project extends AppCompatActivity {
                         for (i = 0; i < 1024; i++)
                             accu[i] += amp[i];
 
-                        ii += i;
+                        ii += 2048;
                     }
 
                     double sum;
@@ -877,11 +936,11 @@ public class Project extends AppCompatActivity {
                     for (j = 0; j < 40; j++) {
                         sum = 0;
                         for (k = 0; k < 6; k++)
-                            sum += accu[6*j + k];
-                        disp[j] = sum/6;
+                            sum = Math.max(sum, accu[6*j + k]);
+                        disp[j] = sum;
 
-                        if (sum/6 > max)
-                            max = sum/6;
+                        if (sum > max)
+                            max = sum;
                     }
 
                     publishProgress(String.valueOf(-2));
@@ -952,8 +1011,8 @@ public class Project extends AppCompatActivity {
                     break;
                 }
 
-                for (i = 0; i < bufferSize * 25 / 2; i++)
-                    data[i] = data[i + bufferSize * 25 / 2];
+                for (i = 0; i < bufferSize * Interval / 2; i++)
+                    data[i] = data[i + bufferSize * Interval / 2];
                 count++;
             }
             recorder.stop();
@@ -972,7 +1031,7 @@ public class Project extends AppCompatActivity {
                     Detected.clear();
                     DetectedIndex.clear();
                 }
-                if (values[2].equals("false") && Integer.valueOf(values[1]) >= 30) {
+                if (values[2].equals("false") && Integer.valueOf(values[1]) >= tolerance) {
                     Detected.put(Integer.valueOf(values[1]), values[3]);
                     DetectedIndex.add(j);
                     //DetectedIndexCopy.add(j);
@@ -981,7 +1040,7 @@ public class Project extends AppCompatActivity {
                 /*tv[j][0].setText(values[0] + " " + values[3]);
                 tv[j][1].setText(values[1] + "%");
                 Log.d("TAG", "read " + values[3]);
-                if (values[2].equals("true") || Integer.valueOf(values[1]) <= 30) {
+                if (values[2].equals("true") || Integer.valueOf(values[1]) <= tolerance) {
                     tv[j][0].append(" = NOISE");
                 }
                 else {
@@ -1110,15 +1169,17 @@ public class Project extends AppCompatActivity {
                         // show it
                         alertDialog.show();
 
-                        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext());
-                        mBuilder.setSmallIcon(R.drawable.ic_launcher);
-                        mBuilder.setContentTitle("AmbientDetector");
-                        mBuilder.setContentText("Sound Detected! Details in app.");
-                        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                        if(settings.getBoolean("Push_noti",true)==true) {
+                            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext());
+                            mBuilder.setSmallIcon(R.drawable.ic_launcher);
+                            mBuilder.setContentTitle("AmbientDetector");
+                            mBuilder.setContentText("Sound Detected! Details in app.");
+                            NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-                        // notificationID allows you to update the notification later on.
-                        mNotificationManager.notify(notificationID, mBuilder.build());
-                        notificationID++;
+                            // notificationID allows you to update the notification later on.
+                            mNotificationManager.notify(notificationID, mBuilder.build());
+                            notificationID++;
+                        }
 
                         activate = false;
                     }
@@ -1172,18 +1233,19 @@ public class Project extends AppCompatActivity {
                         // show it
                         alertDialogLite.show();
 
-                        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext());
-                        mBuilder.setSmallIcon(R.drawable.ic_launcher);
-                        mBuilder.setContentTitle("AmbientDetector");
-                        mBuilder.setContentText("Loud sound detected! Details in app.");
-                        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-                        // notificationID allows you to update the notification later on.
-                        mNotificationManager.notify(notificationID, mBuilder.build());
-                        notificationID++;
-
                         PreferenceManager.setDefaultValues(getApplicationContext(),R.xml.app_preferences,false);
                         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                        if(settings.getBoolean("Push_noti",true)==true) {
+                            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext());
+                            mBuilder.setSmallIcon(R.drawable.ic_launcher);
+                            mBuilder.setContentTitle("AmbientDetector");
+                            mBuilder.setContentText("Loud sound detected! Details in app.");
+                            NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+                            // notificationID allows you to update the notification later on.
+                            mNotificationManager.notify(notificationID, mBuilder.build());
+                            notificationID++;
+                        }
                         if(settings.getBoolean("vibrate_noti",false)==true)
                             vibrator.vibrate(notidelay);
                         if(settings.getBoolean("LED_noti",false)==true)

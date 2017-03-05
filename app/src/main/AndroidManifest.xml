@@ -75,7 +75,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".disclaimer"></activity>
+        <activity android:name=".disclaimer" />
+        <activity android:name=".Speech"></activity>
     </application>
 
 </manifest>
