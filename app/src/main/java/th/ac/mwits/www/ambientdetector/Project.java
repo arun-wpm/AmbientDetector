@@ -97,6 +97,7 @@ import static be.tarsos.dsp.beatroot.Peaks.findPeaks;
 
 public class Project extends AppCompatActivity {
 
+    //ตัวแปร global เป็นร้อย 55555
     private int audioSource = MediaRecorder.AudioSource.MIC;
     private int samplingRate = 44100; /* in Hz*/
     private int channelConfig = AudioFormat.CHANNEL_IN_MONO;
@@ -240,6 +241,7 @@ public class Project extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        //เอาแถบเมนูมาใส่ในหน้าแอป
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_main, menu);
         return true;
@@ -247,17 +249,21 @@ public class Project extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        //กดปุ่มในแถบเมนูด้านบน
         if (start.getVisibility() == View.INVISIBLE) {
+            //ถ้ายัง detect อยู่ ก็ไม่ให้ไปต่อ
             Toast.makeText(Project.this, "Cannot access settings now! Stop detecting first",
                     Toast.LENGTH_LONG).show();
             return true;
         }
         int res_id = item.getItemId();
         if (res_id == R.id.action_settings) {
+            //ไปหน้า settings
             Intent i = new Intent(Project.this, AppPreferences.class);
             startActivity(i);
         }
         else if (res_id == R.id.action_speech) {
+            //ไปหน้า text-to-speech
             Intent i = new Intent(Project.this, Speech.class);
             startActivity(i);
         }
@@ -273,6 +279,7 @@ public class Project extends AppCompatActivity {
         return val;
     }
     private void copyAssets() {
+        //ก๊อปไฟล์เสียงสามเสียงจาก app/assets ไป FFT/
         AssetManager assetManager = getAssets();
         String[] files = null;
         try {
@@ -320,12 +327,14 @@ public class Project extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //ตัวแอปจริงจ้าาา
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
         /*toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);*/
 
+        //ดูว่ามี FFT/ ยัง ถ้ายัง ก็ก๊อปไฟล์เสียงสามเสียงไป
         root = Environment.getExternalStorageDirectory().toString();
         dir = new File(root + "/FFT");
         if (!dir.exists()) {
@@ -344,7 +353,7 @@ public class Project extends AppCompatActivity {
             pw.close();
         }
 
-
+        //ตั้งค่า threshold ตอนแรกสุด (อ่านจาก settings.txt ไม่ก็ให้เป็น 0)
         Thresh = (TextView) findViewById(R.id.textView17);
         file = new File(dir, "settings.txt");
         FileInputStream stream = null;
@@ -392,9 +401,11 @@ public class Project extends AppCompatActivity {
             e.printStackTrace();
         }
         dB = Math.round(20.0*Math.log10(Threshold));
+        //display ค่า threshold
         Thresh.setText("Threshold: " +  new DecimalFormat("#0.##").format(dB));
         Thresh.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                //ตอนกดที่ threshold
                 if (start.getVisibility() == View.INVISIBLE) {
                     Toast.makeText(Project.this, "Cannot change now! Stop detecting first",
                             Toast.LENGTH_LONG).show();
@@ -484,6 +495,7 @@ public class Project extends AppCompatActivity {
         LiteMode.setChecked(false);
         Thresh.setVisibility(View.INVISIBLE);
 
+        //ตั้งค่า dialog เผื่อไว้ก่อน ช่วงมันเหอะ
         alertDialogLiteBuilder = new AlertDialog.Builder(context);
 
         alertDialogLiteBuilder.setTitle("Environment sound intensity reaches threshold!");
@@ -499,7 +511,7 @@ public class Project extends AppCompatActivity {
         alertDialogLite = alertDialogLiteBuilder.create();
 
         bufferSize += 2048;
-
+        //ตั้งค่าพวกเส้นในกราฟ FFT ด้านล่าง
         for (i = 0; i < 40; i++) {
             pb[i] = (ProgressBar) findViewById(pbid[i]);
             pb[i].getProgressDrawable().setColorFilter(
@@ -525,6 +537,7 @@ public class Project extends AppCompatActivity {
         start = (ImageButton) findViewById(R.id.button);
         start.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                //กดปุ่ม start detect จะไปเรียกฟังก์ชัน myTask
                 if (record.isPressed()) {
                     Toast.makeText(Project.this, "Cannot start now! Recording must finish first",
                             Toast.LENGTH_LONG).show();
@@ -547,6 +560,7 @@ public class Project extends AppCompatActivity {
         stop.setVisibility(View.INVISIBLE);
         stop.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                //กดปุ่ม stop detect จะหยุดฟังก์ชัน myTask และก็ลบกราฟทิ้ง
                 start.setVisibility(View.VISIBLE);
                 stop.setVisibility(View.INVISIBLE);
                 myTask.cancel(true);
@@ -559,6 +573,7 @@ public class Project extends AppCompatActivity {
 
         LiteMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                //กดที่ lite mode จะทำให้ Thresh (ที่เป็นตัวหนังสือ) ปรากฎขึ้นอย่างมหัศจรรย์ >~<
                 // do something, the isChecked will be
                 // true if the switch is in the On position
                 if (start.getVisibility() == View.INVISIBLE) {
@@ -575,6 +590,7 @@ public class Project extends AppCompatActivity {
 
         camManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        //กดปุ่ม Notifications off
         stop_vibrate = (Button) findViewById(R.id.off);
         stop_vibrate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -586,6 +602,7 @@ public class Project extends AppCompatActivity {
         record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //กดปุ่ม record
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 10000){
                     Toast.makeText(Project.this, "Already recording!",
                             Toast.LENGTH_LONG).show();
@@ -602,12 +619,14 @@ public class Project extends AppCompatActivity {
                 max = 10000000.0;
                 ii = 0;
                 i = 0;
+                //ไปเรียกฟังก์ชัน RecordTask รอห้าวิ (ตรงนี้น่าจะทำให้บางเครื่องบั๊กได้มั้ง)
                 recordTask = new RecordTask();
                 recordTask.execute();
                 new CountDownTimer(5000, 1000) {
                     public void onTick(long millisUntilFinished) {
                     }
                     public void onFinish() {
+                        //หมดห้าวิ เปิดเสียงเมื่อกี้
                         Toast.makeText(Project.this, "Playing recorded sound...", Toast.LENGTH_LONG).show();
                         audioPlayer.write(data, 0, writtenBytes);
                         audioPlayer.setPlaybackHeadPosition(0);
@@ -627,6 +646,7 @@ public class Project extends AppCompatActivity {
         PreferenceManager.setDefaultValues(getApplicationContext(), R.xml.app_preferences, false);
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         if(settings.getBoolean("Push_noti",false)==true) {
+            //เด้ง push notification
             NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext());
             mBuilder.setSmallIcon(R.drawable.ic_launcher);
             mBuilder.setContentTitle("AmbientDetector");
@@ -640,8 +660,10 @@ public class Project extends AppCompatActivity {
     }
 
     class RecordTask extends AsyncTask<String, String, String> {
+        //ฟังก์ชั่นที่จะเรียกเมื่อกดปุ่ม record
         @Override
         protected String doInBackground(String... params) {
+            //อัดเสียง ไม่บอกนี่ไม่รู้เลยนะเนี่ย อิอิ
             recorder.startRecording();
             do {
                 readBytes = recorder.read(data, writtenBytes, bufferSize);
@@ -650,6 +672,7 @@ public class Project extends AppCompatActivity {
                     writtenBytes += audioPlayer.write(data, writtenBytes, readBytes);
                     Log.d("TAG", "WrittenBytes" + writtenBytes);
                 }*/
+                //แสดงผลเป็นแถบๆ ว่ากำลังอัดอยู่ เรียกฟังก์ชั่น publishProgress
                 publishProgress(String.valueOf(i), String.valueOf(1), String.valueOf(1));
                 if (i < 39)
                     i++;
@@ -660,6 +683,7 @@ public class Project extends AppCompatActivity {
             for (i = 0; i < 1024; i++)
                 accu[i] = 0.0;
 
+            //ช่วงแปลง FFT เสียง
             while (ii < writtenBytes) {
                 for (int ia = 0; ia < 2048; ia++) {
                     fdata[ia] = (float) data[ii + ia];
@@ -676,8 +700,9 @@ public class Project extends AppCompatActivity {
                 ii += 2048;
             }
 
+            //ช่วงหา peak ที่พีคมากกก *0*
             //Simple Algorithms for Peak Detection in Time-Series
-            //C++ implementation by Poon
+            //C++ implementation by PoonyapaZ
             //Assume <= 2005 elements
             ArrayList<Integer> peak = new ArrayList<Integer>();
             double a[] = new double[2005];
@@ -726,6 +751,7 @@ public class Project extends AppCompatActivity {
                 if (sum > max)
                     max = sum;
             }
+            //เอาค่าที่ได้จาก FFT ไปแสดงในกราฟ
             for (j = 0; j < 40; j++) {
                 publishProgress(String.valueOf(j), String.valueOf((int) Math.round(max)), String.valueOf((int) Math.round(disp[j])));
                 //pb[j].setMax((int) Math.round(max));
@@ -736,8 +762,10 @@ public class Project extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String params) {
+            //อัดเสร็จทำอะไรบ้าง คุณจะไม่เชื่อในสิ่งที่จะเกิดขึ้น!!
             super.onPostExecute(params);
             Log.d("TAG", "onPostExecute");
+            //หาเลขไฟล์ที่ยังไม่มีคนจอง
             file = new File(dir, filenum + ".txt");
             while (file.exists()) {
                 filenum++;
@@ -791,6 +819,7 @@ public class Project extends AppCompatActivity {
                         e.printStackTrace();
                     }
 
+                    //เขียนชื่อเสียง
                     Name[0] = userInput[0].getText().toString();
                     try {
                         dos.writeUTF(Name[0]);
@@ -800,6 +829,7 @@ public class Project extends AppCompatActivity {
                     }
                     try {
                         for (i = 0; i < 1024; i++) {
+                            //ต่อด้วย 1024 แถว บอกความเข้มหลัง FFT กับความเป็น peak (เป็น/ไม่เป็น)
                             dos.writeDouble(accu[i]);
                             dos.writeBoolean(peaks[i]);
                         }
@@ -833,6 +863,7 @@ public class Project extends AppCompatActivity {
 
             alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
+                    //อ่าวกำ กด cancel ซะนี่ แย่จริงๆ ลบทิ่งแม่ม 55555
                     try {
                         dos.close();
                         file.delete();
@@ -860,14 +891,18 @@ public class Project extends AppCompatActivity {
     }
 
     class MyTask extends AsyncTask<String, String, String> {
+        //ฟังก์ชั่น MyTask คือตอนที่ detect เสียง
         @Override
         protected String doInBackground(String... params) {
+            //อันนี้จะทำวนไปเป็น background process
+            //อัดเสียง
             recorder.startRecording();
             while (true) {
                 Log.d("TAG", "" + count);
 
 
                 if (lite) {
+                    //ถ้า lite เป็นจริง ก็ detect แบบ lite mode
                     //lite mode
                     writtenBytes = 0;
                     do {
@@ -876,6 +911,7 @@ public class Project extends AppCompatActivity {
                     }
                     while (writtenBytes < bufferSize * 2);
                     Log.d("TAG", "Read and Write" + writtenBytes);
+                    //ถ้าเป็นการอัดรอบแรก ต้องไปหาค่า threshold ใน settings.txt ก่อน
                     if (count == 0) {
                         file = new File(dir, "settings.txt");
                         FileInputStream stream = null;
@@ -893,6 +929,7 @@ public class Project extends AppCompatActivity {
                         }
                     }
                     //Log.d("TAG", "after try");
+                    //หาค่าเฉลี่ยเลขคณิตของความดังจ้า อย่าลืมเขียนสูตรทุกครั้งนะอิอิ
                     activate = false;
                     double temp=0.0;
                     for (i = 0; i < writtenBytes; i++) {
@@ -900,9 +937,12 @@ public class Project extends AppCompatActivity {
                     }
                     temp/=(double)writtenBytes;
                     //Log.d("TAG", "Temp"+temp);
+                    //ถ้ามากกว่า threshold ก็เตือน
                     if(temp>=Threshold) activate=true;
+                    //แล้วก็ใส่สีตรงกราฟให้มันสวยๆ
                     publishProgress(String.valueOf(-3), String.valueOf(count));
                 } else {
+                    //อันนี้ detect แบบ recognizing mode
                     if (count == 0)
                         writtenBytes = 0;
                     else
@@ -918,6 +958,7 @@ public class Project extends AppCompatActivity {
                     for (i = 0; i < 1024; i++)
                         accu[i] = 0.0;
 
+                    //แปลง FFT
                     while (ii < writtenBytes) {
                         for (i = 0; i < 2048; i++) {
                             fdata[i] = (float) data[ii + i];
@@ -931,6 +972,7 @@ public class Project extends AppCompatActivity {
                         ii += 2048;
                     }
 
+                    //คำนวณเกี่ยวกับตอนวาดกราฟ
                     double sum;
                     int k;
                     for (j = 0; j < 40; j++) {
@@ -945,6 +987,7 @@ public class Project extends AppCompatActivity {
 
                     publishProgress(String.valueOf(-2));
 
+                    //เทียบกับเสียงในฐานข้อมูลทีละเสียง
                     SoundName = null;
                     filenum = 0;
                     file = new File(dir, filenum + ".txt");
@@ -959,6 +1002,7 @@ public class Project extends AppCompatActivity {
                             e.printStackTrace();
                         }
                         dis = new DataInputStream(stream);
+                        //อ่านไฟล์...
                         try {
                             SoundName = dis.readUTF();
                             for (i = 0; i < 1024; i++) {
@@ -975,6 +1019,7 @@ public class Project extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
+                        //คำนวณตาม In Chul Yoo
                         black = 0.0;
                         bref = 0.0;
                         white = 0.0;
@@ -998,6 +1043,7 @@ public class Project extends AppCompatActivity {
                         bref /= bnum;
                         wref /= wnum;
 
+                        //ส่งผลไปให้ฟังก์ชัน publishProgress
                         publishProgress(String.valueOf(filenum), String.valueOf(Math.min(100, Math.round((black / white) / (bref / wref) * 100))), String.valueOf(black / white <= 1.0), SoundName);
 
                         filenum++;
@@ -1007,10 +1053,12 @@ public class Project extends AppCompatActivity {
                 }
 
                 if (Thread.currentThread().isInterrupted()) {
+                    //อ่าวกรรม มีคนกดหยุด
                     count = 0;
                     break;
                 }
 
+                //เลื่อนข้อมูลไปครึ่งช่วง (ให้มันเหลื่อมๆ กัน) พร้อมอัดช่วงใหม่อีกครึ่งช่วง เก็ตมะ 5555
                 for (i = 0; i < bufferSize * Interval / 2; i++)
                     data[i] = data[i + bufferSize * Interval / 2];
                 count++;
@@ -1021,12 +1069,14 @@ public class Project extends AppCompatActivity {
 
         @Override
         protected void onProgressUpdate(String... values) {
+            //ฟังก์ชันนี้เพื่อการเตือนและวาดกราฟโดยเฉพาะ
             super.onProgressUpdate(values);
 
             int j;
             j = Integer.valueOf(values[0]);
 
             if (j >= 0) {
+                //อันนี้คือใส่ข้อมูลจากการ detect แบบ recognizing mode (ยัดเสียงกับเปอร์เซนต์เข้า std::map ที่เรียงตามเปอร์เซนต์) แล้วก็จบไปก่อน รอเตือนจริงๆ
                 if (j == 0) {
                     Detected.clear();
                     DetectedIndex.clear();
@@ -1050,6 +1100,7 @@ public class Project extends AppCompatActivity {
                 }*/
             }
             else if (j == -2) {
+                //วาดกราฟ
                 for (j = 0; j < 40; j++) {
                     pb[j].setProgress(0);
                     pb[j].setMax((int) Math.round(max));
@@ -1057,9 +1108,12 @@ public class Project extends AppCompatActivity {
                 }
             }
             else if (j == -1) {
+                //เตือนจริงและ แบบ recognizing mode
                 if (activate) {
+                    //ถ้ามันเตือนใกล้กันเกินไป ก็หยุดซะ
                     if(System.currentTimeMillis()-lastused<notidelay) activate=false;
                     if(activate) {
+                        //ถ้าเคยเตือนมาแล้ว ก็ต้องเอา dialog เตือนครั้งที่แล้วออกด้วย
                         if (!first) {
                             if (alertDialog.isShowing()) {
                                 alertDialog.dismiss();
@@ -1079,6 +1133,7 @@ public class Project extends AppCompatActivity {
                                 e.printStackTrace();
                             }
                         }
+                        //ใส่ข้อมูลเข้า dialog
                         for (Integer i : DetectedIndex)
                             DetectedIndexCopy.add(i);
                         Iterator entries = Detected.entrySet().iterator();
@@ -1089,6 +1144,7 @@ public class Project extends AppCompatActivity {
                             if (entries.hasNext()) {
                                 Map.Entry thisEntry = (Map.Entry) entries.next();
                                 tv[i][0].setText(thisEntry.getValue().toString());
+                                //ถ้าชื่อเสียงมี car/phone/fire ให้เปลี่ยนรูปด้วย
                                 if (i == 0) {
                                     String S = thisEntry.getValue().toString().toLowerCase();
                                     ImageView I = (ImageView) vi.findViewById(R.id.imageView);
@@ -1102,9 +1158,11 @@ public class Project extends AppCompatActivity {
                                         I.setImageResource(R.drawable.fire);
                                     }
                                 }
+                                //ขนาดฟอนต์เฉยๆ
                                 tv[i][0].setTextSize(TypedValue.COMPLEX_UNIT_DIP, 30 - thisEntry.getValue().toString().length());
                                 tv[i][1].setText(" = ");
                                 tv[i][2].setText(thisEntry.getKey().toString() + "%");
+                                //ยัดลง log file
                                 try {
                                     file = new File(dir, "log.txt");
                                     FileOutputStream out = new FileOutputStream(file, true);
@@ -1127,6 +1185,7 @@ public class Project extends AppCompatActivity {
                         lastused = System.currentTimeMillis();
                         PreferenceManager.setDefaultValues(getApplicationContext(), R.xml.app_preferences, false);
                         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                        //เปิดแสงกับสั่น
                         if(settings.getBoolean("vibrate_noti",false)==true)
                             vibrator.vibrate(notidelay);
                         if(settings.getBoolean("LED_noti",false)==true)
@@ -1143,6 +1202,7 @@ public class Project extends AppCompatActivity {
                         // set dialog message
                         alertDialogBuilder.setPositiveButton("Correct", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
+                                //ถ้ากดปุ่ม correct
                                 writeToStats(1, 0, 0);
                                 notiOff();
                             }
@@ -1150,6 +1210,7 @@ public class Project extends AppCompatActivity {
 
                         alertDialogBuilder.setNegativeButton("Incorrect", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
+                                //ถ้ากดปุ่ม incorrect
                                 writeToStats(0, 1, 0);
                                 notiOff();
                             }
@@ -1157,6 +1218,7 @@ public class Project extends AppCompatActivity {
 
                         alertDialogBuilder.setNeutralButton("Unsure", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
+                                //ถ้ากดปุ่ม unsure
                                 writeToStats(0, 0, 1);
                                 notiOff();
                             }
@@ -1169,6 +1231,7 @@ public class Project extends AppCompatActivity {
                         // show it
                         alertDialog.show();
 
+                        //ถ้าตั้ง push notifications ก็ให้มันเด้งด้วย
                         if(settings.getBoolean("Push_noti",true)==true) {
                             NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext());
                             mBuilder.setSmallIcon(R.drawable.ic_launcher);
@@ -1186,7 +1249,8 @@ public class Project extends AppCompatActivity {
                 }
             }
             else {
-                //lite mode
+                //เตือนแบบ lite mode
+                //วาดกราฟ
                 for (j = 0; j < 40; j++) {
                     pb[j].setMax((int) Math.round(max));
                     if (j % 2 == Integer.valueOf(values[1])%2)
@@ -1197,6 +1261,7 @@ public class Project extends AppCompatActivity {
                 if (activate) {
                     if(System.currentTimeMillis()-lastused<notidelay) activate=false;
                     if(activate) {
+                        //ปั้น dialog แจ้งเตือน
                         if (!first) {
                             if (alertDialogLite.isShowing()) alertDialogLite.dismiss();
                         }
@@ -1233,6 +1298,7 @@ public class Project extends AppCompatActivity {
                         // show it
                         alertDialogLite.show();
 
+                        //เด้ง push notifications
                         PreferenceManager.setDefaultValues(getApplicationContext(),R.xml.app_preferences,false);
                         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                         if(settings.getBoolean("Push_noti",true)==true) {
@@ -1257,6 +1323,7 @@ public class Project extends AppCompatActivity {
     }
 
     private void turnOnFlash() {
+        //ฟังก์ชั่นนี้เปิดแฟลช
         if (Build.VERSION.SDK_INT >= 23) {
             //String cameraId = null; // Usually front camera is at 0 position.
             try {
@@ -1305,6 +1372,7 @@ public class Project extends AppCompatActivity {
     }
 
     private void releaseCameraAndPreview() {
+        //ฟังก์ชันนี้ปิดแฟลช
         if (cam != null) {
             cam.release();
             cam = null;
@@ -1326,6 +1394,7 @@ public class Project extends AppCompatActivity {
     }
 
     private void writeToStats(int dcor, int dincor, int duns) {
+        //ฟังก์ชั่นนี้อัพเดตค่า stat แบบอ่านค่าจาก stats.txt แล้วก็เขียนเข้าไฟล์เดิม
         int cor, incor, uns;
         for (Integer i : DetectedIndexCopy) {
             cor = 0;
@@ -1388,6 +1457,7 @@ public class Project extends AppCompatActivity {
     }
 
     public void notiOff() {
+        //ปิดโนติ
         vibrator.cancel();
         if (Build.VERSION.SDK_INT >= 23) {
             //String cameraId = null; // Usually front camera is at 0 position.
