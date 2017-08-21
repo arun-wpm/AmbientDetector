@@ -348,7 +348,7 @@ public class Project extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            pw.print(3+"");
+            pw.print(6+"");
             pw.flush();
             pw.close();
         }
@@ -631,10 +631,16 @@ public class Project extends AppCompatActivity {
                         audioPlayer.write(data, 0, writtenBytes);
                         audioPlayer.setPlaybackHeadPosition(0);
                         audioPlayer.play();
+                        int last = -1;
+                        i=-1;
+                        int count=0;
                         do {                                                     // Montior playback to find when done
+                            last = i;
                             i = audioPlayer.getPlaybackHeadPosition();
+                            if(last==i) count++;
+                            else count=0;
                             Log.d("TAG", "playing" + i);
-                        } while (i < writtenBytes);
+                        } while (count<=4000 && i < writtenBytes);
                         audioPlayer.stop();
                         audioPlayer.flush();
                         Log.d("TAG", "finish playing");
@@ -1324,39 +1330,20 @@ public class Project extends AppCompatActivity {
 
     private void turnOnFlash() {
         //ฟังก์ชั่นนี้เปิดแฟลช
-        if (Build.VERSION.SDK_INT >= 23) {
+      //  if (Build.VERSION.SDK_INT >= 23) {
             //String cameraId = null; // Usually front camera is at 0 position.
-            try {
-                for (String cameraId : camManager.getCameraIdList()) {
-                    try {
-                        CameraCharacteristics camCharacteristics = camManager.getCameraCharacteristics(cameraId);
-                        if (camCharacteristics.get(CameraCharacteristics.FLASH_INFO_AVAILABLE)) {
-                            camManager.openCamera(cameraId, new CameraDevice.StateCallback() {
-                                @Override
-                                public void onOpened(@NonNull CameraDevice camera) {
-                                    mCamera = camera;
-                                }
-
-                                @Override
-                                public void onDisconnected(@NonNull CameraDevice camera) {
-
-                                }
-
-                                @Override
-                                public void onError(@NonNull CameraDevice camera, int error) {
-
-                                }
-                            }, null);
-                            camManager.setTorchMode(cameraId, true);
-                        }
-                    } catch (CameraAccessException e) {
-                        e.printStackTrace();
-                    }
+        releaseCameraAndPreview();
+            cam = Camera.open();
+            Camera.Parameters params = cam.getParameters();
+            params.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+            cam.setParameters(params);
+            cam.startPreview();
+            //params.setFlashMode(Camera.Parameters.FLASH_MODE_ON);
+            cam.autoFocus(new Camera.AutoFocusCallback() {
+                public void onAutoFocus(boolean success, Camera camera) {
                 }
-            } catch (CameraAccessException e) {
-                e.printStackTrace();
-            }
-        } else {
+            });
+        /*} else {
             try {
                 releaseCameraAndPreview();
                 cam = Camera.open();
@@ -1368,7 +1355,7 @@ public class Project extends AppCompatActivity {
                 Log.e(getString(R.string.app_name), "failed to open Camera");
                 e.printStackTrace();
             }
-        }
+        }*/
     }
 
     private void releaseCameraAndPreview() {

@@ -198,6 +198,7 @@ public class show_recordedsounds extends AppCompatActivity {
                 }
             } catch (IOException e) {
                 //You'll need to add proper error handling here
+                Log.d("TAG", t+"what the hell");
                 e.printStackTrace();
             }
             filenum++;
@@ -239,40 +240,59 @@ public class show_recordedsounds extends AppCompatActivity {
                             file = new File(temp + String.valueOf(filenum) + "stats.txt");
                             if (file.exists())
                                 file.delete();
-                            while (true) {
-                                filenum++;
-                                file = new File(temp + String.valueOf(filenum) + ".txt");
-                                if (!file.exists())
-                                    break;
-                                file2 = new File(temp + String.valueOf(filenum - 1) + ".txt");
-                                file.renameTo(file2);
+//                            while (true) {
+//                                filenum++;
+//                                file = new File(temp + String.valueOf(filenum) + ".txt");
+//                                if (!file.exists())
+//                                    break;
+//                                file2 = new File(temp + String.valueOf(filenum - 1) + ".txt");
+//                                file.renameTo(file2);
+//
+//                                file = new File(temp + String.valueOf(filenum) + "stats.txt");
+//                                if (file.exists()) {
+//                                    file2 = new File(temp + String.valueOf(filenum - 1) + "stats.txt");
+//                                    file.renameTo(file2);
+//                                }
+//                            }
 
-                                file = new File(temp + String.valueOf(filenum) + "stats.txt");
-                                if (file.exists()) {
-                                    file2 = new File(temp + String.valueOf(filenum - 1) + "stats.txt");
-                                    file.renameTo(file2);
-                                }
-                            }
-
-                            int ma=filenum - 1;
-                            Log.d("TAG", "ma=" + ma);
-                            file = new File(temp,"max.txt");
-                            file.delete();
-                            file = new File(temp,"max.txt");
-                            PrintWriter pw = null;
+                            FileInputStream stream;
+                            DataInputStream dis;
+                            temp = temp + "/max.txt";
+                            int ma = 0;
                             try {
-                                pw = new PrintWriter(new FileWriter(file));
+                                InputStream fis = new FileInputStream(temp);
+                                InputStreamReader isr = new InputStreamReader(fis, Charset.forName("UTF-8"));
+                                BufferedReader br = new BufferedReader(isr);
+                                String line = br.readLine();
+                                if (line != null) ma = toInt(line);
+                                fis.close();
+                                isr.close();
+                                br.close();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                            pw.print(ma+"");
-                            pw.flush();
-                            pw.close();
+
+                            if (filenum == ma) {
+                                ma = filenum - 1;
+                                Log.d("TAG", "ma=" + ma);
+                                file = new File(temp, "max.txt");
+                                file.delete();
+                                file = new File(temp, "max.txt");
+                                PrintWriter pw = null;
+                                try {
+                                    pw = new PrintWriter(new FileWriter(file));
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                pw.print(ma + "");
+                                pw.flush();
+                                pw.close();
+                            }
                             Intent intent = getIntent();
                             finish();
                             startActivity(intent);
-                        }
-                    });
+                    }
+                });
 
                     alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {

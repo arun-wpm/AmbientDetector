@@ -28,8 +28,12 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".AppPreferences" />
-        <activity android:name=".AppHelp">
+        <activity android:name=".AppPreferences"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <activity android:name=".AppHelp"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="th.ac.mwits.www.ambientdetector.app_help" />
 
@@ -38,6 +42,7 @@
         </activity>
         <activity
             android:name=".SplashScreen"
+            android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
@@ -46,37 +51,48 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".show_recordedsounds">
+        <activity android:name=".show_recordedsounds"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="th.ac.mwits.www.ambientdetector.show_recordedsounds" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".LiveLoudness" />
-        <activity android:name=".about_screen">
+        <activity android:name=".LiveLoudness"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <activity android:name=".about_screen"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="th.ac.mwits.www.ambientdetector.about_screen" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".show_log">
+        <activity android:name=".show_log"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="th.ac.mwits.www.ambientdetector.show_log" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".clrLog">
+        <activity android:name=".clrLog"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="th.ac.mwits.www.ambientdetector.clrLog" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".disclaimer" />
-        <activity android:name=".Speech"></activity>
+        <activity android:name=".Speech"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" ></activity>
     </application>
 
 </manifest>

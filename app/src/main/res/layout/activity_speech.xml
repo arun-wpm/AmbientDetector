@@ -19,8 +19,9 @@
         android:height="50dp"
         android:width="300dp"
         android:textColor="#FFFFFF"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/togglebutton8"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -36,6 +37,53 @@
         android:layout_alignStart="@+id/editText2"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/button5" />
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="English"
+        android:id="@+id/togglebutton7"
+        android:textSize="20dp"
+        android:textColor="#FFFFFF"
+        android:width="100dp"
+        android:background="@color/colorPrimary"
+        android:height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/togglebutton8"
+        android:layout_toStartOf="@+id/togglebutton8"
+        android:textOff="English"
+        android:textOn="English" />
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ไทย"
+        android:id="@+id/togglebutton8"
+        android:textSize="25dp"
+        android:textColor="#FFFFFF"
+        android:width="100dp"
+        android:background="@color/colorPrimary"
+        android:height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textOff="ไทย"
+        android:textOn="ไทย" />
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="日本語"
+        android:id="@+id/togglebutton9"
+        android:textSize="25dp"
+        android:textColor="#FFFFFF"
+        android:width="100dp"
+        android:background="@color/colorPrimary"
+        android:height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/togglebutton8"
+        android:layout_toEndOf="@+id/togglebutton8"
+        android:textOn="日本語"
+        android:textOff="日本語" />
 
     <EditText
         android:layout_width="wrap_content"
