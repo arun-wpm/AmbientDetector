@@ -42,7 +42,7 @@ public class Speech extends AppCompatActivity {
                 TBen.setChecked(true);
                 TBth.setChecked(false);
                 TBjp.setChecked(false);
-                TBen.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 25);
+                TBen.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
                 TBth.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 10);
                 TBjp.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 10);
             }
@@ -53,7 +53,7 @@ public class Speech extends AppCompatActivity {
                 TBth.setChecked(true);
                 TBjp.setChecked(false);
                 TBen.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 10);
-                TBth.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 25);
+                TBth.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
                 TBjp.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 10);
             }
         });
@@ -64,7 +64,7 @@ public class Speech extends AppCompatActivity {
                 TBjp.setChecked(true);
                 TBen.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 10);
                 TBth.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 10);
-                TBjp.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 25);
+                TBjp.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
             }
         });
         tts = new TextToSpeech(Speech.this, new TextToSpeech.OnInitListener() {
@@ -118,11 +118,11 @@ public class Speech extends AppCompatActivity {
                         RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
 
                 if (TBen.isChecked())
-                    intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "en_US");
+                    intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-US");
                 else if (TBth.isChecked())
-                    intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "th_TH");
+                    intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "th-TH");
                 else if (TBjp.isChecked())
-                    intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "ja_JP");
+                    intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "ja-JP");
                 else
                     Toast.makeText(Speech.this, "Please select language", Toast.LENGTH_LONG).show();
 

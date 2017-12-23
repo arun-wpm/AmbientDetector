@@ -1330,19 +1330,69 @@ public class Project extends AppCompatActivity {
 
     private void turnOnFlash() {
         //ฟังก์ชั่นนี้เปิดแฟลช
-      //  if (Build.VERSION.SDK_INT >= 23) {
+        if (Build.VERSION.SDK_INT >= 23) {
             //String cameraId = null; // Usually front camera is at 0 position.
-        releaseCameraAndPreview();
-            cam = Camera.open();
-            Camera.Parameters params = cam.getParameters();
-            params.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
-            cam.setParameters(params);
-            cam.startPreview();
-            //params.setFlashMode(Camera.Parameters.FLASH_MODE_ON);
-            cam.autoFocus(new Camera.AutoFocusCallback() {
-                public void onAutoFocus(boolean success, Camera camera) {
+            try {
+                for (final String cameraId : camManager.getCameraIdList()) {
+                    try {
+                        CameraCharacteristics camCharacteristics = camManager.getCameraCharacteristics(cameraId);
+                        if (camCharacteristics.get(CameraCharacteristics.FLASH_INFO_AVAILABLE)) {
+                            try {
+                                camManager.setTorchMode(cameraId, true);
+                            } catch (CameraAccessException e) {
+                                e.printStackTrace();
+                            }
+//                            camManager.openCamera(cameraId, new CameraDevice.StateCallback() {
+//                                @Override
+//                                public void onOpened(@NonNull CameraDevice camera) {
+//                                    mCamera = camera;
+//                                    //initPreview();
+//                                }
+//
+//                                @Override
+//                                public void onDisconnected(@NonNull CameraDevice camera) {
+//
+//                                }
+//
+//                                @Override
+//                                public void onError(@NonNull CameraDevice camera, int error) {
+//
+//                                }
+//                            }, null);
+                        }
+                    } catch (CameraAccessException e) {
+                        e.printStackTrace();
+                    }
                 }
-            });
+            } catch (CameraAccessException e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                releaseCameraAndPreview();
+                cam = Camera.open();
+                Camera.Parameters p = cam.getParameters();
+                p.setFlashMode(Camera.Parameters.FLASH_MODE_ON);
+                cam.setParameters(p);
+                cam.startPreview();
+            } catch (Exception e) {
+                Log.e(getString(R.string.app_name), "failed to open Camera");
+                e.printStackTrace();
+            }
+        }
+      //  if (Build.VERSION.SDK_INT >= 23) {
+//            //String cameraId = null; // Usually front camera is at 0 position.
+//        releaseCameraAndPreview();
+//        cam = Camera.open();
+//        Camera.Parameters params = cam.getParameters();
+//        params.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+//        cam.setParameters(params);
+//        cam.startPreview();
+            //params.setFlashMode(Camera.Parameters.FLASH_MODE_ON);
+//            cam.autoFocus(new Camera.AutoFocusCallback() {
+//                public void onAutoFocus(boolean success, Camera camera) {
+//                }
+//            });
         /*} else {
             try {
                 releaseCameraAndPreview();
@@ -1449,28 +1499,32 @@ public class Project extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= 23) {
             //String cameraId = null; // Usually front camera is at 0 position.
             try {
-                for (String cameraId : camManager.getCameraIdList()) {
+                for (final String cameraId : camManager.getCameraIdList()) {
                     try {
                         CameraCharacteristics camCharacteristics = camManager.getCameraCharacteristics(cameraId);
                         if (camCharacteristics.get(CameraCharacteristics.FLASH_INFO_AVAILABLE)) {
-                            camManager.openCamera(cameraId, new CameraDevice.StateCallback() {
-                                @Override
-                                public void onOpened(@NonNull CameraDevice camera) {
-                                    mCamera = camera;
-                                    //initPreview();
-                                }
-
-                                @Override
-                                public void onDisconnected(@NonNull CameraDevice camera) {
-
-                                }
-
-                                @Override
-                                public void onError(@NonNull CameraDevice camera, int error) {
-
-                                }
-                            }, null);
-                            camManager.setTorchMode(cameraId, false);
+                            try {
+                                camManager.setTorchMode(cameraId, false);
+                            } catch (CameraAccessException e) {
+                                e.printStackTrace();
+                            }
+//                            camManager.openCamera(cameraId, new CameraDevice.StateCallback() {
+//                                @Override
+//                                public void onOpened(@NonNull CameraDevice camera) {
+//                                    mCamera = camera;
+//                                    //initPreview();
+//                                }
+//
+//                                @Override
+//                                public void onDisconnected(@NonNull CameraDevice camera) {
+//
+//                                }
+//
+//                                @Override
+//                                public void onError(@NonNull CameraDevice camera, int error) {
+//
+//                                }
+//                            }, null);
                         }
                     } catch (CameraAccessException e) {
                         e.printStackTrace();

@@ -85,16 +85,19 @@ public class LiveLoudness extends AppCompatActivity {
                     thisavg += Math.abs(data[i]);
                 }
                 thisavg /= writtenBytes;
-                if (thisavg > max)
-                    max = thisavg;
-                if (thisavg < min)
-                    min = thisavg;
+                if (count != 0) {
+                    if (thisavg > max)
+                        max = thisavg;
+                    if (thisavg < min)
+                        min = thisavg;
+                }
                 if (count == 0)
                     avg = thisavg;
                 else
                     avg = (avg*count + thisavg)/(count + 1);
 
-                publishProgress();
+                if (count != 0)
+                    publishProgress();
                 count++;
 
                 if (Thread.currentThread().isInterrupted()) {
